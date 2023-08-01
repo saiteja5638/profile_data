@@ -1,0 +1,48 @@
+<mvc:View controllerName="seeduniqueorder.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" >
+      <customHeader>
+      
+      <Toolbar id="_IDGenToolbar1" >
+      <Text id="_IDGenText1" text="Characteristic name and value" textAlign="Center"  ></Text>
+      <ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>
+      <Button   id="dcdcds" icon="sap-icon://decline" press="onClose" type="Reject" />
+      </Toolbar>
+      </customHeader>
+      
+    <subHeader>
+    <Toolbar >
+    <SearchField   width="45%"  liveChange="Characteristic_value_search"  ></SearchField>
+    
+    <Button  text="Create Order"  type="Accept"  press="open_order_frag" ></Button>
+    </Toolbar>
+    </subHeader>
+
+    <Table  id="Table2"  items="{/items2}" >
+    <columns>
+    <Column >
+    <Text  text="CHARVAL_NUM"></Text>
+    </Column>
+    <Column >
+    <Text  text="CHAR_NUMVALDESC"></Text>
+    </Column>
+    </columns>
+    
+
+    <items>
+    
+    <ColumnListItem >
+
+    <Text  text="{CHARVAL_NUM}"></Text>
+    <Text   text="{CHAR_NUMVALDESC}" ></Text>
+
+    
+    </ColumnListItem>
+    
+    </items>
+    
+    </Table>
+     
+    </Page>
+</mvc:View>

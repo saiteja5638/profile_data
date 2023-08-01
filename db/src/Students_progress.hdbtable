@@ -1,0 +1,7 @@
+COLUMN TABLE "Students_progress" (
+    ID INTEGER,
+    NAME VARCHAR(5000),
+    DATEOFBIRTH VARCHAR(5000),
+    CONTACT VARCHAR(5000)
+   
+)

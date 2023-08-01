@@ -1,0 +1,6 @@
+COLUMN TABLE "stud_data" (
+  ID INTEGER,
+  DATE VARCHAR(5000),
+  MARKS VARCHAR(5000)
+   
+)
