@@ -11,10 +11,8 @@ sap.ui.define([
 
         return Controller.extend("sampleprofilepredication.controller.View1", {
             onInit: function () {
-
                 that=this;
 
-           
                 var oData = that.getOwnerComponent().getModel("oData")
 
                 var oModel = new sap.ui.model.json.JSONModel()
@@ -36,7 +34,6 @@ sap.ui.define([
                         console.log(err)
                     }
                 })
-
             },
             nav_to_create:function()
             {
