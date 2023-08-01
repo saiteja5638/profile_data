@@ -202,7 +202,7 @@ sap.ui.define([
                        
                         if(!obj.PROFILE)
                         {
-                          alert("Please enter the above details")
+                          MessageToast.show("Please enter the above details")
                         }
                         else{
                         let add =[]
