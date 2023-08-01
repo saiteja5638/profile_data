@@ -1017,7 +1017,7 @@ sap.ui.define([
                         and: false
                     }));
                 }
-
+            
                 var oTable = sap.ui.getCore().byId("idList")
 
                 var oBinding = oTable.getBinding("items");
