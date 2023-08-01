@@ -53,9 +53,6 @@ sap.ui.define([
                 oGmodel.setData({
                     items:"NONE"
                 })
-
-
-
             },
             Search_profile:function(oEvent)
             {
