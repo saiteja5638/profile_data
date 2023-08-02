@@ -19,6 +19,11 @@ sap.ui.define([
                     that.create = sap.ui.xmlfragment("orderdata.view.create", that);
                 }
 
+                if(!that.downloadTem)
+                {
+                    that.downloadTem = sap.ui.xmlfragment("orderdata.view.downloadtem")
+                }
+
 
 
             },
@@ -350,6 +355,14 @@ sap.ui.define([
                 that.byId("table").setModel( new sap.ui.model.json.JSONModel({}))
 
 
+            },
+            open_Download_tem:function()
+            {
+                that.downloadTem.open()
+            },
+            close_Download_tem:function()
+            {
+                that.downloadTem.close()
             }
 
         });

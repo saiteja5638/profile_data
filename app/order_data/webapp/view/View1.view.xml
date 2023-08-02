@@ -61,7 +61,7 @@
       <FlexBox id="_IDGenFlexBox2" justifyContent="End"     >
       <Button id="_IDGenButton3"  text="Create"  type="Success" press="onCreate" class="sapUiSmallMarginBeginEnd"></Button>
 
-      <Button id="_IDGenButton4"  type="Emphasized"  text="Download Template" class="sapUiSmallMarginBeginEnd" ></Button>
+      <Button id="_IDGenButton4"  type="Emphasized"  text="Download Template" class="sapUiSmallMarginBeginEnd" press="open_Download_tem"  ></Button>
 
        <Button id="_IDGenButton5"  type="Default"  text="Browse" class="sapUiSmallMarginBeginEnd" ></Button>
       
