@@ -540,7 +540,7 @@ sap.ui.define([
                     items5:sample
                 })
 
-                sap.ui.getCore().byId("table3").setModel(oModel3)
+                sap.ui.getCore().byId("table3").setModel(oModel2)
 
                 that.Sample.close()
 
