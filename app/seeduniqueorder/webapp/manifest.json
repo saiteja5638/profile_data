@@ -84,6 +84,9 @@
       },
       "oGmodel1":{
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "oModel2":{
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
