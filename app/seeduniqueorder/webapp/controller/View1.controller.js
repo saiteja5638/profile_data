@@ -514,7 +514,7 @@ sap.ui.define([
 
                 
 
-                var oModel3 = new sap.ui.model.json.JSONModel()
+                var oModel2 = that.getOwnerComponent().getModel("oModel2")
 
                 var sample =[]
 
@@ -536,7 +536,7 @@ sap.ui.define([
                     }
                  )
               })
-                oModel3.setData({
+              oModel2.setData({
                     items5:sample
                 })
 
