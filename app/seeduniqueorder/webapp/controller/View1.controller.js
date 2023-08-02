@@ -507,9 +507,6 @@ sap.ui.define([
                     btn.setSelected(false)
                 })
                })   
-               
-               
-                 
             },
             chars_values_add:function()
             {
