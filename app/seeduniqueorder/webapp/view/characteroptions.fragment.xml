@@ -11,7 +11,7 @@
           <CustomListItem>
         		<Panel expandable="true" headerText="{CHARVAL_NUM}" width="auto" class="sapUiResponsiveMargin"  id="Panel_1251"  expanded="false" >
 	           	<content>
-		          	<RadioButtonGroup  id="Radio_group1" >
+		          	<RadioButtonGroup  id="Radio_group1"  >
                 <RadioButton  text="{name0}"  selected="false" ></RadioButton>
                 <RadioButton  text="{name1}"  selected="false" ></RadioButton>
                 <RadioButton  text="{name2}" selected="false"  ></RadioButton>

@@ -1022,7 +1022,9 @@ sap.ui.define([
 
                 var oBinding = oTable.getBinding("items");
 
-                oBinding.filter(aFilters)
+                var data  =  oBinding.filter(aFilters)
+
+                console.log(data)
             },
 
             delete_row_6:function(oEvent)
