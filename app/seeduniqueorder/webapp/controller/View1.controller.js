@@ -535,10 +535,7 @@ sap.ui.define([
                         }
                     }
                  )
-              }) 
-
-              
-
+              })
                 oModel3.setData({
                     items5:sample
                 })
