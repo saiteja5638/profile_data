@@ -352,13 +352,6 @@ sap.ui.define([
 
                 sap.ui.getCore().byId("ActiveStatus").setValue(Active_state.ACTIVE)
 
-                
-
-               
-
-                
-                       
-
                 that.create.open()
                 }
 
