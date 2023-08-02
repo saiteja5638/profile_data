@@ -538,7 +538,7 @@ sap.ui.define([
                  )
               }) 
 
-              console.log(sample)
+              
 
                 oModel3.setData({
                     items5:sample
