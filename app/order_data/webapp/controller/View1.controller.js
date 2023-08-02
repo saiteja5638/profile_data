@@ -21,7 +21,7 @@ sap.ui.define([
 
                 if(!that.downloadTem)
                 {
-                    that.downloadTem = sap.ui.xmlfragment("orderdata.view.downloadtem")
+                    that.downloadTem = sap.ui.xmlfragment("orderdata.view.downloadtem",that)
                 }
 
 
