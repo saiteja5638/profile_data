@@ -508,6 +508,15 @@ sap.ui.define([
                 var oBinding = oTable.getBinding("items");
 
                 oBinding.filter(aFilters)
+
+               oTable.getItems().forEach(obj=>{
+                obj.getContent()[0].getContent()[0].getButtons().forEach(btn=>{
+                    btn.setSelected(false)
+                })
+               })   
+               
+               
+                 
             },
             chars_values_add:function()
             {
