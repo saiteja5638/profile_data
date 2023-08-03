@@ -484,6 +484,9 @@ sap.ui.define([
             {
                 var sValue = oEvent.getParameters().newValue;
 
+                var oTable = sap.ui.getCore().byId("idList1");
+                var oBinding = oTable.getBinding("items");
+
                 var aFilters = []
 
                 if (sValue && sValue.length > 0) {
@@ -495,22 +498,57 @@ sap.ui.define([
                         ],
                         and: false
                     }));
+
+                    oTable.getItems().forEach(obj=>{
+                        obj.getContent()[0].getContent()[0].getButtons().forEach(btn=>{
+                            btn.setSelected(false)
+                        })
+                       }) 
+        
                 }
-
-                var oTable = sap.ui.getCore().byId("idList1");
-                var oBinding = oTable.getBinding("items");
-
+       
                 oBinding.filter(aFilters)
 
-               oTable.getItems().forEach(obj=>{
-                obj.getContent()[0].getContent()[0].getButtons().forEach(btn=>{
-                    btn.setSelected(false)
+          
+               if(sValue.length<1)
+               {
+                
+                var List_op = sap.ui.getCore().byId("idList1").getItems()
+
+                    
+                if(sap.ui.getCore().byId("table3").getItems().length>0){
+
+               sap.ui.getCore().byId("table3").getItems().forEach(i=>{
+
+                  List_op.forEach(j=>{
+                    if(j.getContent()[0].getHeaderText()==i.getBindingContext().getObject().CHARVAL_NUM)
+                    {
+                        j.getContent()[0].getContent()[0].getButtons().forEach(button =>{
+                            if(button.getText()==i.getBindingContext().getObject().CHAR_NUMVALDESC)
+                            {
+                                button.setSelected(true)
+                                button.getParent().getParent().setExpanded(true)
+                            }
+                        })
+                    }
+                  })
+
                 })
-               })   
+            
+            }
+         }
             },
-            chars_values_add:function()
+            chars_values_add:function(event)
             {
-                var Selected_list = sap.ui.getCore().byId("idList1").getItems()
+                let old_data=[]
+                  
+                 sap.ui.getCore().byId("table3").getItems().forEach(old=>{
+                    old_data.push(old.getBindingContext().getObject())
+                 }) 
+
+                 console.log(old_data)
+
+                // var Selected_list = sap.ui.getCore().byId("idList1").getItems()
 
                 
 
@@ -518,41 +556,59 @@ sap.ui.define([
 
                 var sample =[]
 
-               Selected_list.forEach(item=>{
-
-                 item.getContent()[0].getContent()[0].getButtons().forEach(
-
-                    button =>{
+                     
+                 event.getSource().getButtons().forEach(button=>{
+                            
                         if(button.getSelected())
                         {
                             var obj ={
                                 
                                 CHAR_NUMVALDESC:button.getText(),
-                                CHARVAL_NUM:item.getContent()[0].getHeaderText()
+                                CHARVAL_NUM:button.getParent().getParent().getHeaderText()
                             }
 
                             sample.push(obj)
                         }
-                    }
-                 )
-              })
+                 })
+
+            //    Selected_list.forEach(item=>{
+
+            //      item.getContent()[0].getContent()[0].getButtons().forEach(
+
+            //         button =>{
+            //             if(button.getSelected())
+            //             {
+            //                 var obj ={
+                                
+            //                     CHAR_NUMVALDESC:button.getText(),
+            //                     CHARVAL_NUM:item.getContent()[0].getHeaderText()
+            //                 }
+
+            //                 sample.push(obj)
+            //             }
+            //         }
+            //      )
+            //   })
+
+              let conCar = old_data.concat(sample);
+
               oModel2.setData({
-                    items5:sample
+                    items5:conCar
                 })
 
                 sap.ui.getCore().byId("table3").setModel(oModel2)
 
-                that.Sample.close()
+                // that.Sample.close()
 
-                var List_op = sap.ui.getCore().byId("idList1").getItems()
-                List_op.forEach((obj)=>{
+                // var List_op = sap.ui.getCore().byId("idList1").getItems()
+                // List_op.forEach((obj)=>{
                    
-                    obj.getContent()[0].getContent()[0].getButtons().forEach(button=>{
-                        button.setSelected(false)
+                //     obj.getContent()[0].getContent()[0].getButtons().forEach(button=>{
+                //         button.setSelected(false)
                             
-                    })
+                //     })
 
-                })
+                // })
 
                
             },
@@ -610,6 +666,8 @@ sap.ui.define([
             Characteristic_value_search:function(oEvent)
             {
                 var sValue = oEvent.getParameters().newValue;
+                var oTable = this.getView().byId("table4");
+                var oBinding = oTable.getBinding("items");
 
                 var aFilters = []
 
@@ -623,9 +681,12 @@ sap.ui.define([
                         and: false
                     }));
                 }
+                if(sValue.length<1)
+                {
 
-                var oTable = this.getView().byId("table4");
-                var oBinding = oTable.getBinding("items");
+                }
+
+              
 
                 oBinding.filter(aFilters)
             },
@@ -898,8 +959,6 @@ sap.ui.define([
                       var oGmodel = that.getOwnerComponent().getModel("oGmodel")
 
                       var oTable12 = sap.ui.getCore().byId("idList")
-
-                
                     var data = sap.ui.getCore().byId("table6").getItems();
                     data.forEach(obj=>{
                         oTable12.getItems().forEach(item=>{
@@ -1001,6 +1060,10 @@ sap.ui.define([
             {
                 var sValue = oEvent.getParameters().newValue;
 
+                var oTable = sap.ui.getCore().byId("idList")
+
+                var oBinding = oTable.getBinding("items");
+
                 var aFilters = []
 
                 if (sValue && sValue.length > 0) {
@@ -1012,15 +1075,42 @@ sap.ui.define([
                         ],
                         and: false
                     }));
+
+                    var List_op = sap.ui.getCore().byId("idList").getItems()
+                    List_op.forEach((obj)=>{
+                       
+                        obj.getContent()[0].getContent()[0].getButtons().forEach(button=>{
+                            button.setSelected(false)
+                                
+                        })
+       
+                    })
                 }
-            
-                var oTable = sap.ui.getCore().byId("idList")
+                if(sValue.length<1)
+                {
+                    var oTable12 = sap.ui.getCore().byId("idList")
+                    var data = sap.ui.getCore().byId("table6").getItems();
+                    data.forEach(obj=>{
+                        oTable12.getItems().forEach(item=>{
+                           if(item.getContent()[0].getHeaderText() === obj.getBindingContext().getObject().CHARVAL_NUM){
+                            // sap.ui.getCore().byId("Panel_125").expanded=true
 
-                var oBinding = oTable.getBinding("items");
-
+                            item.getContent()[0].getContent()[0].getButtons().forEach(
+                                
+                                button=>{
+                                    if(button.getText()==obj.getBindingContext().getObject().CHAR_NUMVALDESC)
+                                    {
+                                        button.getParent().getParent().setExpanded(true)
+                                        button.setSelected(true)
+                                    }
+                                }
+                            )
+                            
+                           }
+                        })
+                    })
+                }
                 var data  =  oBinding.filter(aFilters)
-
-                console.log(data)
             },
 
             delete_row_6:function(oEvent)

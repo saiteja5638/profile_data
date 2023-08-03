@@ -6,7 +6,6 @@
 		        <DateRangeSelection id="_IDGenDateRangeSelection1"    ></DateRangeSelection>
 			</f:content>
 		</f:SimpleForm>
-
 <footer>
 <Toolbar  >
 <ToolbarSpacer  ></ToolbarSpacer>
@@ -16,6 +15,4 @@
 </Toolbar>
 </footer>
 </Dialog>
-
-
 </core:FragmentDefinition>
