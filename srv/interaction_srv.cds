@@ -55,7 +55,8 @@ entity Unique_ID_Header1 as projection on interactions.Unique_ID_Header12;
 
  entity CP_STAT_PROFILE_VAL1  as projection on interactions.CP_STAT_PROFILE_VAL;
 
-
+entity CP_BOOK  as projection on interactions.BOOKS_Vals;
+   
 //   function crud(FLAG:String,ID:Integer,NAME:String,DATEOFBIRTH:String,CONTACT:String,EMAIL:String,ADDRESS:String) returns String
 
 // function crud(FLAG:String,Data:String) returns String;
@@ -65,6 +66,8 @@ function stud_data(FLAG:String,Data:String) returns String;
 function seed_order(FLAG:String,Data:String) returns String;
 
 function  profile(FLAG:String,Data:String)  returns String;
+
+function CP_BOOK1(FLAG:String,Data:String) returns String;  
 
 }
 

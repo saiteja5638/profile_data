@@ -1,0 +1,45 @@
+<mvc:View controllerName="sampleprofilepredication.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}"  showHeader="false"  >
+
+       <Bar id="_IDGenBar1" >  
+    <contentMiddle>
+    <Text id="_IDGenText1"   text="Prediction Profile "    textAlign="Center"  class="Title_header"  ></Text>
+    </contentMiddle>
+   <contentRight>
+       <HBox id="_IDGenHBox1"  >
+    <Button id="_IDGenButton1"    text="Create"  class="button_header"  icon="sap-icon://add" press="nav_to_create" ></Button>
+     <Button id="_IDGenButton2"    text="Copy"   class="button_header"  icon="sap-icon://copy"   press="copy_Profile" ></Button>
+     <Button id="_IDGenButton3"    text="Edit"   class="button_header"  icon="sap-icon://edit"   press="on_edit"  ></Button>
+    <Button id="_IDGenButton4"    text="Delete"  class="button_header"  icon="sap-icon://delete"  press="onDelete_profile" ></Button>
+    </HBox>
+   </contentRight>
+    </Bar>
+   <content>
+   <SearchField id="_IDGenSearchField1"  liveChange="Search_profile" ></SearchField>
+   </content>
+  <Table id="table"  items="{/items}"  mode="SingleSelectMaster"  selectionChange="select_"  >
+  <columns>
+  <Column id="_IDGenColumn1" hAlign="Center" >
+  <Text id="_IDGenText2"  text="Profile" ></Text> 
+  </Column>
+   <Column id="_IDGenColumn2" hAlign="Center">
+  <Text id="_IDGenText3"  text="Method" ></Text>
+  </Column>
+   <Column id="_IDGenColumn3" hAlign="Center">
+  <Text id="_IDGenText4" text="Profile description" ></Text>
+  </Column>
+  </columns>
+  <items>
+  <ColumnListItem id="_IDGenColumnListItem1" >
+<Text id="_IDGenText5"  text="{PROFILE}"  ></Text>
+ <Text id="_IDGenText6"  text="{METHOD}"  ></Text>
+ <Text id="_IDGenText7"  text="{PRF_DESC}"  ></Text>
+  
+  </ColumnListItem>
+  </items>
+  </Table>
+       
+    </Page>
+</mvc:View>

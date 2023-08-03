@@ -12,7 +12,8 @@
         "hdb": "^0.19.0",
         "in": "^0.19.0",
         "sqlite": "^4.2.1",
-        "sqlite3": "^5.1.6"
+        "sqlite3": "^5.1.6",
+        "xlsx": "^0.18.5"
     },
     "scripts": {
         "start": "cds-serve",

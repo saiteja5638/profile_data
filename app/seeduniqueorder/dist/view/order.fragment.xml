@@ -1,0 +1,24 @@
+<core:FragmentDefinition  xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
+<Dialog id="characccddcdcd"  title="CREATE SEED ORDER"  titleAlignment="Center"    >
+      	<f:SimpleForm id="Order_form"  layout="ResponsiveGridLayout"   >
+			<f:content  >
+            
+                <Label  text="Configurable Product"  />
+				<Input  id="Configurable_Product_1"  enabled="false"  />
+                <Label  text="Unique Id"/>
+				<Input  id="UniqueType_1" enabled="false"  />
+                <Label  text="Order Quantity"/>
+				<Input  id="ActiveStatus_1"  enabled="true" />
+                <Label  text="Order Date" required="true" />
+				<DatePicker  id="Date_range_1"  valueFormat="dd/MM/yyyy"   ></DatePicker>
+			</f:content>
+		</f:SimpleForm>
+<footer   >
+<tnt:ToolHeader >
+<ToolbarSpacer ></ToolbarSpacer>
+<Button  text="Submit"  type="Accept" press="Submit_order" ></Button>
+<Button  text="Close"  type="Reject" press="close_order_frag" ></Button>
+</tnt:ToolHeader>
+</footer>
+</Dialog>
+</core:FragmentDefinition>

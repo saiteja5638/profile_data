@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" displayBlock="true" >
+
+ <SelectDialog id="_IDGe"  items="{/items}"  confirm="onValueHelpDialogClose" cancel="onValueHelpDialogClose"  contentHeight="30%" >
+ 
+       <StandardListItem id="_IDGenStandardListItem1"  title="{PRODUCT_ID}" ></StandardListItem>
+       
+</SelectDialog>
+
+</core:FragmentDefinition>

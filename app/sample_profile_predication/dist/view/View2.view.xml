@@ -1,0 +1,72 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="sampleprofilepredication.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}"  showHeader="false"  >
+  <Bar id="_IDGenBar1"  >
+<contentLeft>
+<Button id="_IDGenButton1"  type="Back"  press="nav_to_create" ></Button>
+</contentLeft>
+<contentMiddle>
+<Text id="_IDGenText6"   text="Create" ></Text>
+</contentMiddle>
+</Bar>
+
+ <content>
+<form:SimpleForm id="_IDGenSimpleForm1" >
+<form:content>
+<Label id="_IDGenLabel1"  text="Profile name" ></Label>
+<Input id="_IDGenInput1" width="50%" type="Text" placeholder="Profile name......."  ></Input>
+<Label id="_IDGenLabel2"  text="Profile Description" ></Label>
+<Input id="_IDGenInput2" width="50%"  placeholder="profile descrip" ></Input>
+<Label id="_IDGenLabel3"  text="Algorithm" ></Label>
+<HBox id="_IDGenHBox1" >
+
+<Select  id="options" items="{/items3}" >
+<items>
+<core:Item id="_IDGenItem2" text="none"   ></core:Item>
+<core:Item id="_IDGenItem1"  text="{METHOD}" key="{METHOD}"  ></core:Item>
+
+</items>
+
+</Select>
+
+
+</HBox>
+</form:content>
+
+</form:SimpleForm>
+ </content> 
+
+  <Table id="table2"  mode="MultiSelect"  items="{/items}" >
+  <columns>
+  <Column id="_IDGenColumn1" hAlign="Center" >
+  <Text id="_IDGenText2"  text="Parameter" ></Text>
+  </Column>
+   <Column id="_IDGenColumn2" hAlign="Center">
+  <Text id="_IDGenText3"  text="Description" ></Text>
+  </Column>
+   <Column id="_IDGenColumn3" hAlign="Center">
+  <Text id="_IDGenText4" text="Type" ></Text>
+  </Column>
+   <Column id="_IDGenColumn4" hAlign="Center">
+  <Text id="_IDGenText5"  text="Default value" ></Text>
+  </Column>
+ <Column id="_IDGenColumn5" hAlign="Center">
+  <Text id="_IDGenText56"  text="User Defined Value" ></Text>
+  </Column>
+  </columns>
+<items>
+   <ColumnListItem id="_IDGenColumnListItem1" >
+   <Text id="_IDGenText7"  text="{PARAM}"  ></Text>
+   <Text id="_IDGenText8"  text="{PARAM_DESC}"  ></Text>
+   <Input id="_IDGenInput3"  value="{DATATYPE}"   width="30%"  textAlign="Center" ></Input>
+   <Text id="_IDGenText9"    text="{DEFAULTVALUE}"  ></Text>
+   <Input id="_IDGenInput4"  width="30%"    textAlign="Center" ></Input>
+
+   </ColumnListItem>
+   
+   </items>  
+  </Table>
+
+    </Page>
+</mvc:View>

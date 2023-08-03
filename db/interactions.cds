@@ -135,6 +135,13 @@ entity CP_STAT_PROFILE_VAL{
 
 }
 
+entity BOOKS_Vals{
+   key BOOKID:Integer64;
+       BOOKNAME:String;
+       BOOKAUTHOR:String;
+       BOOKPUBDATE:String;
+}
+
 
 }
 
