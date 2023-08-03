@@ -1,13 +1,19 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/export/library",
+    "sap/ui/export/Spreadsheet",
+    "sap/ui/core/util/Export",
+    "sap/ui/core/util/ExportTypeCSV",
+    "sap/ui/core/util/File"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,exportLibrary, Spreadsheet, Export, ExportTypeCSV,File) {
         "use strict";
 
         var that;
+        var oExportType = exportLibrary.ExportType;
 
         return Controller.extend("orderdata.controller.View1", {
             onInit: function () {
@@ -388,30 +394,78 @@ sap.ui.define([
                   const mondaysInRange = getMondaysBetweenDates(startDate, endDate);
                   console.log(mondaysInRange)
 
-                //   const worksheet = XLSX.utils.json_to_sheet(mondaysInRange);
-                //   const workbook = XLSX.utils.book_new();
-                //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-            
-                //   // Generate a Blob from the XLSX workbook
-                //   const wbout = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-                //   const blob = new Blob([wbout], { type: "application/octet-stream" });
-            
-                //   // Trigger the download
-                //   FileUtil.save(blob, "data.xlsx")
-
-                const jsonData = [
+               
+                  var aData = [
                     { Name: "John", Age: 30, City: "New York" },
-                    { Name: "Jane", Age: 25, City: "London" },
-                    // Add more JSON data here as needed
+                    { Name: "Jane", Age: 25, City: "San Francisco" },
+                    { Name: "Bob", Age: 35, City: "Chicago" },
                   ];
             
-                  // Convert JSON to XLSX format using SheetJS library
-                  var workbook = XLSX.utils.book_new();
-                  var worksheet = XLSX.utils.json_to_sheet(jsonData);
-                  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-                  // Save the workbook as an Excel file
-                  XLSX.writeFile(workbook, "data.xlsx")
-            }
+                //   // Create Export instance
+                //   var oExport = new Export({
+                //     // Export configurations
+                //     exportType: new ExportTypeCSV({
+                //       separatorChar: ";", // Use ";" as separator for Excel
+                //     }),
+                //     rows: {
+                //       path: "/",
+                //     },
+                //     columns: [
+                //       {
+                //         name: "Name",
+                //         template: {
+                //           content: "{Name}",
+                //         },
+                //       },
+                //       {
+                //         name: "Age",
+                //         template: {
+                //           content: "{Age}",
+                //         },
+                //       },
+                //       {
+                //         name: "City",
+                //         template: {
+                //           content: "{City}",
+                //         },
+                //       },
+                //     ],
+                //   });
+            
+                //   // Set the data using JSONModel
+                //   var oModel = new  sap.ui.model.json.JSONModel();
+                //   oModel.setData(aData);
+                //   oExport.setModel(oModel);
+            
+                //   // Define the export type
+                 
+            
+                //   // Perform the export
+                //   oExport.saveFile("MyExcelData").catch(function (error) {
+                //     console.error("Error while exporting data: ", error);
+                //   });
+
+                var sCSVContent = this.convertToCSV(aData);
+
+                // Download the CSV file
+                this.downloadCSVFile(sCSVContent, "MyCSVData.csv");
+
+            },
+            convertToCSV: function (aData) {
+                var sCSV = "Name,Age,City\n"; // CSV header
+          
+                // Convert data to CSV rows
+                aData.forEach(function (oEntry) {
+                  sCSV += oEntry.Name + "," + oEntry.Age + "," + oEntry.City + "\n";
+                });
+          
+                return sCSV;
+              },
+          
+              downloadCSVFile: function (sContent, sFileName) {
+                var blob = new Blob([sContent], { type: "text/csv;charset=utf-8;" });
+                File.save(blob, sFileName);
+              }
 
         });
     });
