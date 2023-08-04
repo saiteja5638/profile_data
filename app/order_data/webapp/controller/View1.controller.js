@@ -373,6 +373,7 @@ sap.ui.define([
             download_file:function()
             {
                 const from_date = sap.ui.getCore().byId("_IDGenDateRangeSelection1")
+                
 
                 function getMondaysBetweenDates(startDate, endDate) {
                     const result = [];
@@ -381,7 +382,7 @@ sap.ui.define([
                   
                     while (currentDate <= lastDate) {
                       if (currentDate.getDay() === 1) { 
-                        result.push(new Date(currentDate));
+                        result.push(new Date(currentDate).toDateString());
                       }
                       currentDate.setDate(currentDate.getDate() + 1); 
                     }
@@ -391,81 +392,56 @@ sap.ui.define([
                   const startDate = from_date.getFrom();
                   const endDate = from_date.getTo();
                   
-                  const mondaysInRange = getMondaysBetweenDates(startDate, endDate);
-                  console.log(mondaysInRange)
+                  let mondaysInRange = getMondaysBetweenDates(startDate, endDate);
 
-               
-                  var aData = [
-                    { Name: "John", Age: 30, City: "New York" },
-                    { Name: "Jane", Age: 25, City: "San Francisco" },
-                    { Name: "Bob", Age: 35, City: "Chicago" },
-                  ];
-            
-                //   // Create Export instance
-                //   var oExport = new Export({
-                //     // Export configurations
-                //     exportType: new ExportTypeCSV({
-                //       separatorChar: ";", // Use ";" as separator for Excel
-                //     }),
-                //     rows: {
-                //       path: "/",
-                //     },
-                //     columns: [
-                //       {
-                //         name: "Name",
-                //         template: {
-                //           content: "{Name}",
-                //         },
-                //       },
-                //       {
-                //         name: "Age",
-                //         template: {
-                //           content: "{Age}",
-                //         },
-                //       },
-                //       {
-                //         name: "City",
-                //         template: {
-                //           content: "{City}",
-                //         },
-                //       },
-                //     ],
-                //   });
-            
-                //   // Set the data using JSONModel
-                //   var oModel = new  sap.ui.model.json.JSONModel();
-                //   oModel.setData(aData);
-                //   oExport.setModel(oModel);
-            
-                //   // Define the export type
-                 
-            
-                //   // Perform the export
-                //   oExport.saveFile("MyExcelData").catch(function (error) {
-                //     console.error("Error while exporting data: ", error);
-                //   });
+                  var aCols, oSettings, oSheet;
 
-                var sCSVContent = this.convertToCSV(aData);
-
-                // Download the CSV file
-                this.downloadCSVFile(sCSVContent, "MyCSVData.csv");
+                  aCols = that.createColumnConfig(mondaysInRange);
+          
+                  oSettings = {
+          
+                    workbook: {
+          
+                      columns: aCols,
+          
+                    },
+          
+                    dataSource: [],
+          
+                    fileName: "templete.xlsx",
+          
+                    worker: true,
+          
+                  };
+          
+                  oSheet = new Spreadsheet(oSettings);
+          
+                  oSheet.build().finally(function () {
+          
+                    oSheet.destroy();
+          
+                    })
 
             },
-            convertToCSV: function (aData) {
-                var sCSV = "Name,Age,City\n"; // CSV header
-          
-                // Convert data to CSV rows
-                aData.forEach(function (oEntry) {
-                  sCSV += oEntry.Name + "," + oEntry.Age + "," + oEntry.City + "\n";
-                });
-          
-                return sCSV;
-              },
-          
-              downloadCSVFile: function (sContent, sFileName) {
-                var blob = new Blob([sContent], { type: "text/csv;charset=utf-8;" });
-                File.save(blob, sFileName);
-              }
+            createColumnConfig: function (list) {
+
+                var aCols = [];
+
+                var noOfColumn = list.length;
+
+                for (let i = 0; i < noOfColumn; i++) {
+
+                    aCols.push({
+
+                        property: list[i],
+
+                    });
+
+                }
+
+                return aCols;
+
+            }
 
         });
     });
