@@ -178,6 +178,23 @@ module.exports = srv => {
                throw e
             }
         }
+        if(req.data.FLAG==="O1")
+        {
+            var data = JSON.parse(req.data.Data)
+            try
+            {
+                for(let i=0;i<data.length;i++)
+                {
+                    
+                await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[i].SEEDORDER,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+
+                }
+            }
+            catch(e)
+            {
+               throw e
+            }
+        }
    
     })
 

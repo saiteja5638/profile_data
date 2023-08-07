@@ -1,4 +1,4 @@
-<mvc:View xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap" controllerName="orderdata.controller.View1"
+<mvc:View xmlns:unified="sap.ui.unified" xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap" controllerName="orderdata.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
 
@@ -63,7 +63,9 @@
 
       <Button id="_IDGenButton4"  type="Emphasized"  text="Download Template" class="sapUiSmallMarginBeginEnd" press="open_Download_tem"  ></Button>
 
-       <Button id="_IDGenButton5"  type="Default"  text="Browse" class="sapUiSmallMarginBeginEnd" ></Button>
+        
+
+         <unified:FileUploader  id="fileUploader" change="onFileSelect"  ></unified:FileUploader>
       
       </FlexBox>
 
