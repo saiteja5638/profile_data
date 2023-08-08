@@ -1,1 +1,0 @@
-sap.ui.define(["sap/ui/core/UIComponent","sap/ui/Device","profileinformation/model/models"],function(e,i,t){"use strict";return e.extend("profileinformation.Component",{metadata:{manifest:"json"},init:function(){e.prototype.init.apply(this,arguments);var i=this.getRouter();if(i){i.initialize()}this.setModel(t.createDeviceModel(),"device")}})});

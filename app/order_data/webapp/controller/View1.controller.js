@@ -570,7 +570,5 @@ sap.ui.define([
                   reader.readAsBinaryString(oFile);
                 }
               }
-
-
         });
     });
