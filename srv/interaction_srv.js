@@ -183,12 +183,28 @@ module.exports = srv => {
             var data = JSON.parse(req.data.Data)
             try
             {
+                  
+                let Unique_header_data  = await cds.run(SELECT.from("APP_INTERACTIONS_UNIQUE_ID_ITEM"))
+
+                let filtered_data  = []
+
                 for(let i=0;i<data.length;i++)
                 {
                     
-                await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[i].SEEDORDER,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+                   let obj = data[i]
+
+                   let find = Unique_header_data.find(i=>i.UNIQUE_ID==UNIQUEID && i.PRODUCT==PRODUCT)
+
+                   if(find)
+                   {
+                    await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[i].SEEDORDER,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+                     filtered_data.push(obj)
+                   }
+
 
                 }
+
+                return JSON.stringify(filtered_data)
             }
             catch(e)
             {

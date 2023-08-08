@@ -495,7 +495,8 @@ sap.ui.define([
                         })
 
                      })
-                     
+
+
                     var oData = that.getOwnerComponent().getModel("oData")
 
     
@@ -503,48 +504,55 @@ sap.ui.define([
                     var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
                         pattern: "dd/MM/yyyy"
                     });
-    
-                    var date1 = dateFormat.format(Today)
-    
-                    oData.read("/ORDERS", {
-                        success: function (res) {
-                            const response = res.results
 
-                            let data_25 =[]
+                    if(!(result25.length>0))
+                    {
+                        MessageToast.show("Invaild File !")
+                        that.byId("fileUploader").setValue("")
+                    }
+                    else
+                    {
+                        var date1 = dateFormat.format(Today)
     
-                            for(let i=0;i<result25.length;i++)
-                            {
-                                let obj={
-                                    SEEDORDER:"SE0000" + (response.length + i+1),
-                                    PRODUCT: result25[i].UNIQUE_ID,
-                                    UNIQUEID: result25[i].PRODUCT_ID,
-                                    ORDERQUANTITY:result25[i].Quantity,
-                                    MATERIALAVAILDATE: result25[i].date,
-                                    CREADTEDDATE: date1
-
+                        oData.read("/ORDERS", {
+                            success: function (res) {
+                                const response = res.results
+    
+                                let data_25 =[]
+        
+                                for(let i=0;i<result25.length;i++)
+                                {
+                                    let obj={
+                                        SEEDORDER:"SE000" + (response.length + i+1),
+                                        PRODUCT: result25[i].UNIQUE_ID,
+                                        UNIQUEID: result25[i].PRODUCT_ID,
+                                        ORDERQUANTITY:result25[i].Quantity,
+                                        MATERIALAVAILDATE: result25[i].date,
+                                        CREADTEDDATE: date1
+    
+                                    }
+    
+                                       data_25.push(obj)  
+    
                                 }
-
-                                   data_25.push(obj)  
-
+                                oData.callFunction("/seed_order", {
+                                    method: "GET",
+                                    urlParameters: {
+                                        FLAG: "O1",
+                                        Data: JSON.stringify(data_25)
+                                    },
+                                    success: function () {
+                                        console.log("successfully created")
+                                    },
+                                    error: function () {
+                                        console.log(error)
+                                    }
+                                })
                             }
-                            
-                           
-
-                            oData.callFunction("/seed_order", {
-                                method: "GET",
-                                urlParameters: {
-                                    FLAG: "O1",
-                                    Data: JSON.stringify(data_25)
-                                },
-                                success: function () {
-                                    console.log("successfully created")
-                                },
-                                error: function () {
-                                    console.log(error)
-                                }
-                            })
-                        }
-                    })
+                        })
+                    }
+    
+          
 
                   };
           
