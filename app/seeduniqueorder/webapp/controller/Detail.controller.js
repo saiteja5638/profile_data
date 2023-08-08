@@ -75,6 +75,8 @@ sap.ui.define([
             {
                 that.close_order_frag()
 
+               
+
                var prod_name = sap.ui.getCore().byId("Configurable_Product_1").getValue()
 
                var Unique_id =sap.ui.getCore().byId("UniqueType_1").getValue() 
@@ -82,16 +84,18 @@ sap.ui.define([
                var Order_quantity = sap.ui.getCore().byId("ActiveStatus_1").getValue()
 
                var Material_date = sap.ui.getCore().byId("Date_range_1").getValue()
-
-
+               
+               if(Material_date==""||Order_quantity=="")
+               {
+                 MessageToast.show("please enter the above the details !")
+               }
+               else {
                var Fdate = new Date();
                var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
                    pattern: "dd/MM/yyyy"
                });
 
                var  date = dateFormat.format(Fdate)
-
-               
 
                var oData = that.getOwnerComponent().getModel("oData")
 
@@ -133,7 +137,7 @@ sap.ui.define([
                     console.log(err)
                 }
                })
-
+            }
             },
             Search_filter:function(oEvent)
             {

@@ -290,11 +290,9 @@ sap.ui.define([
                             success: async function (response) {
                                 var da =response.results
 
-                                const daa = da.filter((a)=>{
-                                    return da.indexOf(a)>0
-                                })
+                              
                                 await Selection_List_items.setData({
-                                    items: daa
+                                    items: da
                                 })
                                 that.byId("_IDGe").setModel(Selection_List_items)
                            

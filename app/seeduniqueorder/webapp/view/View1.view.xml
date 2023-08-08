@@ -89,7 +89,7 @@
    <columns>
    <Column id="_IDGenColumn1" hAlign="Center" >
    
-   <Text id="_IDGenText1" text="Unique Description"></Text>
+   <Text id="_IDGenText1" text="Unique ID"></Text>
    
    </Column>
     <Column id="_IDGenColumn2"   hAlign="Center">
