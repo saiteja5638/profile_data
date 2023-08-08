@@ -6,12 +6,13 @@ sap.ui.define([
     "sap/ui/core/util/ExportTypeCSV",
     "sap/ui/core/util/File",
     "sap/m/MessageToast",
-    "sap/ui/core/format/DateFormat"
+    "sap/ui/core/format/DateFormat",
+    "sap/m/MessageBox"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,exportLibrary, Spreadsheet, Export, ExportTypeCSV,File,MessageToast,DateFormat) {
+    function (Controller,exportLibrary, Spreadsheet, Export, ExportTypeCSV,File,MessageToast,DateFormat,MessageBox) {
         "use strict";
 
         var that;
@@ -507,7 +508,7 @@ sap.ui.define([
 
                     if(!(result25.length>0))
                     {
-                        MessageToast.show("Invaild File !")
+                        MessageBox.show("Invaild File !")
                         that.byId("fileUploader").setValue("")
                     }
                     else
@@ -524,8 +525,8 @@ sap.ui.define([
                                 {
                                     let obj={
                                         SEEDORDER:"SE000" + (response.length + i+1),
-                                        PRODUCT: result25[i].UNIQUE_ID,
-                                        UNIQUEID: result25[i].PRODUCT_ID,
+                                        PRODUCT: result25[i].PRODUCT_ID,
+                                        UNIQUEID: result25[i].UNIQUE_ID,
                                         ORDERQUANTITY:result25[i].Quantity,
                                         MATERIALAVAILDATE: result25[i].date,
                                         CREADTEDDATE: date1
@@ -541,19 +542,25 @@ sap.ui.define([
                                         FLAG: "O1",
                                         Data: JSON.stringify(data_25)
                                     },
-                                    success: function () {
-                                        console.log("successfully created")
+                                    success: function (response) {
+                                        let oModel  = new sap.ui.model.json.JSONModel()
+
+                                        oModel.setData({
+                                            items:JSON.parse(response.seed_order)
+                                        })
+
+                                        that.byId("table").setModel(oModel)
                                     },
-                                    error: function () {
-                                        console.log(error)
+                                    error: function (e) {
+                                        MessageBox.error("Invaild file")
+                                        that.byId("fileUploader").setValue("")
+                                        that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
+                                        console.log(e)
                                     }
                                 })
                             }
                         })
                     }
-    
-          
-
                   };
           
                   reader.onerror = function() {
