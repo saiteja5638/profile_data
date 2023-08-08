@@ -1,13 +1,21 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/export/library",
+    "sap/ui/export/Spreadsheet",
+    "sap/ui/core/util/Export",
+    "sap/ui/core/util/ExportTypeCSV",
+    "sap/ui/core/util/File",
+    "sap/m/MessageToast",
+    "sap/ui/core/format/DateFormat"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,exportLibrary, Spreadsheet, Export, ExportTypeCSV,File,MessageToast,DateFormat) {
         "use strict";
 
         var that;
+        var oExportType = exportLibrary.ExportType;
 
         return Controller.extend("orderdata.controller.View1", {
             onInit: function () {
@@ -367,15 +375,25 @@ sap.ui.define([
             download_file:function()
             {
                 const from_date = sap.ui.getCore().byId("_IDGenDateRangeSelection1")
-
+                
                 function getMondaysBetweenDates(startDate, endDate) {
                     const result = [];
+                    result.unshift("UNIQUE_ID")
+                    result.unshift("PRODUCT_ID")
+                  
+
+                    var oDateFormat = DateFormat.getDateInstance({
+                        pattern: "dd/MM/yyyy"
+                      });
+
+               
+
                     const currentDate = new Date(startDate);
                     const lastDate = new Date(endDate);
                   
                     while (currentDate <= lastDate) {
                       if (currentDate.getDay() === 1) { 
-                        result.push(new Date(currentDate));
+                        result.push( oDateFormat.format(new Date(currentDate)));     oDateFormat.format
                       }
                       currentDate.setDate(currentDate.getDate() + 1); 
                     }
@@ -385,33 +403,160 @@ sap.ui.define([
                   const startDate = from_date.getFrom();
                   const endDate = from_date.getTo();
                   
-                  const mondaysInRange = getMondaysBetweenDates(startDate, endDate);
-                  console.log(mondaysInRange)
+                  let mondaysInRange = getMondaysBetweenDates(startDate, endDate);
 
-                //   const worksheet = XLSX.utils.json_to_sheet(mondaysInRange);
-                //   const workbook = XLSX.utils.book_new();
-                //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-            
-                //   // Generate a Blob from the XLSX workbook
-                //   const wbout = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-                //   const blob = new Blob([wbout], { type: "application/octet-stream" });
-            
-                //   // Trigger the download
-                //   FileUtil.save(blob, "data.xlsx")
+                  var aCols, oSettings, oSheet;
 
-                const jsonData = [
-                    { Name: "John", Age: 30, City: "New York" },
-                    { Name: "Jane", Age: 25, City: "London" },
-                    // Add more JSON data here as needed
-                  ];
-            
-                  // Convert JSON to XLSX format using SheetJS library
-                  var workbook = XLSX.utils.book_new();
-                  var worksheet = XLSX.utils.json_to_sheet(jsonData);
-                  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-                  // Save the workbook as an Excel file
-                  XLSX.writeFile(workbook, "data.xlsx")
-            }
+                  aCols = that.createColumnConfig(mondaysInRange);
+          
+                  oSettings = {
+          
+                    workbook: {
+          
+                      columns: aCols,
+          
+                    },
+          
+                    dataSource: [],
+          
+                    fileName: "templete.xlsx",
+          
+                    worker: true,
+          
+                  };
+          
+                  oSheet = new Spreadsheet(oSettings);
+          
+                  oSheet.build().finally(function () {
+          
+                    oSheet.destroy();
+          
+                    })
+
+            },
+            createColumnConfig: function (list) {
+
+                var aCols = [];
+
+                var noOfColumn = list.length;
+
+                for (let i = 0; i < noOfColumn; i++) {
+
+                    aCols.push({
+
+                        property: list[i],
+
+                    });
+
+                }
+
+                return aCols;
+
+            }, //EXCEL CONVERTION FROM UPLOAD TO JSON DATA  --LIBRARYS ARE IN INDEX.HTML
+            onFileSelect: function(oEvent) {
+                var oFileUploader = oEvent.getSource();
+                var oFile = oEvent.getParameter("files")[0];
+          
+                if (oFile && window.FileReader) {
+                  var reader = new FileReader();
+          
+                  reader.onload = function(e) {
+                    var sData = e.target.result;
+                    var oWorkbook = XLSX.read(sData, { type: "binary" });
+                    var oFirstSheet = oWorkbook.SheetNames[0];
+                    var oSheetData = XLSX.utils.sheet_to_json(oWorkbook.Sheets[oFirstSheet]);
+          
+                  function separateObjectByDate(originalObj) {
+                    const result = [];
+                  
+                    const { PRODUCT_ID, UNIQUE_ID, ...dateMarks } = originalObj;
+                  
+                    for (const [date, Quantity] of Object.entries(dateMarks)) {
+                      const newObj = {
+                        PRODUCT_ID,
+                        UNIQUE_ID,
+                        date,
+                        Quantity,
+                      };
+                      result.push(newObj);
+                    }
+                  
+                    return result;
+                  }
+                 
+                   let result25=[]
+                   
+                     oSheetData.forEach(obj=>{
+
+                        const separatedObjects = separateObjectByDate(obj);
+
+                        separatedObjects.forEach(a=>{
+                            result25.push(a)
+                        })
+
+                     })
+
+                  
+
+                    var oData = that.getOwnerComponent().getModel("oData")
+
+    
+                    var Today = new Date();
+                    var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+                        pattern: "dd/MM/yyyy"
+                    });
+    
+                    var date1 = dateFormat.format(Today)
+    
+                    oData.read("/ORDERS", {
+                        success: function (res) {
+                            const response = res.results
+
+                            let data_25 =[]
+    
+                            for(let i=0;i<result25.length;i++)
+                            {
+                                let obj={
+                                    SEEDORDER:"SE0000" + (response.length + i+1),
+                                    PRODUCT: result25[i].UNIQUE_ID,
+                                    UNIQUEID: result25[i].PRODUCT_ID,
+                                    ORDERQUANTITY:result25[i].Quantity,
+                                    MATERIALAVAILDATE: result25[i].date,
+                                    CREADTEDDATE: date1
+
+                                }
+
+                                   data_25.push(obj)  
+
+                            }
+                            console.log(data_25)
+
+                            oData.callFunction("/seed_order", {
+                                method: "GET",
+                                urlParameters: {
+                                    FLAG: "O1",
+                                    Data: JSON.stringify(data_25)
+                                },
+                                success: function () {
+                                    console.log("successfully created")
+                                },
+                                error: function () {
+                                    console.log(error)
+                                }
+                            })
+                        }
+                    })
+
+                  };
+          
+                  reader.onerror = function() {
+                    MessageToast.show("Error reading the file");
+                  };
+          
+                  reader.readAsBinaryString(oFile);
+                }
+              }
+
 
         });
     });
