@@ -62,7 +62,7 @@ sap.ui.define([
                                 var da = response.results
 
                                 const daa = da.filter((a) => {
-                                    return da.indexOf(a) > 0
+                                    return da.indexOf(a) < 4
                                 })
                                 await Selection_List_items.setData({
                                     items: daa
@@ -495,9 +495,7 @@ sap.ui.define([
                         })
 
                      })
-
-                  
-
+                     
                     var oData = that.getOwnerComponent().getModel("oData")
 
     
@@ -529,7 +527,8 @@ sap.ui.define([
                                    data_25.push(obj)  
 
                             }
-                            console.log(data_25)
+                            
+                           
 
                             oData.callFunction("/seed_order", {
                                 method: "GET",
