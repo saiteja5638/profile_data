@@ -193,7 +193,7 @@ module.exports = srv => {
                     
                    let obj = data[i]
 
-                   let find = Unique_header_data.find(i=>i.UNIQUE_ID==UNIQUEID && i.PRODUCT==PRODUCT)
+                   let find = Unique_header_data.find(i=>i.UNIQUE_ID== obj.UNIQUEID && i.PRODUCT== obj.PRODUCT)
 
                    if(find)
                    {
