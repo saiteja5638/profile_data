@@ -171,7 +171,18 @@ module.exports = srv => {
             var data = JSON.parse(req.data.Data)
             try
             {
-                await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[0].SEEDORDER,PRODUCT:data[0].PRODUCT,UNIQUEID:data[0].UNIQUEID,ORDERQUANTITY:data[0].ORDERQUANTITY,MATERIALAVAILDATE:data[0].MATERIALAVAILDATE,CREADTEDDATE:data[0].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+                let Unique_header_data  = await cds.run(SELECT.from("APP_INTERACTIONS_UNIQUE_ID_ITEM"))
+
+                let find = Unique_header_data.find(i=>i.UNIQUE_ID== obj.UNIQUEID && i.PRODUCT== obj.PRODUCT)
+                
+                if(find)
+                {
+                    await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[0].SEEDORDER,PRODUCT:data[0].PRODUCT,UNIQUEID:data[0].UNIQUEID,ORDERQUANTITY:data[0].ORDERQUANTITY,MATERIALAVAILDATE:data[0].MATERIALAVAILDATE,CREADTEDDATE:data[0].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+
+                }
+
+                
+
             }
             catch(e)
             {

@@ -319,10 +319,12 @@ sap.ui.define([
                                 Data: JSON.stringify(array)
                             },
                             success: function () {
-                                console.log("successfully created")
+                                MessageToast.show(object.SEEDORDER +"is Created")
                             },
-                            error: function () {
+                            error: function (error) {
                                 console.log(error)
+
+                                MessageToast.show( "PRODUCT:"+ object.PRODUCT +"   UNIQUEID"+ object.UNIQUEID +"is not available ")
                             }
                         })
                     }
