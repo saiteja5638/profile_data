@@ -319,7 +319,7 @@ sap.ui.define([
                                 Data: JSON.stringify(array)
                             },
                             success: function () {
-                                MessageToast.show(object.SEEDORDER +"is Created")
+                                MessageToast.show(object.SEEDORDER +"  is Created")
                             },
                             error: function (error) {
                                 console.log(error)
