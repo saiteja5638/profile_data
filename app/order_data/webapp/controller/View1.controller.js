@@ -301,7 +301,7 @@ sap.ui.define([
                         const response = res.results
 
                         const object = {
-                            SEEDORDER: "SE0000" + (response.length + 1),
+                            SEEDORDER: "SE000" + (response.length + 1),
                             PRODUCT: sap.ui.getCore().byId("Configurable_Product_1").getValue(),
                             UNIQUEID: sap.ui.getCore().byId("UniqueType_1").getValue(),
                             ORDERQUANTITY: sap.ui.getCore().byId("Order_quantity").getValue(),
@@ -385,9 +385,6 @@ sap.ui.define([
                     var oDateFormat = DateFormat.getDateInstance({
                         pattern: "dd/MM/yyyy"
                       });
-
-               
-
                     const currentDate = new Date(startDate);
                     const lastDate = new Date(endDate);
                   
@@ -432,6 +429,7 @@ sap.ui.define([
                     oSheet.destroy();
           
                     })
+                    that.downloadTem.close()
 
             },
             createColumnConfig: function (list) {
@@ -528,16 +526,12 @@ sap.ui.define([
                     {
                         var date1 = dateFormat.format(Today)
     
-                        oData.read("/ORDERS", {
-                            success: function (res) {
-                                const response = res.results
-    
+
                                 let data_25 =[]
         
                                 for(let i=0;i<result25.length;i++)
                                 {
                                     let obj={
-                                        SEEDORDER:"SE000" + (response.length + i+1),
                                         PRODUCT: result25[i].PRODUCT_ID,
                                         UNIQUEID: result25[i].UNIQUE_ID,
                                         ORDERQUANTITY:result25[i].Quantity,
@@ -556,14 +550,8 @@ sap.ui.define([
                                         FLAG: "O1",
                                         Data: JSON.stringify(data_25)
                                     },
-                                    success: function (response) {
-                                        let oModel  = new sap.ui.model.json.JSONModel()
-
-                                        oModel.setData({
-                                            items:JSON.parse(response.seed_order)
-                                        })
-
-                                        that.byId("table").setModel(oModel)
+                                    success: function () {
+                                         MessageToast.show("Successfully uploaded ")
                                     },
                                     error: function (e) {
                                         MessageBox.error("Invaild file")
@@ -572,8 +560,7 @@ sap.ui.define([
                                         console.log(e)
                                     }
                                 })
-                            }
-                        })
+                        
                     }
                   };
           

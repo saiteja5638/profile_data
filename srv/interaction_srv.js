@@ -186,6 +186,8 @@ module.exports = srv => {
                   
                 let Unique_header_data  = await cds.run(SELECT.from("APP_INTERACTIONS_UNIQUE_ID_ITEM"))
 
+               
+
                 let filtered_data  = []
 
                 for(let i=0;i<data.length;i++)
@@ -197,8 +199,10 @@ module.exports = srv => {
 
                    if(find)
                    {
-                    
-                    await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[i].SEEDORDER,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+                         let Seed_orderlength  = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
+                        let seed_order_id = "SE000" + (Seed_orderlength.length + 1 ) ;
+                        
+                    await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:seed_order_id,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
                      filtered_data.push(obj)
                    }
 
