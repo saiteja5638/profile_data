@@ -465,7 +465,21 @@ sap.ui.define([
                     var oWorkbook = XLSX.read(sData, { type: "binary" });
                     var oFirstSheet = oWorkbook.SheetNames[0];
                     var oSheetData = XLSX.utils.sheet_to_json(oWorkbook.Sheets[oFirstSheet]);
-          
+                    
+                      const data = [];
+
+                      let dub =[]
+
+                      oSheetData.forEach(obj => {
+
+                          if (!(dub.includes(obj.UNIQUE_ID))) {
+
+                              data.push(obj)
+
+                          }
+                          dub.push(obj.UNIQUE_ID);
+                      })
+
                   function separateObjectByDate(originalObj) {
                     const result = [];
                   
@@ -486,7 +500,7 @@ sap.ui.define([
                  
                    let result25=[]
                    
-                     oSheetData.forEach(obj=>{
+                   data.forEach(obj=>{
 
                         const separatedObjects = separateObjectByDate(obj);
 
@@ -497,26 +511,6 @@ sap.ui.define([
                          })
                         })
 
-                      const dub = [];
-
-                      const data = [];
-
-                      result25.forEach(obj => {
-
-                          if (!(dub.includes(obj.UNIQUE_ID))) {
-
-                              data.push(obj)
-
-                          }
-
-                          dub.push(obj.UNIQUE_ID);
-
-                      })
-
-                      console.log(data)
-
-
-  
                     var oData = that.getOwnerComponent().getModel("oData")
 
     
@@ -540,7 +534,7 @@ sap.ui.define([
     
                                 let data_25 =[]
         
-                                for(let i=0;i<uniqueArray.length;i++)
+                                for(let i=0;i<result25.length;i++)
                                 {
                                     let obj={
                                         SEEDORDER:"SE000" + (response.length + i+1),
@@ -555,33 +549,29 @@ sap.ui.define([
                                        data_25.push(obj)  
     
                                 }
-                                console.log(data_25)
 
+                                oData.callFunction("/seed_order", {
+                                    method: "GET",
+                                    urlParameters: {
+                                        FLAG: "O1",
+                                        Data: JSON.stringify(data_25)
+                                    },
+                                    success: function (response) {
+                                        let oModel  = new sap.ui.model.json.JSONModel()
 
-                             
+                                        oModel.setData({
+                                            items:JSON.parse(response.seed_order)
+                                        })
 
-                                // oData.callFunction("/seed_order", {
-                                //     method: "GET",
-                                //     urlParameters: {
-                                //         FLAG: "O1",
-                                //         Data: JSON.stringify(data_25)
-                                //     },
-                                //     success: function (response) {
-                                //         let oModel  = new sap.ui.model.json.JSONModel()
-
-                                //         oModel.setData({
-                                //             items:JSON.parse(response.seed_order)
-                                //         })
-
-                                //         that.byId("table").setModel(oModel)
-                                //     },
-                                //     error: function (e) {
-                                //         MessageBox.error("Invaild file")
-                                //         that.byId("fileUploader").setValue("")
-                                //         that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
-                                //         console.log(e)
-                                //     }
-                                // })
+                                        that.byId("table").setModel(oModel)
+                                    },
+                                    error: function (e) {
+                                        MessageBox.error("Invaild file")
+                                        that.byId("fileUploader").setValue("")
+                                        that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
+                                        console.log(e)
+                                    }
+                                })
                             }
                         })
                     }
