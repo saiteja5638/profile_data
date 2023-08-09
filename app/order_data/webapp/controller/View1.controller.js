@@ -98,26 +98,16 @@ sap.ui.define([
 
                             var Selected1 = sap.ui.getCore().byId("Configurable_Product_1").getValue()
 
-                            oData.read("/ORDERS", {
+                            oData.read("/Unique_ID_Header1", {
                                 success: function (res) {
                                     var a = []
                                     res.results.forEach(element => {
-                                        if (element.PRODUCT === Selected1) {
-                                            
+                                        if (element.PRODUCT_ID === Selected1) {                                           
                                             a.push(element)
                                         }
                                     })
-
-                                    function removeDuplicateObjects(arr, prop) {
-                                        return arr.filter((obj, index, self) =>
-                                          index === self.findIndex(item => item[prop] === obj[prop])
-                                        );
-                                      }
-                                      
-                                      const newArray = removeDuplicateObjects(a, 'UNIQUEID');
-
                                     uniq_list.setData({
-                                        items: newArray
+                                        items:a
                                     })
 
                                     that.byId("_IDGe25bfvbfb").setModel(uniq_list)
@@ -138,11 +128,11 @@ sap.ui.define([
 
                             var Selected = this.byId("_IDGenInput2").mProperties.value
 
-                            oData.read("/ORDERS", {
+                            oData.read("/Unique_ID_Header1", {
                                 success: function (res) {
                                     var a = []
                                     res.results.forEach(element => {
-                                        if (element.PRODUCT === Selected) {
+                                        if (element.PRODUCT_ID === Selected) {
                                             a.push(element)
                                         }
                                     });

@@ -2,7 +2,7 @@
 
  <SelectDialog id="_IDGe25bfvbfb"  items="{/items}"  confirm="onValueHelpDialogClose1" cancel="onValueHelpDialogClose1"  contentHeight="30%" >
  
-       <StandardListItem id="_IDGenStandardListItem1fvfdv"  title="{UNIQUEID}" ></StandardListItem>
+       <StandardListItem id="_IDGenStandardListItem1fvfdv"  title="{UNIQUE_ID}" ></StandardListItem>
        
 </SelectDialog>
 
