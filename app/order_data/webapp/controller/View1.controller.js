@@ -491,12 +491,32 @@ sap.ui.define([
                         const separatedObjects = separateObjectByDate(obj);
 
                         separatedObjects.forEach(a=>{
-                            result25.push(a)
+ 
+                                    result25.push(a)
+
+                         })
                         })
 
-                     })
+                      const dub = [];
+
+                      const data = [];
+
+                      result25.forEach(obj => {
+
+                          if (!(dub.includes(obj.UNIQUE_ID))) {
+
+                              data.push(obj)
+
+                          }
+
+                          dub.push(obj.UNIQUE_ID);
+
+                      })
+
+                      console.log(data)
 
 
+  
                     var oData = that.getOwnerComponent().getModel("oData")
 
     
@@ -520,7 +540,7 @@ sap.ui.define([
     
                                 let data_25 =[]
         
-                                for(let i=0;i<result25.length;i++)
+                                for(let i=0;i<uniqueArray.length;i++)
                                 {
                                     let obj={
                                         SEEDORDER:"SE000" + (response.length + i+1),
@@ -535,28 +555,33 @@ sap.ui.define([
                                        data_25.push(obj)  
     
                                 }
-                                oData.callFunction("/seed_order", {
-                                    method: "GET",
-                                    urlParameters: {
-                                        FLAG: "O1",
-                                        Data: JSON.stringify(data_25)
-                                    },
-                                    success: function (response) {
-                                        let oModel  = new sap.ui.model.json.JSONModel()
+                                console.log(data_25)
 
-                                        oModel.setData({
-                                            items:JSON.parse(response.seed_order)
-                                        })
 
-                                        that.byId("table").setModel(oModel)
-                                    },
-                                    error: function (e) {
-                                        MessageBox.error("Invaild file")
-                                        that.byId("fileUploader").setValue("")
-                                        that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
-                                        console.log(e)
-                                    }
-                                })
+                             
+
+                                // oData.callFunction("/seed_order", {
+                                //     method: "GET",
+                                //     urlParameters: {
+                                //         FLAG: "O1",
+                                //         Data: JSON.stringify(data_25)
+                                //     },
+                                //     success: function (response) {
+                                //         let oModel  = new sap.ui.model.json.JSONModel()
+
+                                //         oModel.setData({
+                                //             items:JSON.parse(response.seed_order)
+                                //         })
+
+                                //         that.byId("table").setModel(oModel)
+                                //     },
+                                //     error: function (e) {
+                                //         MessageBox.error("Invaild file")
+                                //         that.byId("fileUploader").setValue("")
+                                //         that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
+                                //         console.log(e)
+                                //     }
+                                // })
                             }
                         })
                     }

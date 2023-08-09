@@ -197,6 +197,7 @@ module.exports = srv => {
 
                    if(find)
                    {
+                    
                     await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[i].SEEDORDER,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
                      filtered_data.push(obj)
                    }
