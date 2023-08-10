@@ -177,12 +177,23 @@ module.exports = srv => {
 
                 let find = Unique_header_data.find(i=>i.UNIQUE_ID== data[0].UNIQUEID && i.PRODUCT== data[0].PRODUCT)
 
+                let find_2 = order_data.find( j=> j.UNIQUEID == data[0].UNIQUEID &&  data[0].MATERIALAVAILDATE.includes(j.MATERIALAVAILDATE) )
+
                 
-                
-                if(find )
+                if(find && !find_2)
                 {
                     await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[0].SEEDORDER,PRODUCT:data[0].PRODUCT,UNIQUEID:data[0].UNIQUEID,ORDERQUANTITY:data[0].ORDERQUANTITY,MATERIALAVAILDATE:data[0].MATERIALAVAILDATE,CREADTEDDATE:data[0].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+                    
+                    let result_response  = "The Seed order :" + data[0].SEEDORDER +" is Created !"  
 
+                    return result_response
+                }
+                else
+                {
+                       
+                    let result_response  = "The UniqueID  with " + find_2.UNIQUEID +" is already exits with "+ find_2.MATERIALAVAILDATE 
+
+                    return  result_response
                 }
 
             }

@@ -331,8 +331,8 @@ sap.ui.define([
                                     FLAG: "O",
                                     Data: JSON.stringify(array)
                                 },
-                                success: function () {
-                                    MessageToast.show("SEEDORDER : "+object.SEEDORDER + "  is Created")
+                                success: function (response) {
+                                    MessageToast.show(response.seed_order)
                                 },
                                 error: function (error) {
                                     console.log(error)
