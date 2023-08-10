@@ -211,9 +211,11 @@ module.exports = srv => {
                   
                 let Unique_header_data  = await cds.run(SELECT.from("APP_INTERACTIONS_UNIQUE_ID_ITEM"))
 
-               
+                let order_data = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
 
                 let filtered_data  = []
+
+                let Duplicate_responses =[]
 
                 for(let i=0;i<data.length;i++)
                 {
@@ -222,7 +224,9 @@ module.exports = srv => {
 
                    let find = Unique_header_data.find(i=>i.UNIQUE_ID== obj.UNIQUEID && i.PRODUCT== obj.PRODUCT)
 
-                   if(find)
+                   let find_2 = order_data.find( j=> j.UNIQUEID == data[i].UNIQUEID &&  data[i].MATERIALAVAILDATE.includes(j.MATERIALAVAILDATE) )
+
+                   if(find && !find_2)
                    {
                          let Seed_orderlength  = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
                         let seed_order_id = "SE000" + (Seed_orderlength.length + 1 ) ;
@@ -230,11 +234,15 @@ module.exports = srv => {
                     await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:seed_order_id,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
                      filtered_data.push(obj)
                    }
+                   else
+                   {
+                       Duplicate_responses.push(parseInt(obj.UNIQUEID))
+                   }
 
 
                 }
 
-                return JSON.stringify(filtered_data)
+                return JSON.stringify(Duplicate_responses)
             }
             catch(e)
             {

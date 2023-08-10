@@ -566,8 +566,16 @@ sap.ui.define([
                                         FLAG: "O1",
                                         Data: JSON.stringify(data_25)
                                     },
-                                    success: function () {
-                                         MessageToast.show("Successfully uploaded ")
+                                    success: function (response) {
+                                        if(JSON.parse(response.seed_order).length>0)
+                                        {
+                                            MessageToast.show(response.seed_order +"   is Already is exists !")
+                                        }
+                                        else
+                                        {
+                                            MessageToast.show("Successfully Uploaded ")
+                                        }
+                                         
                                     },
                                     error: function (e) {
                                         MessageBox.error("Invaild file")
