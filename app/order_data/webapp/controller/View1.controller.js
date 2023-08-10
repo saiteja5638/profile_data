@@ -248,8 +248,8 @@ sap.ui.define([
                             }
                             if (daterange.getFrom()&&daterange.getTo()) {
                                 data_1 = data_1.filter(da => {
-                                    
                                     return  new Date (da.CREADTEDDATE) >= new Date (daterange.getFrom()) &&  new Date (da.CREADTEDDATE) <= new Date(daterange.getTo())
+
                                 })
                             }
     
@@ -302,12 +302,8 @@ sap.ui.define([
                 {
                     
 
-                    var Today = new Date();
-                    var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-                        pattern: "dd/MM/yyyy"
-                    });
-    
-                    var date = dateFormat.format(Today)
+                    var Today =new Date().toLocaleDateString();
+                
     
                     oData.read("/ORDERS", {
                         success: function (res) {
@@ -319,7 +315,7 @@ sap.ui.define([
                                 UNIQUEID: sap.ui.getCore().byId("UniqueType_1").getValue(),
                                 ORDERQUANTITY: sap.ui.getCore().byId("Order_quantity").getValue(),
                                 MATERIALAVAILDATE: materialDate,
-                                CREADTEDDATE: date
+                                CREADTEDDATE: Today
                             }
                             var array = []
     
@@ -528,11 +524,8 @@ sap.ui.define([
                     var oData = that.getOwnerComponent().getModel("oData")
 
     
-                    var Today = new Date();
-                    var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-                        pattern: "dd/MM/yyyy"
-                    });
-
+                    var Today = new Date().toLocaleDateString();
+               
                     if(!(result25.length>0))
                     {
                         MessageBox.show("Invaild File !")
@@ -540,9 +533,7 @@ sap.ui.define([
                     }
                     else
                     {
-                        var date1 = dateFormat.format(Today)
-    
-
+                       
                                 let data_25 =[]
         
                                 for(let i=0;i<result25.length;i++)
@@ -552,7 +543,7 @@ sap.ui.define([
                                         UNIQUEID: result25[i].UNIQUE_ID,
                                         ORDERQUANTITY:result25[i].Quantity,
                                         MATERIALAVAILDATE: result25[i].date,
-                                        CREADTEDDATE: date1
+                                        CREADTEDDATE: Today
     
                                     }
     
@@ -570,10 +561,12 @@ sap.ui.define([
                                         if(JSON.parse(response.seed_order).length>0)
                                         {
                                             MessageToast.show(response.seed_order +"   is Already is exists !")
+                                            that.byId("fileUploader").setValue("")
                                         }
                                         else
                                         {
                                             MessageToast.show("Successfully Uploaded ")
+                                            that.byId("fileUploader").setValue("")
                                         }
                                          
                                     },

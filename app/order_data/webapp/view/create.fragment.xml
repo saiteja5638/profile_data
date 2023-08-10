@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:tnt="sap.tnt"   xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
-<Dialog  id="how" >
-      	<f:SimpleForm id="Order_form"  layout="ResponsiveGridLayout"   >
+<Dialog  id="how"  title="Create Seed Order" titleAlignment="Center" >
+      	<f:SimpleForm id="Order_form"  layout="ResponsiveGridLayout" >
 			<f:content  >
             
                 <Label id="_IDGenLabel1"  text="Configurable Product"  />
