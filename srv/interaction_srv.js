@@ -222,7 +222,7 @@ module.exports = srv => {
                     
                    let obj = data[i]
 
-                   let find = Unique_header_data.find(i=>i.UNIQUE_ID== obj.UNIQUEID && i.PRODUCT== obj.PRODUCT)
+                   let find = Unique_header_data.find(i=>((i.UNIQUE_ID== obj.UNIQUEID) && (i.PRODUCT== obj.PRODUCT)) )
 
                    let find_2 = order_data.find( j=> j.UNIQUEID == data[i].UNIQUEID &&  data[i].MATERIALAVAILDATE.includes(j.MATERIALAVAILDATE) )
 

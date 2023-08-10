@@ -539,7 +539,7 @@ sap.ui.define([
                                 for(let i=0;i<result25.length;i++)
                                 {
                                     let obj={
-                                        PRODUCT: result25[i].PRODUCT_ID,
+                                        PRODUCT: (result25[i].PRODUCT_ID).trim(),
                                         UNIQUEID: result25[i].UNIQUE_ID,
                                         ORDERQUANTITY:result25[i].Quantity,
                                         MATERIALAVAILDATE: result25[i].date,
