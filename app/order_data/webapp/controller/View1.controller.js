@@ -219,11 +219,6 @@ sap.ui.define([
 
                 var Selected = this.byId("_IDGenInput2").mProperties.value
 
-                if(!Selected)
-                {
-                    alert("Please select the Product !")
-                }
-
                 let unique_id = that.byId("_IDGenInput3").getValue()
 
 
@@ -232,41 +227,46 @@ sap.ui.define([
 
                 var oModel = new sap.ui.model.json.JSONModel()
 
-                
-
-
-
-                oData.read("/ORDERS", {
-                    success: function (res) {
-
-
-                        var data_1 = res.results.filter(element => {
-                            return element.PRODUCT == Selected
-                        })
-
-                        if (unique_id) {
-                            data_1 = data_1.filter(ele => {
-                                return ele.UNIQUEID == unique_id
+                if(!(Selected && unique_id))
+                {
+                    alert("Please select the Product !")
+                }
+                else
+                {
+                    oData.read("/ORDERS", {
+                        success: function (res) {
+    
+    
+                            var data_1 = res.results.filter(element => {
+                                return element.PRODUCT == Selected
                             })
-                        }
-                        if (daterange.getFrom()&&daterange.getTo()) {
-                            data_1 = data_1.filter(da => {
-                                
-                                return  new Date (da.CREADTEDDATE) >= new Date (daterange.getFrom()) &&  new Date (da.CREADTEDDATE) <= new Date(daterange.getTo())
+    
+                            if (unique_id) {
+                                data_1 = data_1.filter(ele => {
+                                    return ele.UNIQUEID == unique_id
+                                })
+                            }
+                            if (daterange.getFrom()&&daterange.getTo()) {
+                                data_1 = data_1.filter(da => {
+                                    
+                                    return  new Date (da.CREADTEDDATE) >= new Date (daterange.getFrom()) &&  new Date (da.CREADTEDDATE) <= new Date(daterange.getTo())
+                                })
+                            }
+    
+                            oModel.setData({
+                                items: data_1
                             })
+    
+                            that.byId("table").setModel(oModel)
+    
+                        },
+                        error: function (err) {
+                            console.log(err)
                         }
+                    })
+                }
 
-                        oModel.setData({
-                            items: data_1
-                        })
 
-                        that.byId("table").setModel(oModel)
-
-                    },
-                    error: function (err) {
-                        console.log(err)
-                    }
-                })
 
             },
             onCreate: function () {
@@ -284,53 +284,67 @@ sap.ui.define([
             },
             onOrderSubmit: function () {
 
-
                 var oData = that.getOwnerComponent().getModel("oData")
 
-                let materialDate = sap.ui.getCore().byId("Date_range_125")
+                let materialDate = sap.ui.getCore().byId("Date_range_125").getValue()
 
-                var Today = new Date();
-                var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-                    pattern: "dd/MM/yyyy"
-                });
+                let order_qun = sap.ui.getCore().byId("Order_quantity").getValue()
 
-                var date = dateFormat.format(Today)
+                let prod = sap.ui.getCore().byId("Configurable_Product_1").getValue()
+                
+                let unid = sap.ui.getCore().byId("UniqueType_1").getValue()
 
-                oData.read("/ORDERS", {
-                    success: function (res) {
-                        const response = res.results
+                if((materialDate==""||order_qun==""||prod==""||unid==""))
+                {
+                    alert("Please fill the inputs !")
+                }
+                else
+                {
+                    
 
-                        const object = {
-                            SEEDORDER: "SE000" + (response.length + 1),
-                            PRODUCT: sap.ui.getCore().byId("Configurable_Product_1").getValue(),
-                            UNIQUEID: sap.ui.getCore().byId("UniqueType_1").getValue(),
-                            ORDERQUANTITY: sap.ui.getCore().byId("Order_quantity").getValue(),
-                            MATERIALAVAILDATE: materialDate.getValue(),
-                            CREADTEDDATE: date
-                        }
-                        var array = []
-
-                        array.push(object)
-
-                        oData.callFunction("/seed_order", {
-                            method: "GET",
-                            urlParameters: {
-                                FLAG: "O",
-                                Data: JSON.stringify(array)
-                            },
-                            success: function () {
-                                MessageToast.show(object.SEEDORDER +"  is Created")
-                            },
-                            error: function (error) {
-                                console.log(error)
-
-                                MessageToast.show( "PRODUCT:"+ object.PRODUCT +"   UNIQUEID"+ object.UNIQUEID +"is not available ")
+                    var Today = new Date();
+                    var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+                        pattern: "dd/MM/yyyy"
+                    });
+    
+                    var date = dateFormat.format(Today)
+    
+                    oData.read("/ORDERS", {
+                        success: function (res) {
+                            const response = res.results
+    
+                            const object = {
+                                SEEDORDER: "SE000" + (response.length + 1),
+                                PRODUCT: sap.ui.getCore().byId("Configurable_Product_1").getValue(),
+                                UNIQUEID: sap.ui.getCore().byId("UniqueType_1").getValue(),
+                                ORDERQUANTITY: sap.ui.getCore().byId("Order_quantity").getValue(),
+                                MATERIALAVAILDATE: materialDate,
+                                CREADTEDDATE: date
                             }
-                        })
-                    }
-                })
-
-                that.create.close()
+                            var array = []
+    
+                            array.push(object)
+    
+                            oData.callFunction("/seed_order", {
+                                method: "GET",
+                                urlParameters: {
+                                    FLAG: "O",
+                                    Data: JSON.stringify(array)
+                                },
+                                success: function () {
+                                    MessageToast.show("SEEDORDER : "+object.SEEDORDER + "  is Created")
+                                },
+                                error: function (error) {
+                                    console.log(error)
+    
+                                    MessageToast.show( "PRODUCT:"+ object.PRODUCT +"   UNIQUEID"+ object.UNIQUEID +"is not available ")
+                                }
+                            })
+                        }
+                    })
+    
+                    that.create.close()
+                }
             },
             seed_search: function () {
                 const sValue = that.byId("LiveSearch").getProperty("value")

@@ -173,9 +173,13 @@ module.exports = srv => {
             {
                 let Unique_header_data  = await cds.run(SELECT.from("APP_INTERACTIONS_UNIQUE_ID_ITEM"))
 
-                let find = Unique_header_data.find(i=>i.UNIQUE_ID== data.UNIQUEID && i.PRODUCT== data.PRODUCT)
+                let order_data = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
+
+                let find = Unique_header_data.find(i=>i.UNIQUE_ID== data[0].UNIQUEID && i.PRODUCT== data[0].PRODUCT)
+
                 
-                if(find)
+                
+                if(find )
                 {
                     await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:data[0].SEEDORDER,PRODUCT:data[0].PRODUCT,UNIQUEID:data[0].UNIQUEID,ORDERQUANTITY:data[0].ORDERQUANTITY,MATERIALAVAILDATE:data[0].MATERIALAVAILDATE,CREADTEDDATE:data[0].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
 
