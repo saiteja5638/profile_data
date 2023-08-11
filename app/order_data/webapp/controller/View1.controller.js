@@ -467,7 +467,7 @@ sap.ui.define([
                 var oFileUploader = oEvent.getSource();
                 var oFile = oEvent.getParameter("files")[0];
           
-                if (oFile && window.FileReader) {
+                if (oFile && window.FileReader && (oFile.name).split(".")[1]=="xlsx") {
                   var reader = new FileReader();
           
                   reader.onload = function(e) {
@@ -528,7 +528,7 @@ sap.ui.define([
                
                     if(!(result25.length>0))
                     {
-                        MessageBox.show("Invaild File !")
+                        MessageBox.show("There is no Data in File")
                         that.byId("fileUploader").setValue("")
                     }
                     else
@@ -586,6 +586,11 @@ sap.ui.define([
                   };
           
                   reader.readAsBinaryString(oFile);
+                }
+                else
+                {
+                    MessageBox.error("Upload a vaild document")
+                    that.byId("fileUploader").setValue("")
                 }
               }
         });
