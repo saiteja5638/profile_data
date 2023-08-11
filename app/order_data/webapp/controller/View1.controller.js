@@ -383,6 +383,8 @@ sap.ui.define([
             close_Download_tem:function()
             {
                 that.downloadTem.close()
+
+                sap.ui.getCore().byId("_IDGenDateRangeSelection1").setValue("")
             },
             download_file:function()
             {
