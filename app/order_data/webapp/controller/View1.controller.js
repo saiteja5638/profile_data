@@ -435,14 +435,20 @@ sap.ui.define([
                   };
           
                   oSheet = new Spreadsheet(oSettings);
-          
-                  oSheet.build().finally(function () {
-          
-                    oSheet.destroy();
-          
-                    })
-                    that.downloadTem.close()
 
+                  if(startDate && endDate)
+                  {
+                    oSheet.build().finally(function () {
+          
+                        oSheet.destroy();
+              
+                        })
+                        that.downloadTem.close()
+                  }
+                  else
+                  {
+                    MessageToast.show("Please set the date range !")
+                  }
             },
             createColumnConfig: function (list) {
 
