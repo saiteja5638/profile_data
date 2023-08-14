@@ -299,6 +299,7 @@ sap.ui.define([
                     alert("Please fill the inputs !")
                 }
                 else
+
                 {
                     
 
@@ -460,11 +461,24 @@ sap.ui.define([
 
                 for (let i = 0; i < noOfColumn; i++) {
 
+                   if(list[i]=='PRODUCT_ID')
+                   {
                     aCols.push({
 
                         property: list[i],
 
                     });
+                   }
+                   else
+                   {
+                    aCols.push({
+
+                        property: list[i],
+                        type:"number"  
+                    });
+                   }
+
+                
 
                 }
 
@@ -546,16 +560,21 @@ sap.ui.define([
         
                                 for(let i=0;i<result25.length;i++)
                                 {
-                                    let obj={
-                                        PRODUCT: (result25[i].PRODUCT_ID).trim(),
-                                        UNIQUEID: result25[i].UNIQUE_ID,
-                                        ORDERQUANTITY:result25[i].Quantity,
-                                        MATERIALAVAILDATE: result25[i].date,
-                                        CREADTEDDATE: Today
-    
+                                    if(!isNaN(parseInt(result25[0].Quantity)))
+                                    {
+                                        let obj={
+                                            PRODUCT: (result25[i].PRODUCT_ID).trim(),
+                                            UNIQUEID: result25[i].UNIQUE_ID,
+                                            ORDERQUANTITY:parseInt(result25[0].Quantity),
+                                            MATERIALAVAILDATE: result25[i].date,
+                                            CREADTEDDATE: Today
+        
+                                        }
+        
+                                           data_25.push(obj) 
                                     }
-    
-                                       data_25.push(obj)  
+                                  
+                                 
     
                                 }
 
