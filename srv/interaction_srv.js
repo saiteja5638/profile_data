@@ -1,6 +1,176 @@
 var cds = require('@sap/cds')
 
+var fs = require('fs')
+
+
 module.exports = srv => {
+
+    srv.on('cre',async(req,res)=>{
+
+        if(req.data.FLAG=='R')
+        {
+            fs.readFile('app/crud_json/webapp/model/data.json', 'utf8', (err, data) => {
+                if (err) {
+                  console.error('Error reading file:', err);
+                  res.status(500).send('Error reading file');
+                  return;
+                }
+            
+              });
+            }
+              if(req.data.FLAG=='C')
+              {
+                const filePath = 'app/crud_json/webapp/model/data.json';
+
+                let newData =
+                    {
+                        "PAGEID": 186,
+                        "DESCRIPTION": "Master Data Applications",
+                        "PARENTNODEID": 5,
+                        "HEIRARCHYLEVEL": 2
+                      }
+                
+
+                  fs.readFile(filePath, 'utf8', (err, data) => {
+                      if (err) {
+                          console.error('Error reading file:', err);
+                          return;
+                      }
+
+                      try {
+                          const existingArray = JSON.parse(data);
+
+                          existingArray.push(newData); // Append the new object to the existing array
+
+                          const updatedJSON = JSON.stringify(existingArray, null, 2);
+
+                          fs.writeFile(filePath, updatedJSON, 'utf8', (err) => {
+                              if (err) {
+                                  console.error('Error writing file:', err);
+                                  return;
+                              }
+                              console.log('Data appended successfully.');
+                          });
+                      } catch (parseError) {
+                          console.error('Error parsing JSON:', parseError);
+                      }
+                  });
+              }
+              if(req.data.FLAG=='D')
+              {
+                const filePath = 'app/crud_json/webapp/model/data.json';
+
+                
+
+                let objectToRemove =
+                {
+                    "PAGEID": 186,
+                    "DESCRIPTION": "Master Data Applications",
+                    "PARENTNODEID": 5,
+                    "HEIRARCHYLEVEL": 2
+                  }
+                
+                fs.readFile(filePath, 'utf8', (err, data) => {
+                  if (err) {
+                    console.error('Error reading file:', err);
+                    return;
+                  }
+                
+                  try {
+                    const jsonArray = JSON.parse(data);
+                
+                    // Find the index of the object to remove
+                    const indexToRemove = jsonArray.findIndex(obj => {
+                      return obj.PAGEID === objectToRemove.PAGEID && obj.PARENTNODEID === objectToRemove.PARENTNODEID;
+                    });
+                
+                    if (indexToRemove !== -1) {
+                      // Remove the object from the array
+                      jsonArray.splice(indexToRemove, 1);
+                
+                      // Convert the modified array back to JSON
+                      const updatedJSON = JSON.stringify(jsonArray, null, 2);
+                
+                      // Write the updated JSON data back to the file
+                      fs.writeFile(filePath, updatedJSON, 'utf8', (err) => {
+                        if (err) {
+                          console.error('Error writing file:', err);
+                          return;
+                        }
+                        console.log('Object removed successfully.');
+                      });
+                    } else {
+                      console.log('Object not found in the array.');
+                    }
+                  } catch (parseError) {
+                    console.error('Error parsing JSON:', parseError);
+                  }
+                });
+              }
+              if(req.data.FLAG=='U')
+              {
+                const filePath = 'app/crud_json/webapp/model/data.json';
+                
+  
+                  let updatedData =
+                  {
+                      "PAGEID": 61,
+                      "DESCRIPTION": "Master Data Applications",
+                      "PARENTNODEID": 51,
+                      "HEIRARCHYLEVEL": 21
+                    }
+
+                    let objectToUpdate =
+                    {
+                        "PAGEID": 61,
+                        "DESCRIPTION": "Master Data Applications",
+                        "PARENTNODEID": 5,
+                        "HEIRARCHYLEVEL": 2
+                      }
+
+                  fs.readFile(filePath, 'utf8', (err, data) => {
+                      if (err) {
+                          console.error('Error reading file:', err);
+                          return;
+                      }
+
+                      try {
+                          const jsonArray = JSON.parse(data);
+
+                          // Find the index of the object to update
+                          const indexToUpdate = jsonArray.findIndex(obj => {
+                              return obj.PAGEID === objectToUpdate.PAGEID;
+                          });
+
+                          if (indexToUpdate !== -1) {
+                              // Update the properties of the object
+                              jsonArray[indexToUpdate] = updatedData;
+
+                              // Convert the modified array back to JSON
+                              const updatedJSON = JSON.stringify(jsonArray, null, 2);
+
+                              // Write the updated JSON data back to the file
+                              fs.writeFile(filePath, updatedJSON, 'utf8', (err) => {
+                                  if (err) {
+                                      console.error('Error writing file:', err);
+                                      return;
+                                  }
+                                  console.log('Object updated successfully.');
+                              });
+                          } else {
+                              console.log('Object not found in the array.');
+                          }
+                      } catch (parseError) {
+                          console.error('Error parsing JSON:', parseError);
+                      }
+                  })
+              }
+        
+      
+        
+       
+    })
+
     srv.on('crud', async (req, res) => {
         if (req.data.FLAG === "C") {
             var Data = JSON.parse(req.data.Data)

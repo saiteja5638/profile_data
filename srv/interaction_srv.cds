@@ -69,6 +69,8 @@ function  profile(FLAG:String,Data:String)  returns String;
 
 function CP_BOOK1(FLAG:String,Data:String) returns String;  
 
+function cre(FLAG:String,Data:String) returns String;
+
 }
 
 

@@ -57,6 +57,10 @@ modules:
       - sampleprofilepredication.zip
       name: sampleprofilepredication
       target-path: resources/
+    - artifacts:
+      - crudjson.zip
+      name: crudjson
+      target-path: resources/
 - name: project1
   type: html5
   path: app/project1
@@ -110,6 +114,16 @@ modules:
 - name: sampleprofilepredication
   type: html5
   path: app/sample_profile_predication
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: crudjson
+  type: html5
+  path: app/crud_json
   build-parameters:
     build-result: dist
     builder: custom
