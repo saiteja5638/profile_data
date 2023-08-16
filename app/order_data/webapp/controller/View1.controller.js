@@ -478,7 +478,6 @@ sap.ui.define([
                     });
                    }
 
-                
 
                 }
 
@@ -573,9 +572,6 @@ sap.ui.define([
         
                                            data_25.push(obj) 
                                     }
-                                  
-                                 
-    
                                 }
 
                                 oData.callFunction("/seed_order", {
