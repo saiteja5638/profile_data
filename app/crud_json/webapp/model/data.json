@@ -1,11 +1,5 @@
 [
   {
-    "PAGEID": 61,
-    "DESCRIPTION": "Master Data Applications",
-    "PARENTNODEID": 51,
-    "HEIRARCHYLEVEL": 21
-  },
-  {
     "PAGEID": 5,
     "DESCRIPTION": "Applications",
     "PARENTNODEID": 0,
@@ -218,7 +212,7 @@
   {
     "PAGEID": 61,
     "DESCRIPTION": "Master Data Applications",
-    "PARENTNODEID": 5,
-    "HEIRARCHYLEVEL": 2
+    "PARENTNODEID": 51,
+    "HEIRARCHYLEVEL": 21
   }
 ]

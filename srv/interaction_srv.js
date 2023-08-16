@@ -139,7 +139,7 @@ module.exports = srv => {
 
                           // Find the index of the object to update
                           const indexToUpdate = jsonArray.findIndex(obj => {
-                              return obj.PAGEID === objectToUpdate.PAGEID;
+                              return obj.PAGEID === objectToUpdate.PAGEID && obj.DESCRIPTION === objectToUpdate.DESCRIPTION;
                           });
 
                           if (indexToUpdate !== -1) {
