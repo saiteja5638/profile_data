@@ -1,11 +1,43 @@
 var cds = require('@sap/cds')
 
-var fs = require('fs')
+const { writeFileSync } = require('fs');
+
+var jsonFile = require('jsonfile')
+
 
 
 module.exports = srv => {
 
     srv.on('cre',async(req,res)=>{
+
+        if(req.data.FLAG=='C1')
+        {
+            let filePath ="app/crud_json/webapp/model/data.json";
+                
+            const contentToAdd = 'This is the new content to add.\n';
+
+            try {
+                writeFileSync(filePath, contentToAdd, { flag: 'a' }); // 'a' flag appends content to the file
+                console.log('Content added successfully.');
+            } catch (error) {
+                console.error('Error adding content:', error.message);
+            }
+                   
+                // let arr =[]
+
+                // jsonFile.readFile(filePath, (err, data) => {
+                //     if (err) {
+                //       console.error('Error reading JSON file:', err);
+                //     } else {
+                //       try {
+                //         return JSON.stringify(data)
+                //       } catch (error) {
+                //         throw e
+                //       }
+                //     }
+                //   }); 
+            
+        }
 
         if(req.data.FLAG=='R')
         {
@@ -165,10 +197,6 @@ module.exports = srv => {
                       }
                   })
               }
-        
-      
-        
-       
     })
 
     srv.on('crud', async (req, res) => {
