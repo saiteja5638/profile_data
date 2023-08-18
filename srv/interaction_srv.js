@@ -1,10 +1,6 @@
 var cds = require('@sap/cds')
 
-const { writeFileSync } = require('fs');
-
-var jsonFile = require('jsonfile')
-
-
+var fs = require('fs')
 
 module.exports = srv => {
 
@@ -12,30 +8,34 @@ module.exports = srv => {
 
         if(req.data.FLAG=='C1')
         {
-            let filePath ="app/crud_json/webapp/model/data.json";
-                
-            const contentToAdd = 'This is the new content to add.\n';
+            var newData = JSON.parse(req.data.Data)
+          
+            const filePath = 'app/crud_json/webapp/model/data.json';
 
-            try {
-                writeFileSync(filePath, contentToAdd, { flag: 'a' }); // 'a' flag appends content to the file
-                console.log('Content added successfully.');
-            } catch (error) {
-                console.error('Error adding content:', error.message);
-            }
-                   
-                // let arr =[]
-
-                // jsonFile.readFile(filePath, (err, data) => {
-                //     if (err) {
-                //       console.error('Error reading JSON file:', err);
-                //     } else {
-                //       try {
-                //         return JSON.stringify(data)
-                //       } catch (error) {
-                //         throw e
-                //       }
-                //     }
-                //   }); 
+            fs.readFile(filePath, 'utf8', (err, data) => {
+              if (err) {
+                console.error('Error reading file:', err);
+                return;
+              }
+            
+              try {
+                const existingArray = JSON.parse(data);
+            
+                existingArray.push(newData[0]); // Append the new object to the existing array
+            
+                const updatedJSON = JSON.stringify(existingArray, null, 2);
+            
+                fs.writeFile(filePath, updatedJSON, 'utf8', (err) => {
+                  if (err) {
+                    console.error('Error writing file:', err);
+                    return;
+                  }
+                  console.log('Data appended successfully.');
+                });
+              } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+              }
+            })
             
         }
 
@@ -49,59 +49,12 @@ module.exports = srv => {
                 }
             
               });
-            }
-              if(req.data.FLAG=='C')
-              {
-                const filePath = 'app/crud_json/webapp/model/data.json';
-
-                let newData =
-                    {
-                        "PAGEID": 186,
-                        "DESCRIPTION": "Master Data Applications",
-                        "PARENTNODEID": 5,
-                        "HEIRARCHYLEVEL": 2
-                      }
-                
-
-                  fs.readFile(filePath, 'utf8', (err, data) => {
-                      if (err) {
-                          console.error('Error reading file:', err);
-                          return;
-                      }
-
-                      try {
-                          const existingArray = JSON.parse(data);
-
-                          existingArray.push(newData); // Append the new object to the existing array
-
-                          const updatedJSON = JSON.stringify(existingArray, null, 2);
-
-                          fs.writeFile(filePath, updatedJSON, 'utf8', (err) => {
-                              if (err) {
-                                  console.error('Error writing file:', err);
-                                  return;
-                              }
-                              console.log('Data appended successfully.');
-                          });
-                      } catch (parseError) {
-                          console.error('Error parsing JSON:', parseError);
-                      }
-                  });
-              }
+        }
               if(req.data.FLAG=='D')
               {
                 const filePath = 'app/crud_json/webapp/model/data.json';
 
-                
 
-                let objectToRemove =
-                {
-                    "PAGEID": 186,
-                    "DESCRIPTION": "Master Data Applications",
-                    "PARENTNODEID": 5,
-                    "HEIRARCHYLEVEL": 2
-                  }
-                
                 fs.readFile(filePath, 'utf8', (err, data) => {
                   if (err) {
                     console.error('Error reading file:', err);
@@ -142,24 +95,14 @@ module.exports = srv => {
               if(req.data.FLAG=='U')
               {
                 const filePath = 'app/crud_json/webapp/model/data.json';
+
+                let data  = JSON.parse(req.data.Data)
+
+                const objectToUpdate = data[1]
                 
-  
-                  let updatedData =
-                  {
-                      "PAGEID": 61,
-                      "DESCRIPTION": "Master Data Applications",
-                      "PARENTNODEID": 51,
-                      "HEIRARCHYLEVEL": 21
-                    }
-
-                    let objectToUpdate =
-                    {
-                        "PAGEID": 61,
-                        "DESCRIPTION": "Master Data Applications",
-                        "PARENTNODEID": 5,
-                        "HEIRARCHYLEVEL": 2
-                      }
-
+                  const updatedData = data[0]
+                
+ 
                   fs.readFile(filePath, 'utf8', (err, data) => {
                       if (err) {
                           console.error('Error reading file:', err);

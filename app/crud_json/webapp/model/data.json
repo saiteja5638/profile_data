@@ -2,8 +2,8 @@
   {
     "PAGEID": 5,
     "DESCRIPTION": "Applications",
-    "PARENTNODEID": 0,
-    "HEIRARCHYLEVEL": 1
+    "PARENTNODEID": 2020,
+    "HEIRARCHYLEVEL": 1020
   },
   {
     "PAGEID": 6,
@@ -12,10 +12,10 @@
     "HEIRARCHYLEVEL": 2
   },
   {
-    "PAGEID": 7,
+    "PAGEID": 70,
     "DESCRIPTION": "Location",
     "PARENTNODEID": 6,
-    "HEIRARCHYLEVEL": 3
+    "HEIRARCHYLEVEL": 30
   },
   {
     "PAGEID": 8,
@@ -45,7 +45,7 @@
     "PAGEID": 1,
     "DESCRIPTION": "About Variant Configuration Planner",
     "PARENTNODEID": 0,
-    "HEIRARCHYLEVEL": 2
+    "HEIRARCHYLEVEL": 200
   },
   {
     "PAGEID": 11,
@@ -214,5 +214,11 @@
     "DESCRIPTION": "Master Data Applications",
     "PARENTNODEID": 51,
     "HEIRARCHYLEVEL": 21
+  },
+  {
+    "PAGEID": 125,
+    "DESCRIPTION": "Application2",
+    "PARENTNODEID": 2023,
+    "HEIRARCHYLEVEL": 1023
   }
 ]
