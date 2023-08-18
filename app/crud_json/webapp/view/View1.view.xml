@@ -12,29 +12,32 @@
       </tnt:ToolHeader>
       <Panel id="_IDGenPanel1"  expandable="true" expandAnimation="true" expand="true"  >
       <content>
-      <VBox id="_IDGenVBox1" >
+      <FlexBox id="_IDGenFlexBox2" justifyContent="Center"  alignContent="SpaceAround" >
+            <VBox id="_IDGenVBox1" >
       <VBox id="_IDGenHBox1" >
       <Label id="_IDGenLabel1" text="PAGEID"  ></Label>
-      <Input id="PAGEID" placeholder="PAGEID"   ></Input>
+      <Input id="PAGEID" placeholder="PAGEID" width="100%"  ></Input>
       </VBox>
       <VBox id="_IDGenHBox2" >
       <Label id="_IDGenLabel2" text="DESCRIPTION"  ></Label>
-      <Input id="DESCRIPTION" placeholder="DESCRIPTION"   ></Input>
+      <Input id="DESCRIPTION" placeholder="DESCRIPTION"  width="100%"  ></Input>
       </VBox>
       <VBox id="_IDGenHBox3" >
       <Label id="_IDGenLabel3" text="PARENTNODEID"  ></Label>
-      <Input id="PARENTNODEID" placeholder="PARENTNODEID"   ></Input>
+      <Input id="PARENTNODEID" placeholder="PARENTNODEID"  width="100%"  ></Input>
       </VBox>
       <VBox id="_IDGenHBox4" >
       <Label id="_IDGenLabel4" text="HEIRARCHYLEVEL"  ></Label>
-      <Input id="HEIRARCHYLEVEL" placeholder="HEIRARCHYLEVEL"   ></Input>
+      <Input id="HEIRARCHYLEVEL" placeholder="HEIRARCHYLEVEL" width="100%"   ></Input>
       </VBox>
-       <FlexBox id="_IDGenFlexBox1"   >
+       <FlexBox id="_IDGenFlexBox1" justifyContent="SpaceBetween"  >
        <Button id="_IDGenButton5" text="Submit" type="Emphasized" press="submit" ></Button>
          <Button id="_IDGenButton6" text="Cancel"  type="Reject" press="oNclose" ></Button>
        </FlexBox>
       
       </VBox>
+      </FlexBox>
+
       </content>
       </Panel>
       <content>

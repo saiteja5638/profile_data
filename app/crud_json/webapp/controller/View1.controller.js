@@ -10,13 +10,8 @@ sap.ui.define([
         var that;
         return Controller.extend("crudjson.controller.View1", {
             onInit: function () {
-
                 that =this;
-
-
                 that.onView()
-
-
             },
             onView: function () {
 
@@ -30,8 +25,13 @@ sap.ui.define([
                 oModel1.setData({
                     items:data
                 })
-
-                that.byId("table").setModel(oModel1)
+                        //sorting the table
+                    that.byId("table").setModel(oModel1)
+                    var oTable = that.byId("table")
+                    var oBinding = oTable.getBinding("items")
+                    oTable.getColumns()[0];
+                    var oSorter = new sap.ui.model.Sorter("PAGEID", false)
+                    oBinding.sort(oSorter);
                   
                 })
                 .catch(error => {
@@ -43,6 +43,11 @@ sap.ui.define([
                 that.byId("_IDGenPanel1").setExpanded(true)
 
                 that.byId("_IDGenButton5").setText("Create")
+
+                that.byId("PAGEID").setValue("")
+                that.byId("DESCRIPTION").setValue("")
+               that.byId("PARENTNODEID").setValue("")
+               that.byId("HEIRARCHYLEVEL").setValue("")
             },
             submit:function()
             {
@@ -120,6 +125,12 @@ sap.ui.define([
             oNclose:function()
             {
                 that.byId("_IDGenPanel1").setExpanded(false)   
+
+                
+                that.byId("PAGEID").setValue("")
+                that.byId("DESCRIPTION").setValue("")
+               that.byId("PARENTNODEID").setValue("")
+               that.byId("HEIRARCHYLEVEL").setValue("")
             },
             onUpdate:function()
             {
