@@ -54,6 +54,8 @@ module.exports = srv => {
               {
                 const filePath = 'app/crud_json/webapp/model/data.json';
 
+                const objectToRemove = JSON.parse(req.data.Data)
+
 
                 fs.readFile(filePath, 'utf8', (err, data) => {
                   if (err) {
@@ -66,7 +68,7 @@ module.exports = srv => {
                 
                     // Find the index of the object to remove
                     const indexToRemove = jsonArray.findIndex(obj => {
-                      return obj.PAGEID === objectToRemove.PAGEID && obj.PARENTNODEID === objectToRemove.PARENTNODEID;
+                      return obj.PAGEID === objectToRemove[0].PAGEID && obj.PARENTNODEID === objectToRemove[0].PARENTNODEID;
                     });
                 
                     if (indexToRemove !== -1) {
@@ -99,7 +101,7 @@ module.exports = srv => {
                 let data  = JSON.parse(req.data.Data)
 
                 const objectToUpdate = data[1]
-                
+
                   const updatedData = data[0]
                 
  

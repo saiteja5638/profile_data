@@ -2,8 +2,8 @@
   {
     "PAGEID": 5,
     "DESCRIPTION": "Applications",
-    "PARENTNODEID": 2020,
-    "HEIRARCHYLEVEL": 1020
+    "PARENTNODEID": 4,
+    "HEIRARCHYLEVEL": 1
   },
   {
     "PAGEID": 6,
@@ -214,11 +214,5 @@
     "DESCRIPTION": "Master Data Applications",
     "PARENTNODEID": 51,
     "HEIRARCHYLEVEL": 21
-  },
-  {
-    "PAGEID": 125,
-    "DESCRIPTION": "Application2",
-    "PARENTNODEID": 2023,
-    "HEIRARCHYLEVEL": 1023
   }
 ]

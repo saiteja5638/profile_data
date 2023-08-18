@@ -143,6 +143,41 @@ sap.ui.define([
                    that.byId("PARENTNODEID").setValue(selectedData.PARENTNODEID)
                    that.byId("HEIRARCHYLEVEL").setValue(selectedData.HEIRARCHYLEVEL)
                 }
+            },
+            onDelete:function()
+            {
+                let table = that.byId("table")
+
+                if(table.getSelectedItems().length==0)
+                {
+                   alert("Please select a row ?")   
+                }
+                else
+                {
+                    let selectedData =  table.getSelectedItems()[0].getBindingContext().getObject()
+
+                    var odata  = this.getOwnerComponent().getModel('oData')
+
+                    let data_array = []
+
+                        data_array.push(selectedData)
+
+                    odata.callFunction("/cre",{
+                        METHOD:"GET",
+                        urlParameters:{
+                            FLAG:"D",
+                            Data:JSON.stringify(data_array)
+                        },
+                        success:function()
+                        {
+                            console.log("deleted")
+                        },
+                        error:function(err)
+                        {
+                            console.log(err)
+                        }
+                    })
+                }
             }
         });
     });

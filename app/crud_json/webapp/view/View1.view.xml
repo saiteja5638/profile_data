@@ -8,7 +8,7 @@
        <Button id="_IDGenButton4" text="View" press="onView"  type="Success"  ></Button>
       <Button id="_IDGenButton1" text="create"  type="Emphasized" press="onCreate" ></Button>
        <Button id="_IDGenButton2" text="update" type="Neutral" press="onUpdate" ></Button>
-      <Button id="_IDGenButton3" text="delete" type="Reject"  ></Button>
+      <Button id="_IDGenButton3" text="delete" type="Reject"  press="onDelete" ></Button>
       </tnt:ToolHeader>
       <Panel id="_IDGenPanel1"  expandable="true" expandAnimation="true" expand="true"  >
       <content>
