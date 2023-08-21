@@ -12,6 +12,43 @@ sap.ui.define([
             onInit: function () {
                 that =this;
                 that.onView()
+
+                        var newData =  {
+                            "PAGEID": 6100,
+                            "DESCRIPTION": "Master Data Applications",
+                            "PARENTNODEID": 51,
+                            "HEIRARCHYLEVEL": 21
+                          }
+  
+                      
+                        // $.ajax({
+                        //     url: "",
+                        //     method: "POST", // or "POST" if appropriate
+                        //     contentType: "json",
+                        //     data: JSON.stringify(newData),
+                        //     success: function(response) {
+                        //         console.log("JSON data updated:", response);
+                        //     },
+                        //     error: function(xhr, status, error) {
+                        //         console.error("Error updating JSON data:", error+""+status+""+xhr);
+                        //     }
+                        // });
+
+
+                        $.ajax({
+                            type: "POST",
+                            url: "model/data.json",
+                            data: newData,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(data) {
+                              sap.m.MessageToast.show("Data successfully written to JSON file.");
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                              sap.m.MessageToast.show("Error writing data to JSON file: " + textStatus);
+                            }
+                          })
+
             },
             onView: function () {
 
@@ -125,6 +162,8 @@ sap.ui.define([
             oNclose:function()
             {
                 that.byId("_IDGenPanel1").setExpanded(false)   
+
+                that.byId("table").getSelectedItems()[0].setSelected(false)
 
                 
                 that.byId("PAGEID").setValue("")
