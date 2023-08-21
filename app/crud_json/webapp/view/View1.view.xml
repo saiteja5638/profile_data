@@ -10,7 +10,7 @@
        <Button id="_IDGenButton2" text="update" type="Neutral" press="onUpdate" ></Button>
       <Button id="_IDGenButton3" text="delete" type="Reject"  press="onDelete" ></Button>
       </tnt:ToolHeader>
-      <Panel id="_IDGenPanel1"  expandable="true" expandAnimation="true" expand="true"  >
+      <Panel id="_IDGenPanel1"  expandable="true" expandAnimation="true" expand="true"   >
       <content>
       <FlexBox id="_IDGenFlexBox2" justifyContent="Center"  alignContent="SpaceAround" >
             <VBox id="_IDGenVBox1" >

@@ -52,6 +52,17 @@ entity Interactions_Student_data {
       DATEOFBIRTH : String;
 };
 
+entity Sbp_info {
+  key ID :String;
+     NAME :String;
+     DESIGNATION:String;
+     TECH_F:String;
+     DOB:String;
+     CONTACT:String;
+     EMAIL:String;
+     ADDRESS:String;
+}
+
 entity Interactions_Student_marks {
   ID    : Integer64;
   DATE  : String;

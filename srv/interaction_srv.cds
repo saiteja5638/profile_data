@@ -56,6 +56,8 @@ entity Unique_ID_Header1 as projection on interactions.Unique_ID_Header12;
  entity CP_STAT_PROFILE_VAL1  as projection on interactions.CP_STAT_PROFILE_VAL;
 
 entity CP_BOOK  as projection on interactions.BOOKS_Vals;
+
+entity SBP_EMPLOY as projection on interactions.Sbp_info;
    
 //   function crud(FLAG:String,ID:Integer,NAME:String,DATEOFBIRTH:String,CONTACT:String,EMAIL:String,ADDRESS:String) returns String
 
