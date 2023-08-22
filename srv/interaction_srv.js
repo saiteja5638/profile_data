@@ -354,7 +354,7 @@ module.exports = srv => {
                   
                 let Unique_header_data  = await cds.run(SELECT.from("APP_INTERACTIONS_UNIQUE_ID_ITEM"))
 
-                let order_data = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
+                let order_data = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))  // order re-checking
 
                 let filtered_data  = []
 
@@ -365,27 +365,104 @@ module.exports = srv => {
                     
                    let obj = data[i]
 
+                 
+
                    let find = Unique_header_data.find(i=>((i.UNIQUE_ID== obj.UNIQUEID) && (i.PRODUCT== obj.PRODUCT)) )
+
+
 
                    let find_2 = order_data.find( j=> j.UNIQUEID == data[i].UNIQUEID &&  data[i].MATERIALAVAILDATE.includes(j.MATERIALAVAILDATE) )
 
-                   if(find && !find_2)
+                   if(isNaN(parseInt(obj.UNIQUEID)) || isNaN(parseInt(obj.ORDERQUANTITY)) ) // if uni_id or or_qut is string throws to duplicates
                    {
-                         let Seed_orderlength  = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
-                        let seed_order_id = "SE000" + (Seed_orderlength.length + 1 ) ;
-                        
-                    await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:seed_order_id,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
-                     filtered_data.push(obj)
-                   }
-                   else
-                   {
-                       Duplicate_responses.push(parseInt(obj.UNIQUEID))
+                       obj.err_type ="String exists"
+
+                  //     obj.MATERIALAVAILDATE = (obj.MATERIALAVAILDATE).split('/')[0] +"-"+ (obj.MATERIALAVAILDATE).split('/')[1] +"-" +(obj.MATERIALAVAILDATE).split('/')[2]
+
+                       Duplicate_responses.push(obj)
+                       
                    }
 
+                   if(!find)  // id not recognised
+                   {
+                       obj.err_type = "unique/product is not vaild" 
+
+                 //      obj.MATERIALAVAILDATE = (obj.MATERIALAVAILDATE).split('/')[0] +"-"+ (obj.MATERIALAVAILDATE).split('/')[1] +"-" +(obj.MATERIALAVAILDATE).split('/')[2]
+
+
+                       Duplicate_responses.push(obj)
+
+                   }
+                   if(find_2)  // order data already exists
+                   {
+                    obj.err_type = "order data already exists" 
+
+               //     obj.MATERIALAVAILDATE = (obj.MATERIALAVAILDATE).split('/')[0] +"-"+ (obj.MATERIALAVAILDATE).split('/')[1] +"-" +(obj.MATERIALAVAILDATE).split('/')[2]
+
+
+                    Duplicate_responses.push(obj)
+                   }
+
+                   if(find && !find_2)
+                   {
+                      
+                     filtered_data.push(obj)
+                   }
+               
 
                 }
 
-                return JSON.stringify(Duplicate_responses)
+                if(Duplicate_responses.length<=0)  //if invaild data available it  not eneters
+                {
+                 let Seed_orderlength  = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
+                 let seed_order_id = "SE000" + (Seed_orderlength.length + 1 ) ;
+                 
+                   await cds.run(INSERT.into("APP_INTERACTIONS_ORDER_DATA").entries({SEEDORDER:seed_order_id,PRODUCT:data[i].PRODUCT,UNIQUEID:data[i].UNIQUEID,ORDERQUANTITY:data[i].ORDERQUANTITY,MATERIALAVAILDATE:data[i].MATERIALAVAILDATE,CREADTEDDATE:data[i].CREADTEDDATE,CREATEDBY:req.headers["x-username"]}))
+                }
+                else
+                {
+
+                    var data_record =[]      
+
+                    const result = {};
+
+                    for (const obj of Duplicate_responses) {
+
+                      var dateString = (obj.MATERIALAVAILDATE).split('/'); // Assuming the date string is in the format dd/MM/yyyy
+
+                      let oConvertedDate = dateString[0]+"-"+dateString[1]+"-"+dateString[2] 
+
+                      
+                      const objId = obj.UNIQUEID;
+                      const objDate = oConvertedDate;
+                      const objorder = obj.ORDERQUANTITY ;
+                      const objProd  = obj.PRODUCT;
+                      const objerr =  obj.err_type
+
+                      if (!(objId in result)) {
+                        result[objId] = {};
+                      }
+
+                      result[objId][objDate] = objorder;
+                      result[objId]['PRODUCT'] = objProd;
+                      result[objId]['UNIQUEID'] = objId;
+                      result[objId]['ERR_type'] = objerr;
+                    } 
+
+                    console.log(result)
+                //     let response = {
+                //         filtered_data:filtered_data,
+                //         Duplicate_responses:Duplicate_responses
+                //    }
+   
+                //    let res =[]
+   
+                //    res.push(response)
+   
+                //    return JSON.stringify(res)
+                }
+
+          
             }
             catch(e)
             {
