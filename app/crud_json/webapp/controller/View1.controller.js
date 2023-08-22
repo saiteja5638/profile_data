@@ -32,8 +32,7 @@ sap.ui.define([
                         //     error: function(xhr, status, error) {
                         //         console.error("Error updating JSON data:", error+""+status+""+xhr);
                         //     }
-                        // });
-
+                        // })
 
                         $.ajax({
                             type: "POST",

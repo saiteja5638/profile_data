@@ -33,7 +33,12 @@ sap.ui.define([
                     that.downloadTem = sap.ui.xmlfragment("orderdata.view.downloadtem",that)
                 }
 
+                if(!that.uploadstatus)
+                {
+                    that.uploadstatus = sap.ui.xmlfragment("orderdata.view.uploadstatus",that)
+                }
 
+                that.open_upstatus()
 
             },
             onValueHelpRequest: function (oEvent) {
@@ -570,7 +575,7 @@ sap.ui.define([
         
                                         }
         
-                                           data_25.push(obj) 
+                                           data_25.push(obj)
                                     }
                                 }
 
@@ -615,6 +620,14 @@ sap.ui.define([
                     MessageBox.error("Upload a vaild document")
                     that.byId("fileUploader").setValue("")
                 }
+              },
+              open_upstatus:function()
+              {
+                 that.uploadstatus.open()
+              },
+              close_upstatus:function()
+              {
+                that.uploadstatus.close()
               }
         });
     });
