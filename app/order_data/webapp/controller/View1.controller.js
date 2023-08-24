@@ -38,7 +38,7 @@ sap.ui.define([
                     that.uploadstatus = sap.ui.xmlfragment("orderdata.view.uploadstatus",that)
                 }
 
-                that.open_upstatus()
+                 
 
             },
             onValueHelpRequest: function (oEvent) {
@@ -285,7 +285,6 @@ sap.ui.define([
             onCloseorder: function () {
                 that.create.close()
 
-
             },
             onOrderSubmit: function () {
 
@@ -501,7 +500,24 @@ sap.ui.define([
                     var oWorkbook = XLSX.read(sData, { type: "binary" });
                     var oFirstSheet = oWorkbook.SheetNames[0];
                     var oSheetData = XLSX.utils.sheet_to_json(oWorkbook.Sheets[oFirstSheet]);
-                    
+
+                    var alldata = XLSX.utils.sheet_to_json(oWorkbook.Sheets[oFirstSheet],{header:1})[0]
+
+                    oSheetData.forEach(sheet=>{
+                        if(Object.keys(sheet).length == alldata.length)
+                        {
+                                          
+                        }
+                        else
+                        {
+                            alldata.forEach(date=>{
+                                if(!Object.keys(sheet).includes(date))
+                                {
+                                    sheet[date] = null 
+                                }
+                            })
+                        }
+                    }) 
                       const data = [];
 
                       let dub =[]
@@ -562,13 +578,11 @@ sap.ui.define([
                     }
                     else
                     {
-                       
                                 let data_25 =[]
         
                                 for(let i=0;i<result25.length;i++)
                                 {
-                                    // if(!isNaN(parseInt(result25[0].Quantity)))
-                                    // {
+                                    
                                         let obj={
                                             PRODUCT: (result25[i].PRODUCT_ID).trim(),
                                             UNIQUEID: result25[i].UNIQUE_ID,
@@ -581,35 +595,31 @@ sap.ui.define([
                                            data_25.push(obj)
                                     
                                 }
-                                
-                                console.log(data_25)
-
-                                // oData.callFunction("/seed_order", {
-                                //     method: "GET",
-                                //     urlParameters: {
-                                //         FLAG: "O1",
-                                //         Data: JSON.stringify(data_25)
-                                //     },
-                                //     success: function (response) {
-                                //         if(JSON.parse(response.seed_order).length>0)
-                                //         {
-                                //             MessageToast.show(response.seed_order +"   is Already is exists !")
-                                //             that.byId("fileUploader").setValue("")
-                                //         }
-                                //         else
-                                //         {
-                                //             MessageToast.show("Successfully Uploaded ")
-                                //             that.byId("fileUploader").setValue("")
-                                //         }
+                                oData.callFunction("/seed_order", {
+                                    method: "GET",
+                                    urlParameters: {
+                                        FLAG: "O1",
+                                        Data: JSON.stringify(data_25)
+                                    },
+                                    success: function (response) {
+                                        if(JSON.parse(response.seed_order).length>0)
+                                        {
+                                           that.err_display_frag(JSON.parse(response.seed_order))
+                                        }
+                                        else
+                                        {
+                                            MessageToast.show("Successfully Uploaded ")
+                                            that.byId("fileUploader").setValue("")
+                                        }
                                          
-                                //     },
-                                //     error: function (e) {
-                                //         MessageBox.error("Invaild file")
-                                //         that.byId("fileUploader").setValue("")
-                                //         that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
-                                //         console.log(e)
-                                //     }
-                                // })
+                                    },
+                                    error: function (e) {
+                                        MessageBox.error("Invaild file")
+                                        that.byId("fileUploader").setValue("")
+                                        that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
+                                        console.log(e)
+                                    }
+                                })
                         
                     }
                   };
@@ -636,7 +646,77 @@ sap.ui.define([
               },
               err_display_frag:function(data)
               {
+                that.uploadstatus.open()
+
+                // let comboBox = sap.ui.getCore().byId("_IDGenComboBox1m")
+                 
+                //  comboBox.getItems()[0].setKey('vaild')
+
+                 console.log(data)
+
+             var oTable = sap.ui.getCore().byId("_IDGenTable1")
+
+                var oModel1 = new sap.ui.model.json.JSONModel()
+
+                oModel1.setProperty("/", data);
+                oModel1.refresh(true);
+
+                var objectKeys = (Object.keys(oModel1.getData()[0])).sort();
+
+                  for(let i=0;i<4;i++)
+                  {
+                    objectKeys.pop()
+                  }
                   
+                 objectKeys.unshift("UNIQUEID") 
+
+                 objectKeys.unshift('PRODUCT')
+
+                 objectKeys.push("vaild_type")
+
+                 objectKeys.push('err_type')
+
+               var numKeys = objectKeys.length;
+
+                 if (oTable.getColumns()[0]) {
+
+                    oTable.removeAllColumns();
+
+                 }
+
+                 for (var i = 0; i < numKeys; i++) {
+                     var oColumn = new sap.m.Column("col" + Math.floor(Math.random() * 1236), {
+                         width: "1em",
+                         header: new sap.m.Label({
+                             text: objectKeys[i]
+                       })
+                     });
+                    oTable.addColumn(oColumn);
+                   
+                }
+
+                var oCell = [];
+
+                 for (var i = 0; i < numKeys; i++) {
+                    
+                    let data25 = objectKeys[i];
+                    var char = '{' + data25 + '}'
+                    var cell1 = new sap.m.Text({
+                        text: char
+
+                     });
+
+                    oCell.push(cell1);
+                }
+
+
+                 var aColList = new sap.m.ColumnListItem("aCol" + Math.floor(Math.random() * 1236), {
+                     cells: oCell
+               });
+
+
+                oTable.setModel(oModel1)
+                 oTable.bindItems("/", aColList);
               }
 
         });
