@@ -535,6 +535,8 @@ sap.ui.define([
                   }
                  
                    let result25=[]
+
+                   
                    
                    data.forEach(obj=>{
 
@@ -546,6 +548,7 @@ sap.ui.define([
 
                          })
                         })
+
 
                     var oData = that.getOwnerComponent().getModel("oData")
 
@@ -564,47 +567,49 @@ sap.ui.define([
         
                                 for(let i=0;i<result25.length;i++)
                                 {
-                                    if(!isNaN(parseInt(result25[0].Quantity)))
-                                    {
+                                    // if(!isNaN(parseInt(result25[0].Quantity)))
+                                    // {
                                         let obj={
                                             PRODUCT: (result25[i].PRODUCT_ID).trim(),
                                             UNIQUEID: result25[i].UNIQUE_ID,
-                                            ORDERQUANTITY:parseInt(result25[0].Quantity),
+                                            ORDERQUANTITY:result25[i].Quantity,
                                             MATERIALAVAILDATE: result25[i].date,
                                             CREADTEDDATE: Today
         
                                         }
         
                                            data_25.push(obj)
-                                    }
+                                    
                                 }
+                                
+                                console.log(data_25)
 
-                                oData.callFunction("/seed_order", {
-                                    method: "GET",
-                                    urlParameters: {
-                                        FLAG: "O1",
-                                        Data: JSON.stringify(data_25)
-                                    },
-                                    success: function (response) {
-                                        if(JSON.parse(response.seed_order).length>0)
-                                        {
-                                            MessageToast.show(response.seed_order +"   is Already is exists !")
-                                            that.byId("fileUploader").setValue("")
-                                        }
-                                        else
-                                        {
-                                            MessageToast.show("Successfully Uploaded ")
-                                            that.byId("fileUploader").setValue("")
-                                        }
+                                // oData.callFunction("/seed_order", {
+                                //     method: "GET",
+                                //     urlParameters: {
+                                //         FLAG: "O1",
+                                //         Data: JSON.stringify(data_25)
+                                //     },
+                                //     success: function (response) {
+                                //         if(JSON.parse(response.seed_order).length>0)
+                                //         {
+                                //             MessageToast.show(response.seed_order +"   is Already is exists !")
+                                //             that.byId("fileUploader").setValue("")
+                                //         }
+                                //         else
+                                //         {
+                                //             MessageToast.show("Successfully Uploaded ")
+                                //             that.byId("fileUploader").setValue("")
+                                //         }
                                          
-                                    },
-                                    error: function (e) {
-                                        MessageBox.error("Invaild file")
-                                        that.byId("fileUploader").setValue("")
-                                        that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
-                                        console.log(e)
-                                    }
-                                })
+                                //     },
+                                //     error: function (e) {
+                                //         MessageBox.error("Invaild file")
+                                //         that.byId("fileUploader").setValue("")
+                                //         that.byId("table").setModel(new sap.ui.model.json.JSONModel({}))
+                                //         console.log(e)
+                                //     }
+                                // })
                         
                     }
                   };
@@ -628,6 +633,11 @@ sap.ui.define([
               close_upstatus:function()
               {
                 that.uploadstatus.close()
+              },
+              err_display_frag:function(data)
+              {
+                  
               }
+
         });
     });

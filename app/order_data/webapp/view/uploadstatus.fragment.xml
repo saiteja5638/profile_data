@@ -13,13 +13,15 @@
 <items>
 <core:Item id="_IDGenItem1" key="nulll" text="NULL" ></core:Item>
 <core:Item id="_IDGenItem2" key="REPEATED" text="REPEATED" ></core:Item>
-
+<core:Item id="_IDGenItem3" key="ALREADYEXISTS" text="ALREADYEXISTS" ></core:Item>
+<core:Item id="_IDGenItem4" key="PRODUCTIDEXISTS" text="PRODUCTID INVAILD" ></core:Item>
+<core:Item id="_IDGenItem22" key="UNIQUIEIDINVAILD" text="UNIQUIEID INVAILD" ></core:Item>
 </items>
 </ComboBox>
 </tnt:ToolHeader>
 </customHeader>
-<Table id="_IDGenTable1">
-<columns>
+<Table id="_IDGenTable1"   >
+<!-- <columns>
 <Column id="_IDGenColumn1" hAlign="Center" >
 <Text id="_IDGenText1"   text="UNIQUE ID" ></Text>
 </Column>
@@ -31,6 +33,9 @@
 </Column>
 <Column id="_IDGenColumn4" hAlign="Center" >
 <Text id="_IDGenText4"   text="DATE"  ></Text>
+</Column>
+<Column id="_IDGenColumn6" hAlign="Center" >
+<Text id="_IDGenText11"  text="Status" ></Text>
 </Column>
 <Column id="_IDGenColumn5"  hAlign="Center" >
 <Text id="_IDGenText5"  text="Reason" ></Text>
@@ -45,7 +50,7 @@
 <Text id="_IDGenText10"  text="{}" ></Text>
 
 </ColumnListItem>
-</items>
+</items> -->
 </Table>
 
 <footer>
