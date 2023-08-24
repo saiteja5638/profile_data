@@ -5,6 +5,7 @@
 <ToolbarSpacer id="_IDGenToolbarSpacer1m" ></ToolbarSpacer>
 <ComboBox id="_IDGenComboBox1m" placeholder="Status"  >
 <items>
+<core:Item id="_IDGenItem12m"  key="All"  text="All" ></core:Item>
 <core:Item id="_IDGenItem1m"  key="vaild"  text="vaild" ></core:Item>
 <core:Item id="_IDGenItem2m"  key="Invaild"  text="Invaild" ></core:Item>
 </items>

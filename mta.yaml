@@ -61,6 +61,10 @@ modules:
       - crudjson.zip
       name: crudjson
       target-path: resources/
+    - artifacts:
+      - sample56.zip
+      name: sample56
+      target-path: resources/
 - name: project1
   type: html5
   path: app/project1
@@ -124,6 +128,16 @@ modules:
 - name: crudjson
   type: html5
   path: app/crud_json
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: sample56
+  type: html5
+  path: sample56
   build-parameters:
     build-result: dist
     builder: custom
