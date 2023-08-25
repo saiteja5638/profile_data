@@ -11,3 +11,12 @@
     position: relative;
     left:220%;
 }
+.highlight-null {
+    color:red;
+  }
+ .success{
+    color: green;
+ }
+ .row_color{
+    background-color: red;
+ }

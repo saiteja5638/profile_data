@@ -352,7 +352,7 @@ module.exports = srv => {
 
                   
 
-                    if (obj.UNIQUEID == null || obj.PRODUCT == null || obj.ORDERQUANTITY) {
+                    if (!(obj.UNIQUEID == "null" || obj.PRODUCT == "null"||obj.ORDERQUANTITY == "null")) {
                         if (!(isNaN(parseInt(obj.UNIQUEID)) || isNaN(parseInt(obj.ORDERQUANTITY)))) // if uni_id or or_qut is string throws to duplicates
                         {
                            
@@ -389,14 +389,14 @@ module.exports = srv => {
                                 }
                                 else
                                 {
-                                    obj['err_type'] ="product/id"
+                                    obj['err_type'] ="Product not recognised"
                                     obj['vaild_type']="invaild"
     
                                     Duplicate_responses.push(obj)
                                 }
                             }
                             else {
-                                obj['err_type'] ="uniqueID"
+                                obj['err_type'] ="UniqueID  not recognised"
                                 obj['vaild_type']="invaild"
 
                                 Duplicate_responses.push(obj)

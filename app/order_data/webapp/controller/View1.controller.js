@@ -481,8 +481,6 @@ sap.ui.define([
                         type:"number"  
                     });
                    }
-
-
                 }
 
                 return aCols;
@@ -513,7 +511,7 @@ sap.ui.define([
                             alldata.forEach(date=>{
                                 if(!Object.keys(sheet).includes(date))
                                 {
-                                    sheet[date] = null 
+                                    sheet[date] = "null" 
                                 }
                             })
                         }
@@ -552,8 +550,6 @@ sap.ui.define([
                  
                    let result25=[]
 
-                   
-                   
                    data.forEach(obj=>{
 
                         const separatedObjects = separateObjectByDate(obj);
@@ -564,8 +560,6 @@ sap.ui.define([
 
                          })
                         })
-
-
                     var oData = that.getOwnerComponent().getModel("oData")
 
     
@@ -647,13 +641,6 @@ sap.ui.define([
               err_display_frag:function(data)
               {
                 that.uploadstatus.open()
-
-                // let comboBox = sap.ui.getCore().byId("_IDGenComboBox1m")
-                 
-                //  comboBox.getItems()[0].setKey('vaild')
-
-                 console.log(data)
-
              var oTable = sap.ui.getCore().byId("_IDGenTable1")
 
                 var oModel1 = new sap.ui.model.json.JSONModel()
@@ -687,14 +674,15 @@ sap.ui.define([
                  for (var i = 0; i < numKeys; i++) {
                      var oColumn = new sap.m.Column("col" + Math.floor(Math.random() * 1236), {
                          width: "1em",
+                         hAlign:"Center",
                          header: new sap.m.Label({
-                             text: objectKeys[i]
+                             text: objectKeys[i],
+                             
                        })
                      });
                     oTable.addColumn(oColumn);
                    
                 }
-
                 var oCell = [];
 
                  for (var i = 0; i < numKeys; i++) {
@@ -703,21 +691,53 @@ sap.ui.define([
                     var char = '{' + data25 + '}'
                     var cell1 = new sap.m.Text({
                         text: char
-
                      });
 
                     oCell.push(cell1);
                 }
-
-
                  var aColList = new sap.m.ColumnListItem("aCol" + Math.floor(Math.random() * 1236), {
                      cells: oCell
                });
 
-
                 oTable.setModel(oModel1)
                  oTable.bindItems("/", aColList);
-              }
 
+                 oTable.getItems().forEach(item=>{
+                    item.getCells().forEach(cell=>{
+                        if(cell.getText() == "null" || cell.getText() == "invaild" )
+                        {
+                            cell.addStyleClass("highlight-null");
+                        }
+                        if(cell.getText() == "vaild")
+                        {
+                            cell.addStyleClass("success");
+                        }
+                        if(cell.getText()=="Product not recognised")
+                        {
+                            item.getCells()[0].addStyleClass("highlight-null") 
+                        }
+                        if(cell.getText()=="UniqueID  not recognised")
+                        {
+                            item.getCells()[1].addStyleClass("highlight-null") 
+                        }
+                        if(cell.getText() == "order data already exists")
+                        {
+                            item.addStyleClass("row_color")
+                            
+                        }
+                        if(cell.getText() == "ID/Product is not regonised")
+                        {
+                            item.getCells()[0].addStyleClass('highlight-null')
+
+                            item.getCells()[1].addStyleClass('highlight-null')
+                        }
+                    })
+                 }) 
+              },
+              err_frag_filter:function()
+              {
+                var oTable = sap.ui.getCore().byId("_IDGenTable1")
+              }
+  
         });
-    });
+    })
