@@ -7,12 +7,14 @@ sap.ui.define([
     "sap/ui/core/util/File",
     "sap/m/MessageToast",
     "sap/ui/core/format/DateFormat",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,exportLibrary, Spreadsheet, Export, ExportTypeCSV,File,MessageToast,DateFormat,MessageBox) {
+    function (Controller,exportLibrary, Spreadsheet, Export, ExportTypeCSV,File,MessageToast,DateFormat,Filter,FilterOperator,MessageBox) {
         "use strict";
 
         var that;
@@ -672,7 +674,7 @@ sap.ui.define([
                  }
 
                  for (var i = 0; i < numKeys; i++) {
-                     var oColumn = new sap.m.Column("col" + Math.floor(Math.random() * 1236), {
+                     var oColumn = new sap.m.Column("col" + Math.floor(Math.random() * 123696856), {
                          width: "1em",
                          hAlign:"Center",
                          header: new sap.m.Label({
@@ -695,7 +697,7 @@ sap.ui.define([
 
                     oCell.push(cell1);
                 }
-                 var aColList = new sap.m.ColumnListItem("aCol" + Math.floor(Math.random() * 1236), {
+                 var aColList = new sap.m.ColumnListItem("aCol" + Math.floor(Math.random() * 123696857554), {
                      cells: oCell
                });
 
@@ -723,7 +725,7 @@ sap.ui.define([
                         if(cell.getText() == "order data already exists")
                         {
                             item.addStyleClass("row_color")
-                            
+
                         }
                         if(cell.getText() == "ID/Product is not regonised")
                         {
@@ -734,9 +736,29 @@ sap.ui.define([
                     })
                  }) 
               },
-              err_frag_filter:function()
+              err_frag_filt:function()
               {
+                 let combo_box =  sap.ui.getCore().byId("_IDGenComboBox1m").getSelectedKey()
+                 that.applySearchFilter(combo_box)
+              },
+              applySearchFilter: function (sSearchTerm) {
                 var oTable = sap.ui.getCore().byId("_IDGenTable1")
+                var oBinding = oTable.getBinding("items");
+          
+                var aFilters = [];
+                if (sSearchTerm) {
+                  var oFilter = new sap.ui.model.Filter({
+                    filters: [
+                      new sap.ui.model.Filter("vaild_type",  sap.ui.model.FilterOperator.EQ, sSearchTerm),
+                      new sap.ui.model. Filter("err_type",  sap.ui.model.FilterOperator.Contains, sSearchTerm),
+                      
+                    ],
+                    and: false
+                  });
+                  aFilters.push(oFilter);
+                }
+          
+                oBinding.filter(aFilters);
               }
   
         });

@@ -3,7 +3,7 @@
 <customHeader>
 <tnt:ToolHeader id="_IDGenToolHeader1m" >
 <ToolbarSpacer id="_IDGenToolbarSpacer1m" ></ToolbarSpacer>
-<ComboBox id="_IDGenComboBox1m" placeholder="Status"  >
+<ComboBox id="_IDGenComboBox1m" placeholder="Status"  selectionChange="err_frag_filt" selectedItem="All" >
 <items>
 <core:Item id="_IDGenItem12m"  key="All"  text="All" ></core:Item>
 <core:Item id="_IDGenItem1m"  key="vaild"  text="vaild" ></core:Item>
@@ -22,36 +22,7 @@
 </tnt:ToolHeader>
 </customHeader>
 <Table id="_IDGenTable1"   >
-<!-- <columns>
-<Column id="_IDGenColumn1" hAlign="Center" >
-<Text id="_IDGenText1"   text="UNIQUE ID" ></Text>
-</Column>
-<Column id="_IDGenColumn2" hAlign="Center" >
-<Text id="_IDGenText2"  text="PRODUCT ID" ></Text>
-</Column>
-<Column id="_IDGenColumn3" hAlign="Center" >
-<Text id="_IDGenText3"  text="ORDER QUANTITY" ></Text>
-</Column>
-<Column id="_IDGenColumn4" hAlign="Center" >
-<Text id="_IDGenText4"   text="DATE"  ></Text>
-</Column>
-<Column id="_IDGenColumn6" hAlign="Center" >
-<Text id="_IDGenText11"  text="Status" ></Text>
-</Column>
-<Column id="_IDGenColumn5"  hAlign="Center" >
-<Text id="_IDGenText5"  text="Reason" ></Text>
-</Column>
-</columns>
-<items>
-<ColumnListItem id="_IDGenColumnListItem1" >
-<Text id="_IDGenText6"  text="{}" ></Text>
-<Text id="_IDGenText7"  text="{}" ></Text>
-<Text id="_IDGenText8"  text="{}" ></Text>
-<Text id="_IDGenText9"  text="{}" ></Text>
-<Text id="_IDGenText10"  text="{}" ></Text>
 
-</ColumnListItem>
-</items> -->
 </Table>
 
 <footer>
