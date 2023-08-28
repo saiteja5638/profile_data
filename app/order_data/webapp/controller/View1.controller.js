@@ -381,6 +381,8 @@ sap.ui.define([
 
                 that.byId("table").setModel( new sap.ui.model.json.JSONModel({}))
 
+                that.byId("fileUploader").setValue("")
+
 
             },
             open_Download_tem:function()
@@ -770,16 +772,18 @@ sap.ui.define([
                         if(cell.getText()=="Product not recognised")
                         {
                             item.getCells()[0].addStyleClass("highlight-null") 
+                            
                         }
                         if(cell.getText()=="UniqueID  not recognised")
                         {
                             item.getCells()[1].addStyleClass("highlight-null") 
                         }
                         if(cell.getText() == "order data already exists")
-                        {
-                            item.addStyleClass("row_color")
-                            cell.addStyleClass('text-color')
-
+                        {   
+                            item.getCells().forEach(cp=>{
+                                cp.addStyleClass("highlight-null")
+                            })
+        
                         }
                         if(cell.getText() == "ID/Product is not regonised")
                         {

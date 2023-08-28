@@ -12,14 +12,13 @@
     left:220%;
 }
 .highlight-null {
-    color:rgb(243, 102, 102);
+    color:rgb(228, 15, 15);
   }
  .success{
     color: green;
  }
  .row_color{
     background-color: red;
- }
- .text-color{
     color:black;
  }
+ 
