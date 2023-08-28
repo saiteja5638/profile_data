@@ -704,7 +704,60 @@ sap.ui.define([
                 oTable.setModel(oModel1)
                  oTable.bindItems("/", aColList);
 
-                 oTable.getItems().forEach(item=>{
+                  that.err_targ_pointer()     
+              },
+              applySearchFilter: function () {
+                let sSearchTerm =  sap.ui.getCore().byId("_IDGenComboBox1m").getSelectedKey()
+                
+                var oTable = sap.ui.getCore().byId("_IDGenTable1")
+                var oBinding = oTable.getBinding("items");
+
+                if(sSearchTerm == "vaild")
+                {
+                    sap.ui.getCore().byId("_IDGenComboBox1mv").setVisible(false)
+                }
+                else
+                {
+                    sap.ui.getCore().byId("_IDGenComboBox1mv").setVisible(true)
+                }
+
+                if(sSearchTerm=="All")
+                {
+                    let aFilters =  new sap.ui.model.Filter("vaild_type",  sap.ui.model.FilterOperator.Contains, "")  
+                    oBinding.filter(aFilters);  
+                }
+                else
+                {
+                    let aFilters =  new sap.ui.model.Filter("vaild_type",  sap.ui.model.FilterOperator.EQ, sSearchTerm)  
+                    oBinding.filter(aFilters);
+                }
+                that.err_targ_pointer()  
+              },
+              err_reason_filter:function()
+              {
+                let sSearchTerm =  sap.ui.getCore().byId("_IDGenComboBox1mv").getSelectedKey()
+                var oTable = sap.ui.getCore().byId("_IDGenTable1")
+                var oBinding = oTable.getBinding("items");
+
+                if(sSearchTerm=="All")
+                {
+                    let aFilters =  new sap.ui.model.Filter("err_type",  sap.ui.model.FilterOperator.Contains, "")  
+                    oBinding.filter(aFilters);  
+                }
+                else
+                {
+                    let aFilters =  new sap.ui.model.Filter("err_type",  sap.ui.model.FilterOperator.Contains, sSearchTerm)  
+                    oBinding.filter(aFilters);
+                }
+                that.err_targ_pointer()  
+
+
+              },
+              err_targ_pointer:function()
+              {
+                var oTable = sap.ui.getCore().byId("_IDGenTable1")
+
+                oTable.getItems().forEach(item=>{
                     item.getCells().forEach(cell=>{
                         if(cell.getText() == "null" || cell.getText() == "invaild" )
                         {
@@ -725,6 +778,7 @@ sap.ui.define([
                         if(cell.getText() == "order data already exists")
                         {
                             item.addStyleClass("row_color")
+                            cell.addStyleClass('text-color')
 
                         }
                         if(cell.getText() == "ID/Product is not regonised")
@@ -735,30 +789,7 @@ sap.ui.define([
                         }
                     })
                  }) 
-              },
-              err_frag_filt:function()
-              {
-                 let combo_box =  sap.ui.getCore().byId("_IDGenComboBox1m").getSelectedKey()
-                 that.applySearchFilter(combo_box)
-              },
-              applySearchFilter: function (sSearchTerm) {
-                var oTable = sap.ui.getCore().byId("_IDGenTable1")
-                var oBinding = oTable.getBinding("items");
-          
-                var aFilters = [];
-                if (sSearchTerm) {
-                  var oFilter = new sap.ui.model.Filter({
-                    filters: [
-                      new sap.ui.model.Filter("vaild_type",  sap.ui.model.FilterOperator.EQ, sSearchTerm),
-                      new sap.ui.model. Filter("err_type",  sap.ui.model.FilterOperator.Contains, sSearchTerm),
-                      
-                    ],
-                    and: false
-                  });
-                  aFilters.push(oFilter);
-                }
-          
-                oBinding.filter(aFilters);
+
               }
   
         });
