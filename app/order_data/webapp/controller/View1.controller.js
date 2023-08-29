@@ -789,8 +789,17 @@ sap.ui.define([
                             item.getCells().forEach(cp=>{
                                 cp.addStyleClass("highlight-null")
                             })
-        
                         }
+                        if(cell.getText() == "String error" )
+                        {
+                            item.getCells().forEach(o =>{
+                                if(isNaN(parseInt(o.getText())))
+                                {
+                                    o.addStyleClass('highlight-null')
+                                }
+                            })
+                        }
+                       
                         if(cell.getText() == "ID/Product is not regonised")
                         {
                             item.getCells()[0].addStyleClass('highlight-null')
