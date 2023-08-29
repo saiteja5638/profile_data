@@ -10,7 +10,7 @@
 <core:Item id="_IDGenItem2m"  key="Invaild"  text="Invaild" ></core:Item>
 </items>
 </ComboBox>
-<ComboBox id="_IDGenComboBox1mv"  placeholder="reason type" selectionChange="err_reason_filter" selectedKey="All" >
+<ComboBox id="_IDGenComboBox1mv"  placeholder="reason type" selectionChange="err_reason_filter" selectedKey="All"   >
 <items>
 <core:Item id="_IDGenItem0" key="All" text="All" ></core:Item>
 <core:Item id="_IDGenItem1" key="null existing" text="null existing" ></core:Item>
@@ -23,7 +23,7 @@
 </ComboBox>
 </tnt:ToolHeader>
 </customHeader>
-<Table id="_IDGenTable1"   >
+<Table id="_IDGenTable1"  alternateRowColors="true" >
 
 </Table>
 

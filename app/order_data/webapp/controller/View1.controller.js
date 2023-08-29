@@ -709,6 +709,8 @@ sap.ui.define([
                   that.err_targ_pointer()     
               },
               applySearchFilter: function () {
+
+                that.err_targ_pointer_rem()
                 let sSearchTerm =  sap.ui.getCore().byId("_IDGenComboBox1m").getSelectedKey()
                 
                 var oTable = sap.ui.getCore().byId("_IDGenTable1")
@@ -733,10 +735,14 @@ sap.ui.define([
                     let aFilters =  new sap.ui.model.Filter("vaild_type",  sap.ui.model.FilterOperator.EQ, sSearchTerm)  
                     oBinding.filter(aFilters);
                 }
+               
                 that.err_targ_pointer()  
               },
               err_reason_filter:function()
               {
+                
+                that.err_targ_pointer_rem()
+                
                 let sSearchTerm =  sap.ui.getCore().byId("_IDGenComboBox1mv").getSelectedKey()
                 var oTable = sap.ui.getCore().byId("_IDGenTable1")
                 var oBinding = oTable.getBinding("items");
@@ -751,8 +757,8 @@ sap.ui.define([
                     let aFilters =  new sap.ui.model.Filter("err_type",  sap.ui.model.FilterOperator.Contains, sSearchTerm)  
                     oBinding.filter(aFilters);
                 }
+                
                 that.err_targ_pointer()  
-
 
               },
               err_targ_pointer:function()
@@ -794,6 +800,45 @@ sap.ui.define([
                     })
                  }) 
 
+              },
+              err_targ_pointer_rem :function()
+              {
+                var oTable = sap.ui.getCore().byId("_IDGenTable1")
+
+                oTable.getItems().forEach(item=>{
+                    item.getCells().forEach(cell=>{
+                        if(cell.getText() == "null" || cell.getText() == "invaild" )
+                        {
+                            cell.removeStyleClass("highlight-null");
+                        }
+                        if(cell.getText() == "vaild")
+                        {
+                            cell.removeStyleClass("success");
+                        }
+                        if(cell.getText()=="Product not recognised")
+                        {
+                            item.getCells()[0].removeStyleClass("highlight-null") 
+                            
+                        }
+                        if(cell.getText()=="UniqueID  not recognised")
+                        {
+                            item.getCells()[1].removeStyleClass("highlight-null") 
+                        }
+                        if(cell.getText() == "order data already exists")
+                        {   
+                            item.getCells().forEach(cp=>{
+                                cp.removeStyleClass("highlight-null")
+                            })
+        
+                        }
+                        if(cell.getText() == "ID/Product is not regonised")
+                        {
+                            item.getCells()[0].removeStyleClass('highlight-null')
+
+                            item.getCells()[1].removeStyleClass('highlight-null')
+                        }
+                    })
+                 }) 
               }
   
         });
