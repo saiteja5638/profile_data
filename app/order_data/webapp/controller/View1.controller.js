@@ -602,7 +602,7 @@ sap.ui.define([
                                     success: function (response) {
                                         if(JSON.parse(response.seed_order).length>0)
                                         {
-                                           that.err_display_frag(JSON.parse(response.seed_order))
+                                           that.err_display_frag(JSON.parse(response.seed_order))      // calling the err_status fragment passing over the data
                                         }
                                         else
                                         {
@@ -642,7 +642,7 @@ sap.ui.define([
               {
                 that.uploadstatus.close()
               },
-              err_display_frag:function(data)
+              err_display_frag:function(data)                 // display over the err_staus fragment
               {
                 that.uploadstatus.open()
              var oTable = sap.ui.getCore().byId("_IDGenTable1")
@@ -708,7 +708,7 @@ sap.ui.define([
 
                   that.err_targ_pointer()     
               },
-              applySearchFilter: function () {
+              applySearchFilter: function () {   // vaild or in vaild filter of err_fragment
 
                 that.err_targ_pointer_rem()
                 let sSearchTerm =  sap.ui.getCore().byId("_IDGenComboBox1m").getSelectedKey()
@@ -738,7 +738,7 @@ sap.ui.define([
                
                 that.err_targ_pointer()  
               },
-              err_reason_filter:function()
+              err_reason_filter:function()    // reason filter for the err_status fragment
               {
                 
                 that.err_targ_pointer_rem()
@@ -761,7 +761,7 @@ sap.ui.define([
                 that.err_targ_pointer()  
 
               },
-              err_targ_pointer:function()
+              err_targ_pointer:function()                      // targeting out the error data in err_status fragment
               {
                 var oTable = sap.ui.getCore().byId("_IDGenTable1")
 
@@ -810,7 +810,7 @@ sap.ui.define([
                  }) 
 
               },
-              err_targ_pointer_rem :function()
+              err_targ_pointer_rem :function()                // removing the classes from the err_status_fragment
               {
                 var oTable = sap.ui.getCore().byId("_IDGenTable1")
 
