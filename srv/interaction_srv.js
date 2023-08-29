@@ -420,11 +420,6 @@ module.exports = srv => {
 
                 }
 
-               
-                console.log(Duplicate_responses)
-
-                console.log(filtered_data)
-
                 if (Duplicate_responses.length <= 0)  //if invaild data available it  not eneters
                 {
                     let Seed_orderlength = await cds.run(SELECT.from("APP_INTERACTIONS_ORDER_DATA"))
@@ -440,7 +435,7 @@ module.exports = srv => {
 
                     for (const obj of Duplicate_responses) {
 
-                        var dateString = (obj.MATERIALAVAILDATE).split('/'); // Assuming the date string is in the format dd/MM/yyyy
+                        var dateString = (obj.MATERIALAVAILDATE).split('/')
 
                         let oConvertedDate = dateString[0] + "-" + dateString[1] + "-" + dateString[2]
 
