@@ -616,17 +616,6 @@ module.exports = srv => {
                 throw e
             }
         }
-        // if(req.data.FLAG=="U")
-        // {
-        //    try {
-
-        //     await cds.run(UPDATE("APP_INTERACTIONS_CP_STAT_PROFILE",))
-
-        //    } catch (error) {
-
-        //    }
-        // }
-
     })
 
 
