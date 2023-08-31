@@ -429,7 +429,53 @@ module.exports = srv => {
                 }
                 else {
 
-                    var data_record = []
+
+                    //         let data =[] 
+                    //         let dub =[]
+      
+                    //         Duplicate_responses.forEach(obj => {
+      
+                    //             if (!(dub.includes(obj.UNIQUEID))) {
+      
+                    //                 data.push(obj.UNIQUEID)
+      
+                    //             }
+                    //             dub.push(obj.UNIQUEID);
+                    //         })
+
+                    //         console.log(data)
+
+                     
+
+                    // let new_array2 = [];
+
+                    // data.forEach(id => {
+                    //     const temp = { UNIQUEID: id }
+                    //     Duplicate_responses.forEach(obj => {
+                    //         temp['PRODUCT'] = obj.PRODUCT
+                    //         temp['err_type'] = obj.err_type
+                    //         temp['vaild_type'] =obj.vaild_type
+                    //         temp[obj.MATERIALAVAILDATE] = obj.ORDERQUANTITY;
+                    //     })
+                    //     new_array2.push(temp)
+                    // })
+
+                    // console.log(new_array2);
+
+                    // let new_array12 = [];
+
+                    // data.forEach(id => {
+                    //     const temp = { UNIQUEID: id }
+                    //     filtered_data.forEach(obj => {
+                    //         temp['PRODUCT'] = obj.PRODUCT
+                    //         temp['err_type'] = obj.err_type
+                    //         temp['vaild_type'] =obj.vaild_type
+                    //         temp[obj.MATERIALAVAILDATE] = obj.ORDERQUANTITY;
+                    //     })
+                    //     new_array12.push(temp)
+                    // })
+
+                    // console.log(new_array12);
 
                     const result = {};
 
@@ -470,7 +516,6 @@ module.exports = srv => {
                             new_array.push(dummy_object)
                         }
 
-                        console.log(new_array)
                        
                         const result1 = {};
 
@@ -511,12 +556,10 @@ module.exports = srv => {
     
                                 new_array1.push(dummy_object)
                             }
-    
-                            console.log(new_array1)
+  
 
                             const arr3 = new_array.concat(new_array1);
 
-                     
 
                        return JSON.stringify(arr3)
                 }
