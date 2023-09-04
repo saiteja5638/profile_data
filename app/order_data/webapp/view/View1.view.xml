@@ -5,7 +5,7 @@
 <uxap:ObjectPageLayout id="_IDGenObjectPageLayout1" >
 <uxap:headerTitle>
 <uxap:ObjectPageDynamicHeaderTitle id="_IDGenObjectPageDynamicHeaderTitle1"    >
-     <uxap:expandedHeading>  
+     <uxap:expandedHeading   >  
 					<HBox id="_IDGenHBox1" justifyContent="Center" >
 						<Title id="_IDGenTitle1" text="Seed Order Creation" wrapping="true"  textAlign="Center"  class="Heading_title"  />
 					</HBox>

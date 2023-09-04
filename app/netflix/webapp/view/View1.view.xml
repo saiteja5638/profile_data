@@ -1,0 +1,9 @@
+<mvc:View xmlns:widgets="sap.ui.integration.widgets" xmlns:f="sap.f" controllerName="netflix.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}"  class="main_view"  showHeader="false"  >   
+     <f:Card id="_IDGenCard1"  class="Card1" >
+     
+     </f:Card>
+    </Page>
+</mvc:View>

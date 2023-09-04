@@ -14,3 +14,5 @@ using from './profile_information/annotations';
 using from './sample_profile_predication/annotations';
 
 using from './crud_json/annotations';
+
+using from './netflix/annotations';
