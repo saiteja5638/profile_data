@@ -3,7 +3,13 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}"  class="main_view"  showHeader="false"  >   
      <f:Card id="_IDGenCard1"  class="Card1" >
-     
+          
+
+
+
+
+
+          
      </f:Card>
     </Page>
 </mvc:View>
