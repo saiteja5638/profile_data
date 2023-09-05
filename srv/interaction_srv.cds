@@ -79,6 +79,11 @@ entity  LOCATION_STANDBY  as projection on interactions.LOCATION_STB ;
 
 entity LOCATION1  as projection on interactions.LOCATION;
 
+// vc planner ---sales and product odata services
+
+entity PRODUCT_SRV as projection on interactions.PRODUCT;
+
+entity SALES_SRV as projection on interactions.SALES;
 }
 
 

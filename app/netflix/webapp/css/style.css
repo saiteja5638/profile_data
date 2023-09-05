@@ -7,3 +7,22 @@
     border-radius: 0;
     filter: brightness(50%);
 }
+.LOGO_netflix {
+    font-size: 45px;
+    color: rgb(242, 8, 8);
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    
+    
+}
+.Header_content{
+    background-color: transparent;
+    border-radius: 0;
+     position: relative;
+     top: 25px;
+     left: 40%;
+     display: flex;
+     
+     
+}
