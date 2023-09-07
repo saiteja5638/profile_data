@@ -240,8 +240,8 @@ entity SALES{
      RESERVE_FIELD2:String(20);
      RESERVE_FIELD3:String(20);
      STOCK_LOC:String(4);
-     TRANS_FROM_LOC:String(4);
      TRANS_TO_LOC:String(4);
+     TRANS_FROM_LOC:String(4);
       CHANGED_DATE : Date;
       CHANGED_TIME :Time;
       CHANGED_BY :String(12);

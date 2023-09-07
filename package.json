@@ -32,7 +32,8 @@
         "watch-profile_information": "cds watch --open profile_information/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-sample_profile_predication": "cds watch --open sample_profile_predication/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-crud_json": "cds watch --open crud_json/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-netflix": "cds watch --open netflix/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-netflix": "cds watch --open netflix/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-tree_app": "cds watch --open tree_app/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "hana": {
@@ -56,7 +57,7 @@
         }
     },
     "devDependencies": {
-        "@sap/ux-specification": "^1.108.12",
+        "@sap/ux-specification": "^1.108.13",
         "rimraf": "^3.0.2"
     },
     "sapux": [

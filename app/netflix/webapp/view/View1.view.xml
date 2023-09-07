@@ -4,24 +4,20 @@
     <Page id="page" title="{i18n>title}"  class="main_view"  showHeader="false"  >   
     
      <f:Card id="_IDGenCard1"  class="Card1"  >
-     <f:content>
-     <FlexBox id="_IDGenFlexBox1"   class="Header_content" >
-          <Text id="_IDGenText1"  text="NETFLIX"   class="LOGO_netflix" ></Text>
-  
-
-     <FlexBox id="_IDGenFlexBox2" >
-        <ComboBox id="_IDGenComboBox1"    >
-     <items>
-     <core:Item id="_IDGenItem1" text="English"  ></core:Item>
-     <core:Item id="_IDGenItem2"   text="Hindi" ></core:Item>
-     </items>
-     </ComboBox>
-     <Button id="_IDGenButton1" class="Signin_btn"  text="Signin"  ></Button>
-     </FlexBox>
-     
-     </FlexBox>
-     
-     </f:content>
+  <f:content>
+    <Toolbar id="_IDGenToolbar1"   class="Nav_bar" >
+      <Text id="_IDGenText1"  class="LOGO_netflix"  text="NETFLIX"   ></Text>
+      <ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer> 
+      <ToolbarSpacer id="_IDGenToolbarSpacer2" ></ToolbarSpacer>
+      <ComboBox id="_IDGenComboBox1"  selectedKey="English" class="Selection_box"   >
+      <items>
+      <core:Item id="_IDGenItem1" text="English" key="English"  ></core:Item>
+      <core:Item id="_IDGenItem2" text="Hindi"  key="Hindi"  ></core:Item>
+      </items>
+      </ComboBox>
+      <Button id="_IDGenButton2" text="Signin" press="onContactPress"/>
+    </Toolbar>
+  </f:content>
 
      </f:Card>
 
