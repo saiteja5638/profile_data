@@ -78,12 +78,16 @@ function cre(FLAG:String,Data:String) returns String;
 entity  LOCATION_STANDBY  as projection on interactions.LOCATION_STB ;
 
 entity LOCATION1  as projection on interactions.LOCATION;
+ 
+entity LOCATION_IBP as projection on interactions.LOCATION_IBP;
 
 // vc planner ---sales and product odata services
 
 entity PRODUCT_SRV as projection on interactions.PRODUCT;
 
-entity SALES_SRV as projection on interactions.SALES;
+entity SALES_SRV as projection on interactions.SALES1;
+
+
 }
 
 

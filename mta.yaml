@@ -62,20 +62,8 @@ modules:
       name: crudjson
       target-path: resources/
     - artifacts:
-      - sample56.zip
-      name: sample56
-      target-path: resources/
-    - artifacts:
-      - testserv.zip
-      name: testserv
-      target-path: resources/
-    - artifacts:
       - netflix.zip
       name: netflix
-      target-path: resources/
-    - artifacts:
-      - treeapp.zip
-      name: treeapp
       target-path: resources/
 - name: project1
   type: html5
@@ -147,39 +135,9 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
-- name: sample56
-  type: html5
-  path: sample56
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: testserv
-  type: html5
-  path: test_serv
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
 - name: netflix
   type: html5
   path: app/netflix
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: treeapp
-  type: html5
-  path: app/tree_app
   build-parameters:
     build-result: dist
     builder: custom
