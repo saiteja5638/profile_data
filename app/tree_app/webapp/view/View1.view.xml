@@ -1,6 +1,6 @@
 <mvc:View controllerName="treeapp.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"  xmlns:dnd="sap.ui.core.dnd"       >
     <Page id="page" title="{i18n>title}"  showHeader="false"  >
       <Toolbar id="_IDGenToolbar1"   >
       <Text id="_IDGenText1" text="Tree App" ></Text>
@@ -13,8 +13,15 @@
 
 		</detailPages>
 		<masterPages>
-  <Tree id="tree" items="{/items}">
-    <StandardTreeItem id="_IDGenStandardTreeItem1" title="{DESCRIPTION}" />
+  <Tree id="tree" items="{/items}"  mode="MultiSelect"  >
+  	<dragDropConfig>
+					<dnd:DragDropInfo id="_IDGenDragDropInfo1"
+							sourceAggregation="items"
+							targetAggregation="items"
+							dragStart="onDragStart"
+							drop="onDrop"/>
+				</dragDropConfig>
+    <StandardTreeItem id="_IDGenStandardTreeItem1" title="{DESCRIPTION}"     />
   </Tree>
 		</masterPages>
 	</SplitApp>
