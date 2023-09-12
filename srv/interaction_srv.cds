@@ -73,6 +73,8 @@ function CP_BOOK1(FLAG:String,Data:String) returns String;
 
 function cre(FLAG:String,Data:String) returns String;
 
+function tree(FLAG:String,Data:String) returns String;
+
 //vc planner odata services 
 
 entity  LOCATION_STANDBY  as projection on interactions.LOCATION_STB ;

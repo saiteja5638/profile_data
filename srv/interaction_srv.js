@@ -2,6 +2,10 @@ var cds = require('@sap/cds')
 
 var fs = require('fs')
 
+var path = require('path')
+
+var filePath_tree = path.join(__dirname, 'header.json');
+
 module.exports = srv => {
 
     srv.on('cre', async (req, res) => {
@@ -616,5 +620,45 @@ module.exports = srv => {
                 throw e
             }
         }
+    })
+    srv.on("tree",async(req,res)=>{
+     
+        if(req.data.FLAG == "R")
+        {
+           let data  = require('../srv/header.json')
+           
+           try {
+
+            function constructTree(data, parentNodeId) {
+                const tree = [];
+              
+                for (const item of data) {
+                  if (item.PARENTNODEID === parentNodeId) {
+                    const childNodes = constructTree(data, item.PAGEID);
+              
+                    const treeNode = {
+                      PAGEID: item.PAGEID,
+                      DESCRIPTION: item.DESCRIPTION,
+                      nodes: childNodes
+                    };
+              
+                    tree.push(treeNode);
+                  }
+                }
+              
+                return tree;
+              }
+              const treeData = constructTree(data, 0);
+              
+             
+              let data1 =JSON.stringify(treeData, null, 2)
+            
+            return data1
+
+           } catch (error) {
+              throw error 
+           }
+        }
+
     })
 }

@@ -5,6 +5,18 @@
       <Toolbar id="_IDGenToolbar1"   >
       <Text id="_IDGenText1" text="Tree App" ></Text>
       </Toolbar>
-        
+      	<SplitApp
+		id="SplitAppDemo"
+		initialDetail="detail"
+		initialMaster="master">
+		<detailPages>
+
+		</detailPages>
+		<masterPages>
+  <Tree id="tree" items="{/items}">
+    <StandardTreeItem id="_IDGenStandardTreeItem1" title="{DESCRIPTION}" />
+  </Tree>
+		</masterPages>
+	</SplitApp>
     </Page>
 </mvc:View>
