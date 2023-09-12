@@ -65,6 +65,10 @@ modules:
       - netflix.zip
       name: netflix
       target-path: resources/
+    - artifacts:
+      - treeapp.zip
+      name: treeapp
+      target-path: resources/
 - name: project1
   type: html5
   path: app/project1
@@ -138,6 +142,16 @@ modules:
 - name: netflix
   type: html5
   path: app/netflix
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: treeapp
+  type: html5
+  path: app/tree_app
   build-parameters:
     build-result: dist
     builder: custom

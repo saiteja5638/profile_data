@@ -1,0 +1,10 @@
+<mvc:View controllerName="treeapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}"  showHeader="false"  >
+      <Toolbar id="_IDGenToolbar1"   >
+      <Text id="_IDGenText1" text="Tree App" ></Text>
+      </Toolbar>
+        
+    </Page>
+</mvc:View>
