@@ -263,6 +263,83 @@ entity SALES1{
        CREATED_TIME:Time;
       CREATED_BY:String(12);
 }
+
+
+entity locationproductionid {
+    key LOCATION_ID       : String(4);
+    key PRODUCT_ID        : String(40);
+        LOTSIZE_KEY       : String(2);
+        PROCUREMENT_TYPE  : String(1);
+        LOTSIZE           : String(19);
+        PLANNING_STRATEGY : String(2);
+        CHANGED_DATE      : Date;
+        CHANGED_TIME      : Time;
+        CHANGED_BY        : String(12);
+        CREATED_DATE      : Date;
+        CREATED_TIME      : Time;
+        CREATED_BY        : String(12);
+  }
+
+
+entity product_class {
+    key PRODUCT_ID   : String(40);
+    key CLASS        : String(18);
+        CHANGED_DATE : Date;
+        CHANGED_TIME : Time;
+        CHANGED_BY   : String(12);
+        CREATED_DATE : Date;
+        CREATED_TIME : Time;
+        CREATED_BY   : String(12);
+  }
+
+  entity class_c {
+    key INT_CLS_NUMBER : String(10);
+        CLASS_TYPE     : String(3);
+        CLASS          : String(18);
+        ZDESC          : String(40);
+        CHANGED_DATE   : Date;
+        CHANGED_TIME   : Time;
+        CHANGED_BY     : String(12);
+        CREATED_DATE   : Date;
+        CREATED_TIME   : Time;
+        CREATED_BY     : String(12);
+  }
+
+  entity characteristicdata {
+    key INT_CLS_NUMBER : String(10);
+    key CHAR_NAME      : String(30);
+        INT_CHAR       : String(10);
+        CHAR_DESC      : String(50);
+        CHAR_GROUP     : String(10);
+        CHAR_DATATYPE  : String(4);
+        CHAR_CATEGORY  : String(2);
+        ENTRY_REQ      : String(1);
+        MULTI_CHAR     : String(1);
+        CHANGED_DATE   : Date;
+        CHANGED_TIME   : Time;
+        CHANGED_BY     : String(12);
+        CREATED_DATE   : Date;
+        CREATED_TIME   : Time;
+        CREATED_BY     : String(12);
+
+  }
+
+  entity characteristicvalues {
+    key INT_CHAR             : String(10);
+        VALUE_NUM            : String(15);
+        CHAR_NAME            : String(30);
+        CHARACTERISTIC_VALUE : String(70);
+        CHARACTERISTIC_VDESC : String(70);
+        CHANGED_DATE         : Date;
+        CHANGED_TIME         : Time;
+        CHANGED_BY           : String(12);
+        CREATED_DATE         : Date;
+        CREATED_TIME         : Time;
+        CREATED_BY           : String(12);
+  }
+
+
+
 }
 
 @cds.persistence.exists
