@@ -67,7 +67,6 @@ entity Interactions_Student_marks {
   ID    : Integer64;
   DATE  : String;
   MARKS : Integer;
-
 }
 
 entity Unique_ID_Header{
@@ -202,7 +201,6 @@ entity LOCATION_IBP{
        CREATED_TIME:Time;
       CREATED_BY:String(12);
 }
-
 entity PRODUCT{
   key PRODUCT_ID : String(40);
       PRODUCT_DESC :String(40);
@@ -265,8 +263,6 @@ entity SALES1{
        CREATED_TIME:Time;
       CREATED_BY:String(12);
 }
-
-
 }
 
 @cds.persistence.exists
