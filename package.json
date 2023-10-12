@@ -17,7 +17,9 @@
         "jsonfile": "^6.1.0",
         "sqlite": "^4.2.1",
         "sqlite3": "^5.1.6",
-        "xlsx": "^0.18.5"
+        "xlsx": "^0.18.5",
+        "@sap/xssec": "^3",
+        "passport": "^0"
     },
     "scripts": {
         "start": "cds-serve",
@@ -53,6 +55,9 @@
         "requires": {
             "db": {
                 "kind": "sql"
+            },
+            "[hybrid]": {
+                "auth": "xsuaa"
             }
         }
     },

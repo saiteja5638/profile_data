@@ -3,206 +3,225 @@ ID: BPSH_126_Sample
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: BPSH_126_Sample-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: BPSH_126_Sample-db
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-  build-parameters:
-    builder: npm-ci
-- name: BPSH_126_Sample-db-deployer
-  type: hdb
-  path: db
-  requires:
-  - name: BPSH_126_Sample-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: BPSH_126_Sample-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: BPSH_126_Sample-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: BPSH_126_Sample-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - project1.zip
-      name: project1
-      target-path: resources/
-    - artifacts:
-      - seeduniqueorder.zip
-      name: seeduniqueorder
-      target-path: resources/
-    - artifacts:
-      - orderdata.zip
-      name: orderdata
-      target-path: resources/
-    - artifacts:
-      - liststyle.zip
-      name: liststyle
-      target-path: resources/
-    - artifacts:
-      - profileinformation.zip
-      name: profileinformation
-      target-path: resources/
-    - artifacts:
-      - sampleprofilepredication.zip
-      name: sampleprofilepredication
-      target-path: resources/
-    - artifacts:
-      - crudjson.zip
-      name: crudjson
-      target-path: resources/
-    - artifacts:
-      - netflix.zip
-      name: netflix
-      target-path: resources/
-    - artifacts:
-      - treeapp.zip
-      name: treeapp
-      target-path: resources/
-- name: project1
-  type: html5
-  path: app/project1
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: seeduniqueorder
-  type: html5
-  path: app/seeduniqueorder
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: orderdata
-  type: html5
-  path: app/order_data
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: liststyle
-  type: html5
-  path: app/list_style
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: profileinformation
-  type: html5
-  path: app/profile_information
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: sampleprofilepredication
-  type: html5
-  path: app/sample_profile_predication
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: crudjson
-  type: html5
-  path: app/crud_json
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: netflix
-  type: html5
-  path: app/netflix
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: treeapp
-  type: html5
-  path: app/tree_app
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+      - name: BPSH_126_Sample-db
+      - name: BPSH_126_Sample-auth
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+  - name: BPSH_126_Sample-db-deployer
+    type: hdb
+    path: db
+    requires:
+      - name: BPSH_126_Sample-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: BPSH_126_Sample-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: BPSH_126_Sample-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - project1.zip
+          name: project1
+          target-path: resources/
+        - artifacts:
+            - seeduniqueorder.zip
+          name: seeduniqueorder
+          target-path: resources/
+        - artifacts:
+            - orderdata.zip
+          name: orderdata
+          target-path: resources/
+        - artifacts:
+            - liststyle.zip
+          name: liststyle
+          target-path: resources/
+        - artifacts:
+            - profileinformation.zip
+          name: profileinformation
+          target-path: resources/
+        - artifacts:
+            - sampleprofilepredication.zip
+          name: sampleprofilepredication
+          target-path: resources/
+        - artifacts:
+            - crudjson.zip
+          name: crudjson
+          target-path: resources/
+        - artifacts:
+            - netflix.zip
+          name: netflix
+          target-path: resources/
+        - artifacts:
+            - treeapp.zip
+          name: treeapp
+          target-path: resources/
+  - name: project1
+    type: html5
+    path: app/project1
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: seeduniqueorder
+    type: html5
+    path: app/seeduniqueorder
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: orderdata
+    type: html5
+    path: app/order_data
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: liststyle
+    type: html5
+    path: app/list_style
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: profileinformation
+    type: html5
+    path: app/profile_information
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: sampleprofilepredication
+    type: html5
+    path: app/sample_profile_predication
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: crudjson
+    type: html5
+    path: app/crud_json
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: netflix
+    type: html5
+    path: app/netflix
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: treeapp
+    type: html5
+    path: app/tree_app
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
 resources:
-- name: BPSH_126_Sample-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: BPSH_126_Sample-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: BPSH_126_Sample-html5-srv
-    service-plan: app-host
-- name: BPSH_126_Sample-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: false
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: BPSH_126_Sample-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: BPSH_126_Sample-destination-service
-    service-plan: lite
-  requires:
-  - name: srv-api
+  - name: BPSH_126_Sample-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: BPSH_126_Sample-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: BPSH_126_Sample-html5-srv
+      service-plan: app-host
+  - name: BPSH_126_Sample-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: BPSH_126_Sample-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: BPSH_126_Sample-destination-service
+      service-plan: lite
+    requires:
+      - name: srv-api
+  - name: BPSH_126_Sample-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: BPSH_126_Sample-${org}-${space}
+        tenant-mode: dedicated
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npx -p @sap/cds-dk cds build --production
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
