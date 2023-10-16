@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:tnt="sap.tnt"   xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
+<Dialog id="_IDGenDialog1" title="Downlaod template" >
+      	<f:SimpleForm id="_IDGenSimpleForm12"   layout="ResponsiveGridLayout"   >
+			<f:content  >
+                <Label id="_IDGenLabel412"  text="Date Range Selection" required="true" />
+		        <DateRangeSelection id="_IDGenDateRangeSelection1"  change="getDates"  ></DateRangeSelection>
+			</f:content>
+		</f:SimpleForm>
+<footer>
+<Toolbar id="_IDGenToolbar1235"  >
+<ToolbarSpacer id="_IDGenToolbarSpacer251"  ></ToolbarSpacer>
+<Button id="_IDGenButton123"   type="Accept"  text="Download template"  press="download_file" ></Button>
+
+<Button id="_IDGenButton232"  type="Reject"  text="Close"  press="close_Download_tem" ></Button>
+</Toolbar>
+</footer>
+</Dialog>
+</core:FragmentDefinition>

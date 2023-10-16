@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog  title="Create Unique Characteristic"  titleAlignment="Center"  contentWidth="45%" contentHeight="35%"  class="content_padding"   id="Create_dio"  >
+
+     	<f:SimpleForm id="StudentForm"  layout="ResponsiveGridLayout"   >
+			<f:content  >
+            
+                <Label  text="Configurable Product"  />
+				<Input  id="Configurable_Product"  enabled="false"  />
+                <Label  text="Unique Type"/>
+				<!-- <Input  id="UniqueType" enabled="false"  /> -->
+                <ComboBox id="UniqueType"   >
+                <items>
+                <core:Item  text="Primary" key="P"  ></core:Item>
+                <core:Item  text="Unique"   key="U" ></core:Item>
+                </items>
+                </ComboBox>
+                <Label  text="Active Status"/>
+				<Input  id="ActiveStatus"  enabled="false" />
+                <Label  text="Unique Description" required="true" />
+				<Input  id="UniqueDescription" enabled="true"  /> 
+			</f:content>
+		</f:SimpleForm>
+        <FlexBox  justifyContent="End" >
+        <Button  icon="sap-icon://add"  type="Accept"  press="onOptions_selectDialog" ></Button>
+        </FlexBox>
+<Table  id="table3" width="100%"  delete="" items="{/items5}" >
+<columns>
+<Column  hAlign="Center" >
+<Text text="Char_name"   ></Text>
+</Column>
+<Column hAlign="Center" >
+<Text text="Char_value"  ></Text>
+</Column>
+<Column  hAlign="Center">
+
+</Column>
+</columns>
+<items>
+<ColumnListItem >
+<Text  text="{CHARVAL_NUM}" textAlign="Center" ></Text>
+<Text  text="{CHAR_NUMVALDESC}"  textAlign="Center" ></Text>
+<Button   type="Reject"  icon="sap-icon://decline"  press="delete_row"  ></Button>
+</ColumnListItem>
+</items>
+</Table>
+	<footer >   
+        <Toolbar  >
+            <ToolbarSpacer ></ToolbarSpacer>
+            <Button  type="Accept"  text="Submit" press="OnCreate_submit" ></Button>
+            <Button  type="Reject"  text="Cancel" press="onClose_create" ></Button>
+         </Toolbar>
+    </footer>
+	</Dialog>
+</core:FragmentDefinition>
