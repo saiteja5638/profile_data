@@ -8,7 +8,7 @@ using { SELECTIONOPTIONS } from '../db/interactions';
 
 
 service CatalogService  {
- @(requires:'authenticated-user')
+
  entity Interactions_Header
     as projection on interactions.Interactions_Header;
  entity Interactions_Items
