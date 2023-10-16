@@ -1,5 +1,33 @@
 {
-  "scopes": [],
+  "xsappname": "vcservices",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.autenticated-user",
+      "description": "autenticated-user"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "autenticated-user",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.autenticated-user"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "Admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ],
+      "attribute-references": []
+    }
+  ]
 }

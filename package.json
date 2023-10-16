@@ -17,7 +17,7 @@
         "in": "^0.19.0",
         "jquery": "^3.7.0",
         "jsonfile": "^6.1.0",
-        "passport": "^0.6.0",
+        "passport": "^0",
         "sqlite": "^4.2.1",
         "sqlite3": "^5.1.6",
         "xlsx": "^0.18.5"
@@ -59,7 +59,8 @@
             },
             "[hybrid]": {
                 "auth": "xsuaa"
-            }
+            },
+            "auth": "xsuaa"
         }
     },
     "devDependencies": {

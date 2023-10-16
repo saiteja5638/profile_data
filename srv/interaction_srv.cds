@@ -7,8 +7,8 @@ using { SAMPLE_1 } from '../db/interactions';
 using { SELECTIONOPTIONS } from '../db/interactions';
 
 
-service CatalogService {
-@requires: 'authenticated-user'
+service CatalogService  {
+@requires:'autenticated-user'
  entity Interactions_Header
     as projection on interactions.Interactions_Header;
 @requires: 'Admin'
