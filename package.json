@@ -57,9 +57,6 @@
             "db": {
                 "kind": "sql"
             },
-            "[hybrid]": {
-                "auth": "xsuaa"
-            },
             "auth": "xsuaa"
         }
     },
