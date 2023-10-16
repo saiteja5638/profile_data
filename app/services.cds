@@ -1,6 +1,4 @@
 
-using from './project1/annotations';
-
 using from './excel_file_upload/annotations';
 
 using from './seeduniqueorder/annotations';
