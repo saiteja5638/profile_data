@@ -147,13 +147,6 @@ resources:
       - name: srv-api
   - name: BPSH_126_Sample-auth
     type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: BPSH_126_Sample-${org}-${space}
-        tenant-mode: dedicated
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
