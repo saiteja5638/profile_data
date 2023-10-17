@@ -35,10 +35,6 @@ modules:
       build-result: resources
       requires:
         - artifacts:
-            - project1.zip
-          name: project1
-          target-path: resources/
-        - artifacts:
             - seeduniqueorder.zip
           name: seeduniqueorder
           target-path: resources/
@@ -54,33 +50,6 @@ modules:
             - profileinformation.zip
           name: profileinformation
           target-path: resources/
-        - artifacts:
-            - sampleprofilepredication.zip
-          name: sampleprofilepredication
-          target-path: resources/
-        - artifacts:
-            - crudjson.zip
-          name: crudjson
-          target-path: resources/
-        - artifacts:
-            - netflix.zip
-          name: netflix
-          target-path: resources/
-        - artifacts:
-            - treeapp.zip
-          name: treeapp
-          target-path: resources/
-  - name: project1
-    type: html5
-    path: app/project1
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
   - name: seeduniqueorder
     type: html5
     path: app/seeduniqueorder
@@ -125,54 +94,6 @@ modules:
         - npm run build:cf
       supported-platforms:
         []
-  - name: sampleprofilepredication
-    type: html5
-    path: app/sample_profile_predication
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
-  - name: crudjson
-    type: html5
-    path: app/crud_json
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
-  - name: netflix
-    type: html5
-    path: app/netflix
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
-  - name: treeapp
-    type: html5
-    path: app/tree_app
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
-
-  - name: BPSH_126_Sample
-    type: approuter.nodejs
-    path: app/router
     parameters:
       keep-existing-routes: true
       disk-quota: 256M
