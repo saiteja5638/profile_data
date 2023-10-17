@@ -86,6 +86,8 @@ entity LOCATION_IBP as projection on interactions.LOCATION_IBP;
 
 entity PRODUCT_SRV as projection on interactions.PRODUCT;
 
+@requires: 'authenticated-user'
+
 entity SALES_SRV as projection on interactions.SALES1;
 
 

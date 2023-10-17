@@ -57,7 +57,9 @@
             "db": {
                 "kind": "sql"
             },
-            "auth": "xsuaa"
+            "[production]": {
+                "auth": "xsuaa"
+            }
         }
     },
     "devDependencies": {
