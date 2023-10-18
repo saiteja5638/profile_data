@@ -22,27 +22,17 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: BPSH_126_Sample-auth
       - name: BPSH_126_Sample-db
 
   - name: BPSH_126_Sample-db-deployer
     type: hdb
-    path: gen/db
+    path: db
     parameters:
       buildpack: nodejs_buildpack
     requires:
       - name: BPSH_126_Sample-db
 
 resources:
-  - name: BPSH_126_Sample-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: BPSH_126_Sample-${org}-${space}
-        tenant-mode: dedicated
   - name: BPSH_126_Sample-db
     type: com.sap.xs.hdi-container
     parameters:
