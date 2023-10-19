@@ -23,6 +23,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: BPSH_126_Sample-db
+      - name: BPSH_126_Sample-auth
 
   - name: BPSH_126_Sample-db-deployer
     type: hdb
@@ -32,9 +33,35 @@ modules:
     requires:
       - name: BPSH_126_Sample-db
 
+  - name: BPSH_126_Sample
+    type: approuter.nodejs
+    path: app/
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          strictSSL: false
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: BPSH_126_Sample-auth
+
 resources:
   - name: BPSH_126_Sample-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: BPSH_126_Sample-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: BPSH_126_Sample-${org}-${space}
+        tenant-mode: dedicated

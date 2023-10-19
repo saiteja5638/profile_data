@@ -8,7 +8,7 @@ using { SELECTIONOPTIONS } from '../db/interactions';
 
 
 service CatalogService  {
-
+   
  entity Interactions_Header
     as projection on interactions.Interactions_Header;
  entity Interactions_Items
@@ -86,10 +86,8 @@ entity LOCATION_IBP as projection on interactions.LOCATION_IBP;
 
 entity PRODUCT_SRV as projection on interactions.PRODUCT;
 
-@requires: 'authenticated-user'
-
+ @(requires: 'authenticated-user')
 entity SALES_SRV as projection on interactions.SALES1;
-
 
 }
 
