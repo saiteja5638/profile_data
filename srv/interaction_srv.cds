@@ -13,7 +13,8 @@ service CatalogService  {
     as projection on interactions.Interactions_Header;
  entity Interactions_Items
     as projection on  interactions.Interactions_Items;
-
+@requires: 'Developer'
+@restrict: [{ grant: 'READ', where: 'LANGU = ''EN'''}]
  entity Interactions_Student
     as projection on  interactions.Interactions_Student;
 

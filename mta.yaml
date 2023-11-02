@@ -23,7 +23,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: BPSH_126_Sample-db
-      - name: BPSH_126_Sample-auth
+      - name: myservices
 
   - name: BPSH_126_Sample-db-deployer
     type: hdb
@@ -48,7 +48,7 @@ modules:
           strictSSL: false
           url: ~{srv-url}
           forwardAuthToken: true
-      - name: BPSH_126_Sample-auth
+      - name: myservices
 
 resources:
   - name: BPSH_126_Sample-db
@@ -56,7 +56,7 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: BPSH_126_Sample-auth
+  - name: myservices
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa

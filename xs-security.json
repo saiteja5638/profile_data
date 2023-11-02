@@ -1,30 +1,53 @@
 {
-  "xsappname":"BPSH_126_Sample",
-  "tenant-mode":"dedicated",
+  "xsappname": "myservices",
+  "tenant-mode": "dedicated",
   "scopes": [
     {
-      "name": "$XSAPPNAME.Admin",
-      "description": "Admin"
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.User",
+      "description": "UAA Display"
+    },
+    {
+      "name": "$XSAPPNAME.Developer",
+      "description": "UAA Display"
     }
   ],
-  "attributes": [],
   "role-templates": [
     {
-      "name": "Admin",
-      "description": "generated",
+      "name": "Token_Exchange",
+      "description": "UAA",
       "scope-references": [
-        "$XSAPPNAME.Admin"
-      ],
-      "attribute-references": []
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "VCPDeveloperRole",
+      "description": "UAA VCPDeveloperRole",
+      "scope-references": [
+        "$XSAPPNAME.Developer"
+      ]
+    },
+    {
+      "name": "VCPUserRole",
+      "description": "UAA VCPUserRole",
+      "scope-references": [
+        "$XSAPPNAME.User"
+      ]
     }
   ],
   "oauth2-configuration": {
     "credential-types": [
-        "binding-secret",
-        "x509"
+      "binding-secret",
+      "x509"
     ],
     "redirect-uris": [
-      "https://*.trial.applicationstudio.cloud.sap"
+      "https://*.hana.ondemand.com/**",
+      "https://*.applicationstudio.cloud.sap/**"
     ]
-}
+  },
+  "attributes": [],
+  "authorities-inheritance": false
 }
