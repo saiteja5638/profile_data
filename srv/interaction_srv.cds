@@ -13,8 +13,7 @@ service CatalogService  {
     as projection on interactions.Interactions_Header;
  entity Interactions_Items
     as projection on  interactions.Interactions_Items;
-@requires: 'Developer'
-@restrict: [{ grant: 'READ', where: 'LANGU = ''EN'''}]
+
  entity Interactions_Student
     as projection on  interactions.Interactions_Student;
 
@@ -87,7 +86,7 @@ entity LOCATION_IBP as projection on interactions.LOCATION_IBP;
 
 entity PRODUCT_SRV as projection on interactions.PRODUCT;
 
- @(requires: 'authenticated-user')
+
 entity SALES_SRV as projection on interactions.SALES1;
 
 }

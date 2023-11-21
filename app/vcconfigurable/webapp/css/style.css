@@ -1,0 +1,10 @@
+.sapUiIcon::before{
+    /* content: none */
+
+}
+.sapMPanel .sapMPanelWrappingDiv:not(.sapMPanelWrappingDivExpanded), .sapMPanel .sapMPanelWrappingDivTb:not(.sapMPanelWrappingDivTbExpanded) {
+/* 
+    border: 0.12px solid rgb(219, 193, 193);
+    height: 2.5rem; */
+    
+}
