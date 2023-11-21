@@ -1,0 +1,10 @@
+/* Enter your custom styles here */
+
+@media (min-width: 80rem) {
+.sapUiMedia-Std-Desktop .sapUShellApplicationContainer.sapUShellApplicationContainerLimitedWidth {
+    width: 100% !important;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
+}
+}

@@ -1,7 +1,7 @@
 <mvc:View controllerName="vcconfigurable.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="Interface table" titleAlignment="Center" >
+    <Page id="page" title="Config table" titleAlignment="Center" >
         <content>
         <List id="_IDGenList1"  >
         <items>

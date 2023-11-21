@@ -1,0 +1,24 @@
+<mvc:View controllerName="configtable.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+    xmlns="sap.m">
+    <Page id="page" title="Config table" titleAlignment="Center"  >
+        <content>
+        <List id="_IDGenList1" items="{/items}" >
+        <items>
+        <CustomListItem id="_IDGenCustomListItem1"    >
+        <Panel expandable="true" headerText="{SERVICE_NAME}" width="auto" class="sapUiResponsiveMargin"  id="Panel_125"   >
+          <content>
+            <Tree
+            id="Tree"
+            items="{path: '/'}" mode="MultiSelect"   >
+            <StandardTreeItem id="_IDGenStandardTreeItem1" title="{text}"   />
+           </Tree>
+           </content>
+         </Panel>
+        </CustomListItem>
+        
+        </items>
+        </List>
+        </content>
+    </Page>
+</mvc:View>
