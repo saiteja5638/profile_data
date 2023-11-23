@@ -55,16 +55,16 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - configtable.zip
-      name: configtable
-      target-path: resources/
-    - artifacts:
       - vcconfigurable.zip
       name: vcconfigurable
       target-path: resources/
-- name: configtable
+    - artifacts:
+      - flexiblecolumnlayout.zip
+      name: flexiblecolumnlayout
+      target-path: resources/
+- name: vcconfigurable
   type: html5
-  path: configtable
+  path: app/vcconfigurable
   build-parameters:
     build-result: dist
     builder: custom
@@ -72,9 +72,9 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
-- name: vcconfigurable
+- name: flexiblecolumnlayout
   type: html5
-  path: app/vcconfigurable
+  path: flexiblecolumnlayout
   build-parameters:
     build-result: dist
     builder: custom
