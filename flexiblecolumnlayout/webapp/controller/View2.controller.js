@@ -11,9 +11,7 @@ sap.ui.define([
             onInit: function () {
 
                 that = this;
-                
-                
-                
+                                
                 var treeModel=[
                     {
                         text:"API",
@@ -45,7 +43,9 @@ sap.ui.define([
 
                 that.byId("Tree").getItems().forEach(element => {
                     element.setSelected(false)
+
                 });
+                that.byId("Tree").collapseAll()
 
                 oData.read("/CONFIG_INT_TAB", {
 
@@ -62,11 +62,7 @@ sap.ui.define([
                                     {
                                         that.byId("Tree").getItems()[0].setSelected(true)
                                         that.byId("Tree").expandToLevel(1);
-
                                         that.byId("Tree").getItems()[1].setSelected(true)
-                                     
-                                     
-                              
                                        
                                     }
                                     else{
@@ -84,8 +80,6 @@ sap.ui.define([
                             }
                             
                         }
-                        
-                    
                     }, error: function (error) {
                         console.log(error)
                     }
