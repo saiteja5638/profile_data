@@ -11,6 +11,8 @@ sap.ui.define([
             onInit: function () {
 
                 that = this;
+
+                var oGmodel = that.getOwnerComponent().getModel("oGmodel")
                 
                 var treeModel=[
                     {
@@ -32,6 +34,12 @@ sap.ui.define([
                 ]
                 var oModel=new sap.ui.model.json.JSONModel(treeModel);
                 that.byId("Tree").setModel(oModel);
+            },
+            getDetail:function()
+            {
+                var oGmodel = that.getOwnerComponent().getModel("oGmodel").getData().items[0].key
+                
+                that.byId("TreeId").setText(oGmodel)
             }
         });
     });

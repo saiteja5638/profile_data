@@ -34,14 +34,31 @@ sap.ui.define([
      
 
             },
-            handleListPress: function () {
+            handleListPress: function (oEvent) {
 
                 var oView = this.oView.getParent().getParent();
 
                 oView.setLayout(fioriLibary.LayoutType.TwoColumnsMidExpanded);
 
-                that.byId("Hi").setText("hih")
+               var evt = oEvent.mParameters.listItem.getTitle()    
+               
+               var oGmodel = this.getOwnerComponent().getModel("oGmodel")
+
+               let ogarray = []
+
+               let ogObj = {
+                key:evt
+               }
+
+               ogarray.push(ogObj)
+
+               oGmodel.setData({
+                items:ogarray
+               })
           
+
+               var oSecondController = sap.ui.controller("flexiblecolumnlayout.controller.View2"); // Replace with the actual ID of the second controller
+               oSecondController.getDetail();
             }
         });
     });
