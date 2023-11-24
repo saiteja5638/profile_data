@@ -1,0 +1,18 @@
+<mvc:View controllerName="flexiblecolumnlayout.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="Config Options">
+                    <Tree
+            id="Tree"
+            items="{path: '/'}" mode="MultiSelect"   >
+            			<headerToolbar>
+				<OverflowToolbar id="_IDGenOverflowToolbar1">
+					<Title
+						id="TreeId" text="Location"  />
+					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
+				</OverflowToolbar>
+			</headerToolbar>
+            <StandardTreeItem id="_IDGenStandardTreeItem1" title="{text}"   />
+           </Tree>
+    </Page>
+</mvc:View>

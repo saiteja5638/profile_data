@@ -1,0 +1,12 @@
+<mvc:View controllerName="flexiblecolumnlayout.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="ConfigTable"  titleAlignment="Center" >
+        			<List id="_IDGenList1"
+				items="{/items}"
+				headerText="Services"  itemPress="handleListPress" >
+<StandardListItem id="_IDGenStandardListItem1"   title="{SERVICE_NAME}"   description="{SERVICE_DESC}" type="Active"  info="{SERVICE_ID}"  infoTextDirection="RTL" ></StandardListItem>
+
+			</List>
+    </Page>
+</mvc:View>
