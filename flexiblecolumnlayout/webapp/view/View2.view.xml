@@ -4,7 +4,7 @@
     <Page id="page" title="Config Options">
                     <Tree
             id="Tree"
-            items="{path: '/'}" mode="MultiSelect"   >
+            items="{path: '/'}" mode="MultiSelect"  selectionChange="dataCall" >
             			<headerToolbar>
 				<OverflowToolbar id="_IDGenOverflowToolbar1">
 					<Title

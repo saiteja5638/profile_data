@@ -47,7 +47,8 @@ sap.ui.define([
                let ogarray = []
 
                let ogObj = {
-                key:evt
+                key:evt,
+                info:oEvent.mParameters.listItem.getInfo()
                }
 
                ogarray.push(ogObj)
