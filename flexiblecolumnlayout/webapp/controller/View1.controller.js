@@ -17,8 +17,6 @@ sap.ui.define([
                     success:function(res)
                     {
                         var oModel1 = new sap.ui.model.json.JSONModel()
-                        console.log(res.results)
-
                         oModel1.setData({
                             items:res.results
                         })
@@ -30,9 +28,6 @@ sap.ui.define([
                         console.log(err)
                     }
                 })
-
-     
-
             },
             handleListPress: function (oEvent) {
 
@@ -56,8 +51,6 @@ sap.ui.define([
                oGmodel.setData({
                 items:ogarray
                })
-          
-
                var oSecondController = sap.ui.controller("flexiblecolumnlayout.controller.View2"); // Replace with the actual ID of the second controller
                oSecondController.getDetail();
             }
