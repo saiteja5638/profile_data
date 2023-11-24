@@ -58,9 +58,16 @@ sap.ui.define([
                             {
                                 if(response[i].INTERFACE_TYPE=="API")
                                 {
-                                    if(response[i].VALUE)
+                                    if(response[i].VALUE =="true")
                                     {
                                         that.byId("Tree").getItems()[0].setSelected(true)
+                                        that.byId("Tree").expandToLevel(1);
+
+                                        that.byId("Tree").getItems()[1].setSelected(true)
+                                     
+                                     
+                              
+                                       
                                     }
                                     else{
                                         that.byId("Tree").getItems()[0].setSelected(true)
