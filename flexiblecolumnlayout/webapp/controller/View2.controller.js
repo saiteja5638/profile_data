@@ -11,7 +11,8 @@ sap.ui.define([
             onInit: function () {
 
                 that = this;
-                var oGmodel = that.getOwnerComponent().getModel("oGmodel")
+                
+                
                 
                 var treeModel=[
                     {

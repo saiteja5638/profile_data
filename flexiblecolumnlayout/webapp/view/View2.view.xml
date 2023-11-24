@@ -8,7 +8,7 @@
             			<headerToolbar>
 				<OverflowToolbar id="_IDGenOverflowToolbar1">
 					<Title
-						id="TreeId" text="Location"  />
+						id="TreeId"  />
 					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
 				</OverflowToolbar>
 			</headerToolbar>
