@@ -12,7 +12,7 @@
 					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
 				</OverflowToolbar>
 			</headerToolbar>
-            <StandardTreeItem id="_IDGenStandardTreeItem1" title="{text}"   />
+            <StandardTreeItem id="_IDGenStandardTreeItem1" title="{text}"  selected="false" />
            </Tree>
     </Page>
 </mvc:View>
