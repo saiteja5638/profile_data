@@ -10,9 +10,10 @@
 					<Title
 						id="TreeId"  />
 					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                    <Button id="_IDGenButton1"  icon="sap-icon://decline" press="handleClose" ></Button>
 				</OverflowToolbar>
 			</headerToolbar>
-            <StandardTreeItem id="_IDGenStandardTreeItem1" title="{text}"  selected="false" />
+            <StandardTreeItem id="_IDGenStandardTreeItem1" title="{text}"  selected="false"   />
            </Tree>
     </Page>
 </mvc:View>

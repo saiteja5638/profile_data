@@ -1,10 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/f/library"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,fioriLibary) {
         "use strict";
             var that;
         return Controller.extend("flexiblecolumnlayout.controller.View2", {
@@ -87,6 +88,12 @@ sap.ui.define([
                 })
                 
             },
+            handleClose:function()
+            {
+                var oView = this.oView.getParent().getParent();
+
+                oView.setLayout(fioriLibary.LayoutType.OneColumn);
+            },
             dataCall:function(oEvent)
             {
                 var oData = that.getOwnerComponent().getModel()
@@ -110,6 +117,11 @@ sap.ui.define([
                         success:function(response)
                         {
                             console.log(response)
+
+                            oData.remove("/CONFIG_INT_TAB/"+obj.SERVICE_ID+"/"+obj.INTERFACE_TYPE+"/"+da,{
+                                success:function(){},
+                                error:function(){}
+                            })
                         },
                         error:function(error)
                         {
