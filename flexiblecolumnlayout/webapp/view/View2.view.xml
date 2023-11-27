@@ -1,7 +1,7 @@
 <mvc:View controllerName="flexiblecolumnlayout.controller.View2"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="Config Options">
+    <Page id="page" showHeader="false">
                     <Tree
             id="Tree"
             items="{path: '/'}" mode="MultiSelect"  selectionChange="dataCall" >

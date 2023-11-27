@@ -32,6 +32,7 @@ sap.ui.define([
                 ]
                 var oModel=new sap.ui.model.json.JSONModel(treeModel);
                 that.byId("Tree").setModel(oModel);
+              
             },
             getDetail:function()
             {
@@ -45,7 +46,7 @@ sap.ui.define([
                     element.setSelected(false)
 
                 });
-                that.byId("Tree").collapseAll()
+                that.byId("Tree").expandToLevel(1);
 
                 oData.read("/CONFIG_INT_TAB", {
 
@@ -71,11 +72,11 @@ sap.ui.define([
                                 }
                                 if(response[i].INTERFACE_TYPE=="Manual") 
                                 {
-                                    that.byId("Tree").getItems()[1].setSelected(true)
+                                    that.byId("Tree").getItems()[2].setSelected(true)
                                 }
                                 if(response[i].INTERFACE_TYPE=="External")
                                 {
-                                    that.byId("Tree").getItems()[2].setSelected(true)
+                                    that.byId("Tree").getItems()[3].setSelected(true)
                                 }
                             }
                             
