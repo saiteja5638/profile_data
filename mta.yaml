@@ -62,6 +62,10 @@ modules:
       - flexiblecolumnlayout.zip
       name: flexiblecolumnlayout
       target-path: resources/
+    - artifacts:
+      - objectstatus.zip
+      name: objectstatus
+      target-path: resources/
 - name: vcconfigurable
   type: html5
   path: app/vcconfigurable
@@ -75,6 +79,16 @@ modules:
 - name: flexiblecolumnlayout
   type: html5
   path: flexiblecolumnlayout
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: objectstatus
+  type: html5
+  path: objectstatus
   build-parameters:
     build-result: dist
     builder: custom
