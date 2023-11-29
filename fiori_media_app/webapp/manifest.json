@@ -1,7 +1,7 @@
 {
-  "_version": "1.58.0",
+  "_version": "1.59.0",
   "sap.app": {
-    "id": "flexiblecolumnlayout",
+    "id": "fiorimediaapp",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,19 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
-      "version": "1.11.4",
-      "toolsId": "0a8edac8-d78a-44fe-bb57-e7dcfae41a0a"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/v2/catalog/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
-        }
-      }
+      "version": "1.11.5",
+      "toolsId": "cee68e12-9b2c-4914-bf74-3600412f25cb"
     }
   },
   "sap.ui": {
@@ -66,19 +55,8 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "flexiblecolumnlayout.i18n.i18n"
+          "bundleName": "fiorimediaapp.i18n.i18n"
         }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {}
-      },
-      "oGmodel":{
-        "type": "sap.ui.model.json.JSONModel"
-      },
-      "oGmodel1":{
-        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
@@ -89,16 +67,16 @@
       ]
     },
     "config": {
-			"fullWidth": true
-		},
+      "fullWidth": true
+    },
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "flexiblecolumnlayout.view",
+        "viewPath": "fiorimediaapp.view",
         "controlAggregation": "pages",
-        "controlId": "_IDGenFlexibleColumnLayout1",
+        "controlId": "app",
         "clearControlAggregation": false
       },
       "routes": [
@@ -106,16 +84,7 @@
           "name": "RouteView1",
           "pattern": ":?query:",
           "target": [
-            "TargetView1",
-            "View2"
-          ]
-        },
-        {
-          "name": "Detail",
-          "pattern": "Detail",
-          "target": [
-           "TargetView1",
-            "View2"
+            "TargetView1"
           ]
         }
       ],
@@ -124,22 +93,13 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "controlAggregation": "beginColumnPages",
           "viewId": "View1",
           "viewName": "View1"
-        },
-        "View2": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "controlAggregation": "midColumnPages",
-          "viewId": "View2",
-          "viewName": "View2"
         }
       }
     },
     "rootView": {
-      "viewName": "flexiblecolumnlayout.view.App",
+      "viewName": "fiorimediaapp.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

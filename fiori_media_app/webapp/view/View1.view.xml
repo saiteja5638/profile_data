@@ -1,0 +1,13 @@
+<mvc:View controllerName="fiorimediaapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+      <Toolbar id="_IDGenToolbar1" >
+      <Button id="_IDGenButton1"  text="Camera"  press="onOpenCameraPress"  type="Emphasized"  ></Button></Toolbar>
+      		<VBox id="_IDGenVBox1">
+						<Text id="detailsActiveImage" text="Active state image:" class="sapUiSmallMarginBottom"/>
+						<Image ariaDetails="detailsActiveImage" id="myImage" src="" width="10em" decorative="false"/>
+					</VBox>
+      
+    </Page>
+</mvc:View>

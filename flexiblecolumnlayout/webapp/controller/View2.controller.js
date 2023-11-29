@@ -94,12 +94,38 @@ sap.ui.define([
 
                 oView.setLayout(fioriLibary.LayoutType.OneColumn);
             },
+            datasource_call:function()
+            {
+
+                alert("ad")
+                // var oData = that.getOwnerComponent().getModel()
+                // oData.read("/INTERFACE_TABLE",{
+                //     success:function(res)
+                //     {
+                //         res.results.forEach(item=>{
+                //             if(item.SERVICE_NAME==that.getOwnerComponent().getModel("oGmodel").getData().items[0].key)
+                //             {
+                                 
+                //                 return item.SERVICE_ID
+
+                //             }
+                //         })
+                //     },
+                //     error:function(error)
+                //     {
+                        
+                //     }
+                // })
+            },
             dataCall:function(oEvent)
             {
                 var oData = that.getOwnerComponent().getModel()
 
                 var clickEvent = oEvent.mParameters.listItem.getTitle() 
                 
+                that.datasource_call()
+
+               
                 let obj ={
                     "SERVICE_ID": parseInt(that.getOwnerComponent().getModel("oGmodel").getData().items[0].info),
                     "INTERFACE_TYPE": clickEvent,
@@ -130,16 +156,16 @@ sap.ui.define([
                     })
                 }
 
-                oData.create("/CONFIG_INT_TAB",obj,{
-                    success:function(response)
-                    {
-                        console.log(response)
-                    },
-                    error:function(error)
-                    {
-                        console.log(error)
-                    }
-                })
+                // oData.create("/CONFIG_INT_TAB",obj,{
+                //     success:function(response)
+                //     {
+                //         console.log(response)
+                //     },
+                //     error:function(error)
+                //     {
+                //         console.log(error)
+                //     }
+                // })
             }
         });
     });
