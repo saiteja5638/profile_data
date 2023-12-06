@@ -13,9 +13,6 @@ sap.ui.define([
                 that = this;
                 
                 that.Master_List_binding()
-
-
-
             },
             Master_List_binding:function()
             {
@@ -27,6 +24,7 @@ sap.ui.define([
                             success:function(res)
                             {
                                 resolve(res.results)
+                                console.log(res.results)
                             },
                             error:function(error)
                             {
