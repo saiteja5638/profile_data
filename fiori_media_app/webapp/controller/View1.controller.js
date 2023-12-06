@@ -1,17 +1,20 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/Button"
+    "sap/m/Button",
+    "sap/ushell/services/UserInfo"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,Button) {
+    function (Controller,Button,UserInfo) {
         "use strict";
         var that;
         return Controller.extend("fiorimediaapp.controller.View1", {
             onInit: function () {
                     that = this;
-                  
+                    var oUserInfoService = new UserInfo();
+                var username = oUserInfoService.getUser().getFullName();
+                console.log(username)
             },
             takePic:function()
             {
