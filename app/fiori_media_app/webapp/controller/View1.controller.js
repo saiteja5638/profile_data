@@ -14,7 +14,7 @@ sap.ui.define([
                     that = this;
                     var oUserInfoService = new UserInfo();
                 var username = oUserInfoService.getUser().getFullName();
-                console.log(username)
+
             },
             takePic:function()
             {
