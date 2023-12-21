@@ -1,5 +1,11 @@
-.sapMSLITitle, .sapMSLITitleOnly {
-    
+.sapMSLITitle,
+.sapMSLITitleOnly {
+
     font-weight: 600;
-  
+
+}
+.sapMSLITitle, .sapMSLITitleOnly {
+    font-size: 1rem;
+    color: #364b61;
+    visibility: hidden;
 }
