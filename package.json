@@ -1,71 +1,71 @@
 {
-  "name": "BPSH_126_Sample",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^6.8.4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
-    "@sap/xssec": "^3",
-    "app-router": "^0.1.3",
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "fs": "^0.0.1-security",
-    "hdb": "^0.19.0",
-    "in": "^0.19.0",
-    "jquery": "^3.7.0",
-    "jsonfile": "^6.1.0",
-    "passport": "^0",
-    "sqlite": "^4.2.1",
-    "sqlite3": "^5.1.6",
-    "xlsx": "^0.18.5"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
-    "undeploy": "cf undeploy BPSH_126_Sample --delete-services --delete-service-keys --delete-service-brokers",
-    "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-    "watch-excel_file_upload": "cds watch --open excel_file_upload/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-seeduniqueorder": "cds watch --open seeduniqueorder/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-order_data": "cds watch --open order_data/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-list_style": "cds watch --open list_style/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-profile_information": "cds watch --open profile_information/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-sample_profile_predication": "cds watch --open sample_profile_predication/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-crud_json": "cds watch --open crud_json/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-netflix": "cds watch --open netflix/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-tree_app": "cds watch --open tree_app/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-vcconfigurable": "cds watch --open vcconfigurable/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "cds": {
-    "hana": {
-      "deploy-format": "hdbtable"
+    "name": "BPSH_126_Sample",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^6.8.4",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+        "@sap/xssec": "^3",
+        "app-router": "^0.1.3",
+        "body-parser": "^1.20.2",
+        "express": "^4.18.2",
+        "fs": "^0.0.1-security",
+        "hdb": "^0.19.0",
+        "in": "^0.19.0",
+        "jquery": "^3.7.0",
+        "jsonfile": "^6.1.0",
+        "passport": "^0",
+        "sqlite": "^4.2.1",
+        "sqlite3": "^5.1.6",
+        "xlsx": "^0.18.5"
     },
-    "build": {
-      "tasks": [
-        {
-          "for": "hana",
-          "dest": "../db"
+    "scripts": {
+        "start": "cds-serve",
+        "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy BPSH_126_Sample --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-excel_file_upload": "cds watch --open excel_file_upload/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-seeduniqueorder": "cds watch --open seeduniqueorder/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-order_data": "cds watch --open order_data/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-list_style": "cds watch --open list_style/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-profile_information": "cds watch --open profile_information/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-sample_profile_predication": "cds watch --open sample_profile_predication/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-crud_json": "cds watch --open crud_json/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-netflix": "cds watch --open netflix/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-tree_app": "cds watch --open tree_app/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-vcconfigurable": "cds watch --open vcconfigurable/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
         },
-        {
-          "for": "node-cf"
+        "build": {
+            "tasks": [
+                {
+                    "for": "hana",
+                    "dest": "../db"
+                },
+                {
+                    "for": "node-cf"
+                }
+            ]
+        },
+        "requires": {
+            "db": {
+                "kind": "sql"
+            }
         }
-      ]
     },
-    "requires": {
-      "db": {
-        "kind": "sql"
-      }
+    "sapux": [
+        "app/list_style"
+    ],
+    "devDependencies": {
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.108.18",
+        "rimraf": "^3.0.2"
     }
-  },
-  "sapux": [
-    "app/list_style"
-  ],
-  "devDependencies": {
-    "@sap/cds-dk": "^7",
-    "@sap/ux-specification": "^1.108.18",
-    "rimraf": "^3.0.2"
-  }
 }

@@ -16,11 +16,11 @@ sap.ui.define([
                 var treeModel=[
                     {
                         text:"API",
-                        selected:true,
+                        selected:false,
                         node:[
                             {
                                 text:"Data Manual Approval",
-                                selected:true
+                                selected:false
 
                             }
                         ]
@@ -39,11 +39,18 @@ sap.ui.define([
                 that.byId("Tree").setModel(oModel);
               
             },
-            getDetail:function()
+            bindServ:function()
             {
+                if(!that.busy){
+                    that.busy = new sap.m.BusyDialog({
+                        text:"Loading..."
+                    })
+
+                }
+
+                that.busy.open()
+
                 var oGmodel = that.getOwnerComponent().getModel("oGmodel").getData().items[0].key
-                
-                that.byId("TreeId").setText(oGmodel)
 
                 var oData = that.getOwnerComponent().getModel()
 
@@ -86,6 +93,7 @@ sap.ui.define([
                             }
                             
                         }
+                        that.busy.close()
                     }, error: function (error) {
                         console.log(error)
                     }
@@ -98,38 +106,11 @@ sap.ui.define([
 
                 oView.setLayout(fioriLibary.LayoutType.OneColumn);
             },
-            datasource_call:function()
-            {
-
-                alert("ad")
-                // var oData = that.getOwnerComponent().getModel()
-                // oData.read("/INTERFACE_TABLE",{
-                //     success:function(res)
-                //     {
-                //         res.results.forEach(item=>{
-                //             if(item.SERVICE_NAME==that.getOwnerComponent().getModel("oGmodel").getData().items[0].key)
-                //             {
-                                 
-                //                 return item.SERVICE_ID
-
-                //             }
-                //         })
-                //     },
-                //     error:function(error)
-                //     {
-                        
-                //     }
-                // })
-            },
             dataCall:function(oEvent)
             {
-                var oData = that.getOwnerComponent().getModel()
-
-                var clickEvent = oEvent.mParameters.listItem.getTitle() 
                 
-                that.datasource_call()
+                var clickEvent = oEvent.mParameters.listItem.getTitle() 
 
-               
                 let obj ={
                     "SERVICE_ID": parseInt(that.getOwnerComponent().getModel("oGmodel").getData().items[0].info),
                     "INTERFACE_TYPE": clickEvent,
@@ -143,7 +124,7 @@ sap.ui.define([
                     obj.PARAMETER ="Data Manual Approval"
                     obj.VALUE="true"
                     var da = "false"
-                    oData.update("/CONFIG_INT_TAB/"+obj.SERVICE_ID+"/"+obj.INTERFACE_TYPE+"/"+da,obj,{
+                    that.getOwnerComponent().getModel().update("/CONFIG_INT_TAB/"+obj.SERVICE_ID+"/"+obj.INTERFACE_TYPE+"/"+da,obj,{
                         success:function(response)
                         {
                             console.log(response)
@@ -159,17 +140,8 @@ sap.ui.define([
                         }
                     })
                 }
-
-                // oData.create("/CONFIG_INT_TAB",obj,{
-                //     success:function(response)
-                //     {
-                //         console.log(response)
-                //     },
-                //     error:function(error)
-                //     {
-                //         console.log(error)
-                //     }
-                // })
+           
+                that.getOwnerComponent().getModel().create("/CONFIG_INT_TAB",obj,{success:function(){},error:function(){}})
             }
         });
     });

@@ -6,7 +6,7 @@
 				items="{/items}"
                 mode="SingleSelectMaster"
 				headerText="Services"  itemPress="handleListPress" >
-<StandardListItem id="_IDGenStandardListItem1"   title="{SERVICE_NAME}"   description="{SERVICE_DESC}" type="Navigation"  info="{Count}"  infoStateInverted="true"  ></StandardListItem>
+<StandardListItem id="_IDGenStandardListItem1"   title="{SERVICE_ID}"   description="{SERVICE_DESC}" type="Navigation"  info="{Count}"  infoStateInverted="true"  ></StandardListItem>
 
 			</List>
     </Page>

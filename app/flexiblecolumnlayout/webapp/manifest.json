@@ -25,6 +25,28 @@
           "odataVersion": "2.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "flexiblecolumnlayout-DISPLAY": {
+          "semanticObject": "flexiblecolumnlayout",
+          "action": "DISPLAY",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        },
+        "vcmaintainence-DISPLAY": {
+          "semanticObject": "vcmaintainence",
+          "action": "DISPLAY",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {
@@ -74,10 +96,10 @@
         "preload": true,
         "settings": {}
       },
-      "oGmodel":{
+      "oGmodel": {
         "type": "sap.ui.model.json.JSONModel"
       },
-      "oGmodel1":{
+      "oGmodel1": {
         "type": "sap.ui.model.json.JSONModel"
       }
     },
@@ -89,8 +111,8 @@
       ]
     },
     "config": {
-			"fullWidth": true
-		},
+      "fullWidth": true
+    },
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
@@ -114,7 +136,7 @@
           "name": "Detail",
           "pattern": "Detail",
           "target": [
-           "TargetView1",
+            "TargetView1",
             "View2"
           ]
         }

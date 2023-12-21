@@ -103,7 +103,7 @@ sap.ui.define([
 
                 let ogObj = {
                     key: evt,
-                    info: oEvent.mParameters.listItem.getInfo()
+                    info: oEvent.mParameters.listItem.getTitle()
                 }
 
                 ogarray.push(ogObj)
@@ -112,7 +112,7 @@ sap.ui.define([
                     items: ogarray
                 })
                 var oSecondController = sap.ui.controller("flexiblecolumnlayout.controller.View2"); // Replace with the actual ID of the second controller
-                // oSecondController.getDetail();
+                oSecondController.bindServ();
             },
             push_data: function () {
 
