@@ -8,5 +8,3 @@ using from './order_data/annotations';
 using from './list_style/annotations';
 
 using from './profile_information/annotations';
-
-using from './vcconfigurable/annotations';
