@@ -3,6 +3,8 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"  height="100%"  >
     <App id="app">
-  <f:FlexibleColumnLayout id="_IDGenFlexibleColumnLayout1" ></f:FlexibleColumnLayout>
+  <f:FlexibleColumnLayout id="_IDGenFlexibleColumnLayout1" >
+  
+  </f:FlexibleColumnLayout>
     </App>
 </mvc:View>

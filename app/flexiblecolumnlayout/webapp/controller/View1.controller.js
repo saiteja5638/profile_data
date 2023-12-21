@@ -112,7 +112,7 @@ sap.ui.define([
                     items: ogarray
                 })
                 var oSecondController = sap.ui.controller("flexiblecolumnlayout.controller.View2"); // Replace with the actual ID of the second controller
-                oSecondController.getDetail();
+                // oSecondController.getDetail();
             },
             push_data: function () {
 

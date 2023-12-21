@@ -16,18 +16,22 @@ sap.ui.define([
                 var treeModel=[
                     {
                         text:"API",
+                        selected:true,
                         node:[
                             {
-                                text:"Data Manual Approval"
+                                text:"Data Manual Approval",
+                                selected:true
 
                             }
                         ]
                     },
                     {
                         text:"Manual",
+                        selected:false
                     },
                     {
-                        text:"External"
+                        text:"External",
+                        selected:false
                     }
 
                 ]
