@@ -91,6 +91,8 @@ entity SALES_SRV as projection on interactions.SALES1;
 
  entity INTERFACE_TABLE as projection on interactions.INTERFACE_TABLE;
  entity CONFIG_INT_TAB as projection on interactions.CONFIG_INT_TAB;
+
+
 }
 
 

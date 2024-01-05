@@ -64,14 +64,14 @@ context app.interactions {
   }
 
   entity Interactions_Student_marks {
-    ID    : Integer64;
+  key  ID    : Integer64;
     DATE  : String;
     MARKS : Integer;
   }
 
   entity Unique_ID_Header {
 
-    UNIQUE_ID   : Integer64;
+   key UNIQUE_ID   : Integer64;
     PRODUCT_ID  : String;
     UNIQUE_DESC : Integer64;
     UID_TYPE    : String;
@@ -81,7 +81,7 @@ context app.interactions {
 
   entity Unique_ID_Header12 {
 
-    UNIQUE_ID   : Integer64;
+   key UNIQUE_ID   : Integer64;
     PRODUCT_ID  : String;
     UNIQUE_DESC : String;
     UID_TYPE    : String;
@@ -90,7 +90,7 @@ context app.interactions {
 
   entity Unique_ID_ITEM {
 
-    UNIQUE_ID   : Integer64;
+   key UNIQUE_ID   : Integer64;
     PRODUCT     : String;
     CHAR_NUM    : Integer64;
     CHAR_NUMVAL : String;
@@ -99,14 +99,16 @@ context app.interactions {
 
   entity CHARVAL_NUM {
 
-    CHAR_NUM        : Integer64;
+   key CHAR_NUM        : Integer64;
     CHAR_NUMVAL     : String;
     CHARVAL_NUM     : String;
     CHAR_NUMVALDESC : String;
   }
 
+  
+
   entity ORDER_DATA {
-    SEEDORDER         : String;
+   key SEEDORDER         : String;
     PRODUCT           : String;
     UNIQUEID          : String;
     ORDERQUANTITY     : Integer64;
@@ -366,7 +368,7 @@ entity STUD_PROGRESS1 {
   // DATE  : String  @title: 'DATE';
   // MARKS : Integer @title: 'MARKS';
 
-  ID          : Integer     @title: 'ID';
+key  ID          : Integer     @title: 'ID';
   NAME        : String(100) @title: 'NAME';
   DATEOFBIRTH : String(100) @title: 'DATEOFBIRTH';
   CONTACT     : Integer64   @title: 'CONTACT';
@@ -382,7 +384,7 @@ entity STUD_PROGRESS1 {
 
 entity SAMPLE_1 {
 
-  NAME  : String  @title: 'NAME';
+ key NAME  : String  @title: 'NAME';
   DATE  : String  @title: 'DATE';
   MARKS : Integer @title: 'MARKS';
 
@@ -392,5 +394,5 @@ entity SAMPLE_1 {
 @cds.persistence.table
 
 entity SELECTIONOPTIONS {
-  PRODUCT_ID : String @title: 'PRODUCT_ID';
+ key PRODUCT_ID : String @title: 'PRODUCT_ID';
 };

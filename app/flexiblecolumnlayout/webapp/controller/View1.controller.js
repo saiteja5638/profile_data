@@ -11,7 +11,6 @@ sap.ui.define([
         return Controller.extend("flexiblecolumnlayout.controller.View1", {
             onInit: function () {
                 that = this;
-                
                 that.Master_List_binding()
             },
             Master_List_binding:function()
@@ -88,6 +87,7 @@ sap.ui.define([
                 })
             },
             handleListPress: function (oEvent) {
+
 
                 var oView = this.oView.getParent().getParent();
 
